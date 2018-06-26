@@ -1,0 +1,208 @@
+keyname, description
+mara_matnr,Material Number
+mara_mtart,Material Type
+mara_matkl,Material Group
+mara_bismt,Old material number
+mara_vhart,Packaging Material Type
+mara_satnr,Cross-Plant Configurable Material
+mara_pmata,Pricing Reference Material
+mara_mfrpn,Manufacturer Part Number
+mara_mfrnr,Number of a Manufacturer
+mara_bmatn,Number of firm's own (internal) inventory-managed material
+mara_ersda,Created On
+mara_ernam,Name of Person who Created the Object
+mara_laeda,Date of Last Change
+mara_aenam,Name of Person Who Changed Object
+mara_vpsta,Maintenance status of complete material
+mara_pstat,Maintenance status
+mara_lvorm,Flag Material for Deletion at Client Level
+mara_mbrsh,Industry sector
+mara_meins,Base Unit of Measure
+mara_bstme,Purchase Order Unit of Measure
+mara_zeinr,Document number (without document management system)
+mara_zeiar,Document type (without Document Management system)
+mara_zeivr,Document version (without Document Management system)
+mara_zeifo,Page format of document (without Document Management system)
+mara_aeszn,Document change number (without document management system)
+mara_blatt,Page number of document (without Document Management system)
+mara_blanz,Number of sheets (without Document Management system)
+mara_ferth,Production/inspection memo
+mara_formt,Page Format of Production Memo
+mara_groes,Size/dimensions
+mara_wrkst,Basic Material
+mara_normt,Industry Standard Description (such as ANSI or ISO)
+mara_labor,Laboratory/design office
+mara_ekwsl,Purchasing Value Key
+mara_brgew,Gross Weight
+mara_ntgew,Net Weight
+mara_gewei,Weight Unit
+mara_volum,Volume
+mara_voleh,Volume unit
+mara_behvo,Container requirements
+mara_raube,Storage conditions
+mara_tempb,Temperature conditions indicator
+mara_disst,Low-Level Code
+mara_tragr,Transportation Group
+mara_stoff,Hazardous material number
+mara_spart,Division
+mara_kunnr,Competitor
+mara_eannr,European Article Number (EAN) - obsolete!!!!!
+mara_wesch,Quantity: Number of GR/GI slips to be printed
+mara_bwvor,Procurement rule
+mara_bwscl,Source of Supply
+mara_saiso,Season Category
+mara_etiar,Label type
+mara_etifo,Label form
+mara_entar,Deactivated
+mara_ean11,International Article Number (EAN/UPC)
+mara_numtp,Category of International Article Number (EAN)
+mara_laeng,Length
+mara_breit,Width
+mara_hoehe,Height
+mara_meabm,Unit of Dimension for Length/Width/Height
+mara_prdha,Product hierarchy
+mara_aeklk,Stock Transfer Net Change Costing
+mara_cadkz,CAD Indicator
+mara_qmpur,QM in Procurement is Active
+mara_ergew,Allowed packaging weight
+mara_ergei,Unit of weight (allowed packaging weight)
+mara_ervol,Allowed packaging volume
+mara_ervoe,Volume unit (allowed packaging volume)
+mara_gewto,Excess Weight Tolerance for Handling unit
+mara_volto,Excess Volume Tolerance of the Handling Unit
+mara_vabme,Variable Purchase Order Unit Active
+mara_kzrev,Revision Level Has Been Assigned to the Material
+mara_kzkfg,Configurable Material
+mara_xchpf,Batch management requirement indicator
+mara_fuelg,Maximum level (by volume)
+mara_stfak,Stacking factor
+mara_magrv,Material Group: Packaging Materials
+mara_begru,Authorization Group
+mara_datab,Valid-From Date
+mara_liqdt,Deletion date
+mara_saisj,Season Year
+mara_plgtp,Price Band Category
+mara_mlgut,Empties Bill of Material
+mara_extwg,External Material Group
+mara_attyp,Material Category
+mara_kzkup,Indicator: Material can be co-product
+mara_kznfm,Indicator: The material has a follow-up material
+mara_mstae,Cross-Plant Material Status
+mara_mstav,Cross-distribution-chain material status
+mara_mstde,Date from which the cross-plant material status is valid
+mara_mstdv,Date from which the X-distr.-chain material status is valid
+mara_taklv,Tax classification of the material
+mara_rbnrm,Catalog Profile
+mara_mhdrz,Minimum Remaining Shelf Life
+mara_mhdhb,Total shelf life
+mara_mhdlp,Storage percentage
+mara_inhme,Content unit
+mara_inhal,Net contents
+mara_vpreh,Comparison price unit
+mara_etiag,IS-R Labeling: material grouping (deactivated in 4.0)
+mara_inhbr,Gross contents
+mara_cmeth,Quantity Conversion Method
+mara_cuobf,Internal object number
+mara_kzumw,Environmentally Relevant
+mara_kosch,Product allocation determination procedure
+mara_sprof,Pricing profile for variants
+mara_nrfhg,Material qualifies for discount in kind
+mara_mprof,Manufacturer Part Profile
+mara_kzwsm,Units of measure usage
+mara_saity,Rollout in a Season
+mara_profl,Dangerous Goods Indicator Profile
+mara_ihivi,Indicator: Highly Viscous
+mara_iloos,Indicator: In Bulk/Liquid
+mara_serlv,Level of Explicitness for Serial Number
+mara_kzgvh,Packaging Material is Closed Packaging
+mara_xgchp,Indicator: Approved batch record required
+mara_kzeff,Assign effectivity parameter values/ override change numbers
+mara_compl,Material completion level
+mara_iprkz,Period Indicator for Shelf Life Expiration Date
+mara_rdmhd,Rounding rule for calculation of SLED
+mara_przus,Indicator: Product composition printed on packaging
+mara_mtpos_mara,General item category group
+mara_bflme,Generic Material with Logistical Variants
+mara_matfi,Material Is Locked
+mara_cmrel,Relevant for Configuration Management
+mara_bbtyp,Assortment List Type
+mara_sled_bbd,Expiration Date
+mara_gtin_variant,Global Trade Item Number Variant
+mara_gennr,Material Number of the Generic Material in Prepack Materials
+mara_rmatp,Reference material for materials packed in same way
+mara_gds_relevant,Indicator: Global Data Synchronization-Relevant
+mara_weora,Acceptance At Origin
+mara_hutyp_dflt,Standard HU Type
+mara_pilferable,Pilferable
+mara_whstc,Warehouse Storage Condition
+mara_whmatgr,Warehouse Material Group
+mara_hndlcode,Handling Indicator
+mara_hazmat,Relevant for Hazardous Substances
+mara_hutyp,Handling Unit Type
+mara_tare_var,Variable Tare Weight
+mara_maxc,Maximum Allowed Capacity of Packaging Material
+mara_maxc_tol,Overcapacity Tolerance of the Handling Unit
+mara_maxl,Maximum Packing Length of Packaging Material
+mara_maxb,Maximum Packing Width of Packaging Material
+mara_maxh,Maximum Packing Height of Packaging Material
+mara_maxdim_uom,Unit of Measure for Maximum Packing Length/Width/Height
+mara_herkl,Country of origin of the material
+mara_mfrgr,Material freight group
+mara_qqtime,Quarantine Period
+mara_qqtimeuom,Time Unit for Quarantine Period
+mara_qgrp,Quality Inspection Group
+mara_serial,Serial Number Profile
+mara_ps_smartform,Form Name
+mara_logunit,EWM CW: Logistics Unit of Measure
+mara_cwqrel,EWM CW: Material Is Relevant to Catch Weight
+mara_cwqproc,EWM CWM: Control of CW Quantity Entry
+mara_cwqtolgr,EWM CW: Catch Weight Tolerance Group
+mara_/bev1/luleinh,Loading Units
+mara_/bev1/luldegrp,Loading Unit Group: IS Beverage
+mara_/bev1/nestruccat,Structure Category for Material Relationship
+mara_/dsd/vc_group,DSD Grouping
+mara_/vso/r_tilt_ind,Material may be Tilted (Vehicle Space Optimization)
+mara_/vso/r_stack_ind,Stacking not Allowed (VSO)
+mara_/vso/r_bot_ind,Bottom Layer (Vehicle Space Optimization)
+mara_/vso/r_top_ind,Top Layer (VSO)
+mara_/vso/r_stack_no,Stacking Factor (Vehicle Space Optimization)
+mara_/vso/r_pal_ind,Load without Packaging Material (VSO)
+mara_/vso/r_pal_ovr_d,Permissible Overhang (Depth) of Packaging Material (VSO)
+mara_/vso/r_pal_ovr_w,Permissible Overhang (Width) of Shipping Material (VSO)
+mara_/vso/r_pal_b_ht,Maximum Stacking Height of the Packaging Material (VSO)
+mara_/vso/r_pal_min_h,Minimum Stacking Height of the Packaging Material (VSO)
+mara_/vso/r_tol_b_ht,Tolerance to Exceed the Max. Stacking Height (VSO)
+mara_/vso/r_no_p_gvh,Number of Materials for each Closed PKM (VSO)
+mara_/vso/r_quan_unit,Unit of Measure Vehicle Space Optimization
+mara_/vso/r_kzgvh_ind,Closed Packaging Material Required (VSO)
+mara_mcond,Material Condition Management
+mara_retdelc,Return Code
+mara_loglev_reto,Return to Logistics Level
+mara_nsnid,NATO Stock Number
+mara_imatn,FFF class
+mara_picnum,Supersession chain number
+mara_bstat,Creation Status - Seasonal Procurement
+mara_color_atinn,Internal Charactieristic Number for Color Characteristics
+mara_size1_atinn,Internal Char. Number for Characteristics for Main Sizes
+mara_size2_atinn,Internal Char. Number for Characteristics for Second Sizes
+mara_color,Characteristic Value for Colors of Variants
+mara_size1,Characteristic Value for Main Sizes of Variants
+mara_size2,Characteristic Value for Second Size for Variants
+mara_free_char,Characteristic Value for Evaluation Purposes
+mara_care_code,"Care Codes (such as Washing Code, Ironing Code, etc.)"
+mara_brand_id,Brand
+mara_fiber_code1,Fiber Code for Textiles (Component 1)
+mara_fiber_part1,Percentage Share of Fiber (Component 1)
+mara_fiber_code2,Fiber Code for Textiles (Component 2)
+mara_fiber_part2,Percentage Share of Fiber (Component 2)
+mara_fiber_code3,Fiber Code for Textiles (Component 3)
+mara_fiber_part3,Percentage Share of Fiber (Component 3)
+mara_fiber_code4,Fiber Code for Textiles (Component 4)
+mara_fiber_part4,Percentage Share of Fiber (Component 4)
+mara_fiber_code5,Fiber Code for Textiles (Component 5)
+mara_fiber_part5,Percentage Share of Fiber (Component 5)
+mara_fashgrd,Fashion Grade
+makt_matnr,Material Number
+makt_spras,Language Key
+makt_maktg,Material description in upper case for matchcodes
+makt_maktx,Material Description (Short Text)

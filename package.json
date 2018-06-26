@@ -1,0 +1,20 @@
+{
+  "name": "newproj",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "elasticsearch": "^15.0.0",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "lodash": "^4.17.10",
+    "path": "^0.12.7"
+  }
+}
