@@ -6,7 +6,6 @@ let router = express.Router()
 router.post('/search', searchQuery)
 
 function prepareQuery(body) {
-    console.log(body.text)
     let query = {bool: {}}
     query.bool['should'] = []
 
@@ -46,7 +45,6 @@ function prepareQuery(body) {
 }
 
 function searchQuery(req, res) {
-console.log('hey bro')
     const index = 'makt'
     const type = 'data'
     const query = prepareQuery(req.body)
@@ -82,7 +80,9 @@ console.log('hey bro')
                  res.status(500).json({msg:'something went wrong'})
              }
             }
-        )
+        ).catch(function (error) {
+            res.status(500).json({msg:'something is not correct'})
+    })
 }
 
 module.exports = router
