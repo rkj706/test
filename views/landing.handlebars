@@ -1,11 +1,11 @@
-<div class="container">
+<div class="">
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <h2>Search</h2>
             <div id="custom-search-input">
                 <div class="input-group col-md-12">
-                    <input type="text" id="search-text" class="form-control input-lg" placeholder="Search ..." />
+                    <input type="text" id="search-text" class="form-control input-lg" placeholder="Search ..."/>
                     <span class="input-group-btn">
                         <button class="btn btn-info btn-lg" id="search" type="button">
                             Search
@@ -14,276 +14,110 @@
                 </div>
             </div>
 
-                </div>
-        <div class="col-md-3"></div>
         </div>
-    <div class="row results">
-
+        <div class="col-md-3"></div>
     </div>
-    <div class="row">
 
+        <table id="example" class="display hidden results" style="width:100%">
+            <thead>
+            <tr>
+                <th>Material Number</th>
+                <th>Meterial Type</th>
+                <th>Material Group</th>
+                <th>Packaging Material Type</th>
+                <th>Created On</th>
+                <th>Name of Person who Created the Object </th>
+                <th>Maintenance status </th>
+                <th>Industry Sector</th>
+                <th>Base Unit of Measure</th>
+                <th>Product hierarchy</th>
+            </tr>
+            <tbody>
+            </tbody>
+            </thead>
+
+        </table>
+    <div class="row">
         <input class="hidden btn btn-default" id="loadMore" value="Load More" type="button" onclick="loadMore()">
     </div>
 </div>
 
 <script type="text/html" id="template">
-    <% if(pagination==0){ %>
-    <b> Found <%= data.count%> results</b>
-    <% }%>
-    <% data=data.result; for (var i in data) { %>
-    <pre class="code">
-            <pre>
-            Meterial Number:<%=data[i]._source.mara_matnr%>
-            Meterial Type:<%=data[i]._source.mara_mtart%>
-            Meterial Group:<%=data[i]._source.mara_matkl%>
-            Old Meterial Number:<%=data[i]._source.mara_bismt%>
-            Packaging Material Type:<%=data[i]._source.mara_vhart%>
-            Cross-Plant Configurable Material:<%=data[i]._source.mara_satnr%>
-            Pricing Reference Material:<%=data[i]._source.mara_pmata%>
-            Manufacturer Part Number:<%=data[i]._source.mara_mfrpn%>
-            Number of a Manufacturer:<%=data[i]._source.mara_mfrnr%>
-            Number of firm's own (internal) inventory-managed material:<%=data[i]._source.mara_bmatn%>
-            Created On:<%=data[i]._source.mara_ersda%>
-            Name of Person who Created the Object:<%=data[i]._source.mara_ernam%>
-            Date of Last Change:<%=data[i]._source.mara_laeda%>
-            Name of Person Who Changed Object:<%=data[i]._source.mara_aenam%>
-            Maintenance status of complete material:<%=data[i]._source.mara_vpsta%>
-            Maintenance status:<%=data[i]._source.mara_pstat%>
-            Flag Material for Deletion at Client Level:<%=data[i]._source.mara_lvorm%>
-            Industry sector:<%=data[i]._source.mara_mbrsh%>
-            Base Unit of Measure:<%=data[i]._source.mara_meins%>
-            Purchase Order Unit of Measure:<%=data[i]._source.mara_bstme%>
-            Document number (without document management system):<%=data[i]._source.mara_zeinr%>
-            Document type (without Document Management system):<%=data[i]._source.mara_zeiar%>
-            Document version (without Document Management system):<%=data[i]._source.mara_zeivr%>
-            Page format of document (without Document Management system):<%=data[i]._source.mara_zeifo%>
-            Document change number (without document management system):<%=data[i]._source.mara_aeszn%>
-            Page number of document (without Document Management system):<%=data[i]._source.mara_blatt%>
-            Number of sheets (without Document Management system):<%=data[i]._source.mara_blanz%>
-            Production/inspection memo:<%=data[i]._source.mara_ferth%>
-            Page Format of Production Memo:<%=data[i]._source.mara_formt%>
-            Size/dimensions:<%=data[i]._source.mara_groes%>
-            Basic Material:<%=data[i]._source.mara_wrkst%>
-            Industry Standard Description (such as ANSI or ISO):<%=data[i]._source.mara_normt%>
-            Laboratory/design office:<%=data[i]._source.mara_labor%>
-            Purchasing Value Key:<%=data[i]._source.mara_ekwsl%>
-            Gross Weight:<%=data[i]._source.mara_brgew%>
-            Net Weight:<%=data[i]._source.mara_ntgew%>
-            Weight Unit:<%=data[i]._source.mara_gewei%>
-            Volume:<%=data[i]._source.mara_volum%>
-            Volume unit:<%=data[i]._source.mara_voleh%>
-            Container requirements:<%=data[i]._source.mara_behvo%>
-            Storage conditions:<%=data[i]._source.mara_raube%>
-            Temperature conditions indicator:<%=data[i]._source.mara_tempb%>
-            Low-Level Code:<%=data[i]._source.mara_disst%>
-            Transportation Group:<%=data[i]._source.mara_tragr%>
-            Hazardous material number:<%=data[i]._source.mara_stoff%>
-            Division:<%=data[i]._source.mara_spart%>
-            Competitor:<%=data[i]._source.mara_kunnr%>
-            European Article Number (EAN) - obsolete!!!!!:<%=data[i]._source.mara_eannr%>
-            Quantity: Number of GR/GI slips to be printed:<%=data[i]._source.mara_wesch%>
-            Procurement rule:<%=data[i]._source.mara_bwvor%>
-            Source of Supply:<%=data[i]._source.mara_bwscl%>
-            Season Category:<%=data[i]._source.mara_saiso%>
-            Label type:<%=data[i]._source.mara_etiar%>
-            Label form:<%=data[i]._source.mara_etifo%>
-            Deactivated:<%=data[i]._source.mara_entar%>
-            International Article Number (EAN/UPC):<%=data[i]._source.mara_ean11%>
-            Category of International Article Number (EAN):<%=data[i]._source.mara_numtp%>
-            Length:<%=data[i]._source.mara_laeng%>
-            Width:<%=data[i]._source.mara_breit%>
-            Height:<%=data[i]._source.mara_hoehe%>
-            Unit of Dimension for Length/Width/Height:<%=data[i]._source.mara_meabm%>
-            Product hierarchy:<%=data[i]._source.mara_prdha%>
-            Stock Transfer Net Change Costing:<%=data[i]._source.mara_aeklk%>
-            CAD Indicator:<%=data[i]._source.mara_cadkz%>
-            QM in Procurement is Active:<%=data[i]._source.mara_qmpur%>
-            Allowed packaging weight:<%=data[i]._source.mara_ergew%>
-            Unit of weight (allowed packaging weight):<%=data[i]._source.mara_ergei%>
-            Allowed packaging volume:<%=data[i]._source.mara_ervol%>
-            Volume unit (allowed packaging volume):<%=data[i]._source.mara_ervoe%>
-            Excess Weight Tolerance for Handling unit:<%=data[i]._source.mara_gewto%>
-            Excess Volume Tolerance of the Handling Unit:<%=data[i]._source.mara_volto%>
-            Variable Purchase Order Unit Active:<%=data[i]._source.mara_vabme%>
-            Revision Level Has Been Assigned to the Material:<%=data[i]._source.mara_kzrev%>
-            Configurable Material:<%=data[i]._source.mara_kzkfg%>
-            Batch management requirement indicator:<%=data[i]._source.mara_xchpf%>
-            Maximum level (by volume):<%=data[i]._source.mara_fuelg%>
-            Stacking factor:<%=data[i]._source.mara_stfak%>
-            Material Group: Packaging Materials:<%=data[i]._source.mara_magrv%>
-            Authorization Group:<%=data[i]._source.mara_begru%>
-            Valid-From Date:<%=data[i]._source.mara_datab%>
-            Deletion date:<%=data[i]._source.mara_liqdt%>
-            Season Year:<%=data[i]._source.mara_saisj%>
-            Price Band Category:<%=data[i]._source.mara_plgtp%>
-            Empties Bill of Material:<%=data[i]._source.mara_mlgut%>
-            External Material Group:<%=data[i]._source.mara_extwg%>
-            Material Category:<%=data[i]._source.mara_attyp%>
-            Indicator: Material can be co-product:<%=data[i]._source.mara_kzkup%>
-            Indicator: The material has a follow-up material:<%=data[i]._source.mara_kznfm%>
-            Cross-Plant Material Status:<%=data[i]._source.mara_mstae%>
-            Cross-distribution-chain material status:<%=data[i]._source.mara_mstav%>
-            Date from which the cross-plant material status is valid:<%=data[i]._source.mara_mstde%>
-            Date from which the X-distr.-chain material status is valid:<%=data[i]._source.mara_mstdv%>
-            Tax classification of the material:<%=data[i]._source.mara_taklv%>
-            Catalog Profile:<%=data[i]._source.mara_rbnrm%>
-            Minimum Remaining Shelf Life:<%=data[i]._source.mara_mhdrz%>
-            Total shelf life:<%=data[i]._source.mara_mhdhb%>
-            Storage percentage:<%=data[i]._source.mara_mhdlp%>
-            Content unit:<%=data[i]._source.mara_inhme%>
-            Net contents:<%=data[i]._source.mara_inhal%>
-            Comparison price unit:<%=data[i]._source.mara_vpreh%>
-            IS-R Labeling: material grouping (deactivated in 4.0):<%=data[i]._source.mara_etiag%>
-            Gross contents:<%=data[i]._source.mara_inhbr%>
-            Quantity Conversion Method:<%=data[i]._source.mara_cmeth%>
-            Internal object number:<%=data[i]._source.mara_cuobf%>
-            Environmentally Relevant:<%=data[i]._source.mara_kzumw%>
-            Product allocation determination procedure:<%=data[i]._source.mara_kosch%>
-            Pricing profile for variants:<%=data[i]._source.mara_sprof%>
-            Material qualifies for discount in kind:<%=data[i]._source.mara_nrfhg%>
-            Manufacturer Part Profile:<%=data[i]._source.mara_mprof%>
-            Units of measure usage:<%=data[i]._source.mara_kzwsm%>
-            Rollout in a Season:<%=data[i]._source.mara_saity%>
-            Dangerous Goods Indicator Profile:<%=data[i]._source.mara_profl%>
-            Indicator: Highly Viscous:<%=data[i]._source.mara_ihivi%>
-            Indicator: In Bulk/Liquid:<%=data[i]._source.mara_iloos%>
-            Level of Explicitness for Serial Number:<%=data[i]._source.mara_serlv%>
-            Packaging Material is Closed Packaging:<%=data[i]._source.mara_kzgvh%>
-            Indicator: Approved batch record required:<%=data[i]._source.mara_xgchp%>
-            Assign effectivity parameter values/ override change numbers:<%=data[i]._source.mara_kzeff%>
-            Material completion level:<%=data[i]._source.mara_compl%>
-            Period Indicator for Shelf Life Expiration Date:<%=data[i]._source.mara_iprkz%>
-            Rounding rule for calculation of SLED:<%=data[i]._source.mara_rdmhd%>
-            Indicator: Product composition printed on packaging:<%=data[i]._source.mara_przus%>
-            General item category group:<%=data[i]._source.mara_mtpos_mara%>
-            Generic Material with Logistical Variants:<%=data[i]._source.mara_bflme%>
-            Material Is Locked:<%=data[i]._source.mara_matfi%>
-            Relevant for Configuration Management:<%=data[i]._source.mara_cmrel%>
-            Assortment List Type:<%=data[i]._source.mara_bbtyp%>
-            Expiration Date:<%=data[i]._source.mara_sled_bbd%>
-            Global Trade Item Number Variant:<%=data[i]._source.mara_gtin_variant%>
-            Material Number of the Generic Material in Prepack Materials:<%=data[i]._source.mara_gennr%>
-            Reference material for materials packed in same way:<%=data[i]._source.mara_rmatp%>
-            Indicator: Global Data Synchronization-Relevant:<%=data[i]._source.mara_gds_relevant%>
-            Acceptance At Origin:<%=data[i]._source.mara_weora%>
-            Standard HU Type:<%=data[i]._source.mara_hutyp_dflt%>
-            Pilferable:<%=data[i]._source.mara_pilferable%>
-            Warehouse Storage Condition:<%=data[i]._source.mara_whstc%>
-            Warehouse Material Group:<%=data[i]._source.mara_whmatgr%>
-            Handling Indicator:<%=data[i]._source.mara_hndlcode%>
-            Relevant for Hazardous Substances:<%=data[i]._source.mara_hazmat%>
-            Handling Unit Type:<%=data[i]._source.mara_hutyp%>
-            Variable Tare Weight:<%=data[i]._source.mara_tare_var%>
-            Maximum Allowed Capacity of Packaging Material:<%=data[i]._source.mara_maxc%>
-            Overcapacity Tolerance of the Handling Unit:<%=data[i]._source.mara_maxc_tol%>
-            Maximum Packing Length of Packaging Material:<%=data[i]._source.mara_maxl%>
-            Maximum Packing Width of Packaging Material:<%=data[i]._source.mara_maxb%>
-            Maximum Packing Height of Packaging Material:<%=data[i]._source.mara_maxh%>
-            Unit of Measure for Maximum Packing Length/Width/Height:<%=data[i]._source.mara_maxdim_uom%>
-            Country of origin of the material:<%=data[i]._source.mara_herkl%>
-            Material freight group:<%=data[i]._source.mara_mfrgr%>
-            Quarantine Period:<%=data[i]._source.mara_qqtime%>
-            Time Unit for Quarantine Period:<%=data[i]._source.mara_qqtimeuom%>
-            Quality Inspection Group:<%=data[i]._source.mara_qgrp%>
-            Serial Number Profile:<%=data[i]._source.mara_serial%>
-            Form Name:<%=data[i]._source.mara_ps_smartform%>
-            EWM CW: Logistics Unit of Measure:<%=data[i]._source.mara_logunit%>
-            EWM CW: Material Is Relevant to Catch Weight:<%=data[i]._source.mara_cwqrel%>
-            EWM CWM: Control of CW Quantity Entry:<%=data[i]._source.mara_cwqproc%>
-            EWM CW: Catch Weight Tolerance Group:<%=data[i]._source.mara_cwqtolgr%>
-            Loading Units:<%=data[i]._source["mara_/bev1/luleinh"]%>
-            Loading Unit Group: IS Beverage:<%=data[i]._source["mara_/bev1/luldegrp"]%>
-            Structure Category for Material Relationship:<%=data[i]._source["mara_/bev1/nestruccat"]%>
-            DSD Grouping:<%=data[i]._source["mara_/dsd/vc_group"]%>
-            Material may be Tilted (Vehicle Space Optimization):<%=data[i]._source["mara_/vso/r_tilt_ind"]%>
-            Stacking not Allowed (VSO):<%=data[i]._source["mara_/vso/r_stack_ind"]%>
-            Bottom Layer (Vehicle Space Optimization):<%=data[i]._source["mara_/vso/r_bot_ind"]%>
-            Top Layer (VSO):<%=data[i]._source["mara_/vso/r_top_ind"]%>
-             Stacking Factor (Vehicle Space Optimization):<%=data[i]._source["mara_/vso/r_stack_no"]%>
-            Permissible Overhang (Depth) of Packaging Material (VSO):<%=data[i]._source["mara_/vso/r_pal_ovr_d"]%>
-            Permissible Overhang (Width) of Shipping Material (VSO):<%=data[i]._source["mara_/vso/r_pal_ovr_w"]%>
-            Maximum Stacking Height of the Packaging Material (VSO):<%=data[i]._source["mara_/vso/r_pal_b_ht"]%>
-            Minimum Stacking Height of the Packaging Material (VSO):<%=data[i]._source["mara_/vso/r_pal_min_h"]%>
-            Tolerance to Exceed the Max. Stacking Height (VSO):<%=data[i]._source["mara_/vso/r_tol_b_ht"]%>
-            Number of Materials for each Closed PKM (VSO):<%=data[i]._source["mara_/vso/r_tol_b_ht"]%>
-            Unit of Measure Vehicle Space Optimization:<%=data[i]._source["mara_/vso/r_quan_unit"]%>
-            Closed Packaging Material Required (VSO):<%=data[i]._source["mara_/vso/r_kzgvh_ind"]%>
-            Material Condition Management:<%=data[i]._source.mara_mcond%>
-            Return Code:<%=data[i]._source.mara_retdelc%>
-            Return to Logistics Level:<%=data[i]._source.mara_loglev_reto%>
-            NATO Stock Number:<%=data[i]._source.mara_nsnid%>
-            FFF class:<%=data[i]._source.mara_imatn%>
-            Supersession chain number:<%=data[i]._source.mara_picnum%>
-            Creation Status - Seasonal Procurement:<%=data[i]._source.mara_bstat%>
-            Internal Charactieristic Number for Color Characteristics:<%=data[i]._source.mara_color_atinn%>
-            Internal Char. Number for Characteristics for Main Sizes:<%=data[i]._source.mara_size1_atinn%>
-            Internal Char. Number for Characteristics for Second Sizes:<%=data[i]._source.mara_size2_atinn%>
-            Characteristic Value for Colors of Variants:<%=data[i]._source.mara_color%>
-            Characteristic Value for Main Sizes of Variants:<%=data[i]._source.mara_size1%>
-            Characteristic Value for Second Size for Variants:<%=data[i]._source.mara_size2%>
-            Characteristic Value for Evaluation Purposes:<%=data[i]._source.mara_free_char%>
-            "Care Codes (such as Washing Code, Ironing Code, etc.)":<%=data[i]._source.mara_care_code%>
-            Brand:<%=data[i]._source.mara_brand_id%>
-            Fiber Code for Textiles (Component 1):<%=data[i]._source.mara_fiber_code1%>
-            Percentage Share of Fiber (Component 1):<%=data[i]._source.mara_fiber_part1%>
-            Fiber Code for Textiles (Component 2):<%=data[i]._source.mara_fiber_code2%>
-            Percentage Share of Fiber (Component 2):<%=data[i]._source.mara_fiber_part2%>
-            Fiber Code for Textiles (Component 3):<%=data[i]._source.mara_fiber_code3%>
-            Percentage Share of Fiber (Component 3):<%=data[i]._source.mara_fiber_part3%>
-            Fiber Code for Textiles (Component 4):<%=data[i]._source.mara_fiber_code4%>
-            Percentage Share of Fiber (Component 4):<%=data[i]._source.mara_fiber_part4%>
-            Fiber Code for Textiles (Component 5):<%=data[i]._source.mara_fiber_code5%>
-            Percentage Share of Fiber (Component 5):<%=data[i]._source.mara_fiber_part5%>
-            Fashion Grade   :<%=data[i]._source.mara_fashgrd%>
-            </pre>
-             <pre>
-            <%for(var j in data[i]._source.makt_props) { %>
-               Meterial Description <%= data[i]._source.makt_props[j].makt_maktx %>
-                Language Key: <%= data[i]._source.makt_props[j].makt_spras %>
-            <% } %>
-                             </pre>
 
-        </pre>
-    <% } %>
 </script>
 <script>
-    let pagination=0
+    let pagination = 0
+    var giCount = 1;
+
     function loadMore() {
-        let searchText=$("#search-text").val()
-        if(searchText=="" || !searchText || searchText.length<3){
+        let searchText = $("#search-text").val()
+        if (searchText == "" || !searchText || searchText.length < 3) {
             return false
         }
         $.ajax({
             url: '/api/search',
-            data:JSON.stringify({
-                text: searchText  ,
-                from:pagination*10
+            data: JSON.stringify({
+                text: searchText,
+                from: pagination * 10,
+                source:['mara_matnr','mara_mtart','mara_matkl','mara_vhart','mara_ersda','mara_ernam','mara_pstat','mara_mbrsh','mara_meins','mara_prdha']
             }),
             method: 'POST',
             dataType: 'json',
             contentType: "application/json",
             success: function (data) {
-                var template = $('#template').html();
-                // complie template and bind context
-                var compiled_html = _.template(template)({
-                    data: data
-                });
-                if(data.result.length>=10 && data.count>10){
+                $('.results').removeClass('hidden')
+//                var template = $('#template').html();
+//                // complie template and bind context
+//                var compiled_html = _.template(template)({
+//                    data: data
+//                });
+                if (data.result.length >= 10 && data.count > 10) {
                     $("#loadMore").removeClass('hidden')
-                }else{
+                } else {
                     $("#loadMore").addClass('hidden')
                 }
-                $('.results').append(compiled_html);
+              //  $('#example').append(compiled_html);
+                let final_data=data.result.map(function (tempdata) {
+                    return tempdata._source
+                })
+                console.log(final_data)
+                var counter = 1;
+
+
+                for(let j=0;j<final_data.length;j++) {
+                    $('#example').dataTable().fnAddData([
+                        final_data[j].mara_matnr,
+                        final_data[j].mara_mtart,
+                        final_data[j].mara_matkl,
+                        final_data[j].mara_vhart,
+                        final_data[j].mara_ersda,
+                        final_data[j].mara_ernam,
+                        final_data[j].mara_pstat,
+                        final_data[j].mara_mbrsh,
+                        final_data[j].mara_meins,
+                        final_data[j].mara_prdha
+
+                    ]);
+                }
+
                 pagination++;
-            },error:function (error) {
+//                $('#example').DataTable({"paging":   false});
+            }, error: function (error) {
                 alert(error.message)
             }
         })
     }
-    $("#search").on('click',function () {
-        pagination=0
-        $('.results').html('')
-    loadMore()
+
+    $("#search").on('click', function () {
+        pagination = 0
+        var table = $('#example').DataTable();
+        table
+                .rows()
+                .remove()
+                .draw();
+        //     $('.results').html('')
+       // $('#example').dataTable().clear().draw();
+        loadMore()
     })
     $("#search-text").bind("keypress", {}, keypressInBox);
 
@@ -291,9 +125,20 @@
         var code = (e.keyCode ? e.keyCode : e.which);
         if (code == 13) { //Enter keycode
             e.preventDefault();
-            pagination=0
-            $('.results').html('')
+            pagination = 0
+            var table = $('#example').DataTable();
+
+            table
+                    .rows()
+                    .remove()
+                    .draw();
+            //    $('#example').dataTable().clear().draw();
+
+            //     $('.results').html('')
             loadMore()
         }
     };
+    $(document).ready(function () {
+        $('#example').DataTable({"paging":   false,});
+    });
 </script>
