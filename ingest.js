@@ -1,6 +1,6 @@
 const clinet = require('./lib/elasticSearch')
 const config = require('./config/index')
-const utf8 = require('utf8');
+// const utf8 = require('utf8');
 
 function insert(query, callback) {
     let baseData = {
