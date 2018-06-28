@@ -37,6 +37,11 @@ app.use(cookieParser());
 
 
 require('./router')(app);
+let ingest=require('./ingest')
+if(config.ingest){
+    ingest.start()
+}
+
 var server=http.createServer(app);
 server.listen('5000',function () {
     console.log('server is running');
