@@ -29,6 +29,7 @@ body { width: 100%; text-align: center; }
     padding: 50px;
 }
 #custom-search-input{
+    box-shadow: 5px 5px 5px 1px;
     padding: 3px;
     border: solid 1px #E4E4E4;
     border-radius: 6px;
