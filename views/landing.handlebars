@@ -94,9 +94,9 @@
 
 
                 for(let j=0;j<final_data.length;j++) {
-                    let maktxData=final_data[j].makt_props.map(function (makt_prop_data) {
-                        return makt_prop_data.makt_maktx
-                    })
+//                    let maktxData=final_data[j].makt_props.map(function (makt_prop_data) {
+//                        return makt_prop_data.makt_maktx
+//                    })
                     $('#example').dataTable().fnAddData([
                         final_data[j].mara_matnr,
                         final_data[j].mara_mtart,
@@ -108,7 +108,7 @@
                         final_data[j].mara_mbrsh,
                         final_data[j].mara_meins,
                         final_data[j].mara_prdha,
-                        maktxData.join(',')
+                        final_data[j].makt_props[0].makt_maktx
                     ]);
                 }
 

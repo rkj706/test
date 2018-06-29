@@ -80,6 +80,13 @@ table.dataTable thead .sorting_desc:after {
 td , th{
     padding-left: 40px;
 }
+tbody{
+    font-size: 13px;
+}
+td {
+    padding-top: .5em;
+    padding-bottom: .5em;
+}
 forward-inactive{
     color:darkgray !important;
 }
