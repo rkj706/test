@@ -21,6 +21,9 @@
         <table id="example" class="display hidden results" style="width:100%">
             <thead>
             <tr>
+                <th style="color:#3c763d" id="resultCount"></th>
+            </tr>
+            <tr>
                 <th>Material Number</th>
                 <th>Meterial Type</th>
                 <th>Material Group</th>
@@ -31,6 +34,7 @@
                 <th>Industry Sector</th>
                 <th>Base Unit of Measure</th>
                 <th>Product hierarchy</th>
+                <th>Description</th>
             </tr>
             <tbody>
             </tbody>
@@ -52,6 +56,8 @@
     function loadMore() {
         let searchText = $("#search-text").val()
         if (searchText == "" || !searchText || searchText.length < 3) {
+            $('#example').addClass('hidden')
+            $('#loadMore').addClass('hidden')
             return false
         }
         $.ajax({
@@ -59,7 +65,7 @@
             data: JSON.stringify({
                 text: searchText,
                 from: pagination * 10,
-                source:['mara_matnr','mara_mtart','mara_matkl','mara_vhart','mara_ersda','mara_ernam','mara_pstat','mara_mbrsh','mara_meins','mara_prdha']
+                source:['mara_matnr','mara_mtart','mara_matkl','mara_vhart','mara_ersda','mara_ernam','mara_pstat','mara_mbrsh','mara_meins','mara_prdha','makt_props']
             }),
             method: 'POST',
             dataType: 'json',
@@ -71,6 +77,9 @@
 //                var compiled_html = _.template(template)({
 //                    data: data
 //                });
+                if(data.result.length>1){
+                    $("#resultCount").html(data.time)
+                }
                 if (data.result.length >= 10 && data.count > 10) {
                     $("#loadMore").removeClass('hidden')
                 } else {
@@ -85,6 +94,9 @@
 
 
                 for(let j=0;j<final_data.length;j++) {
+                    let maktxData=final_data[j].makt_props.map(function (makt_prop_data) {
+                        return makt_prop_data.makt_maktx
+                    })
                     $('#example').dataTable().fnAddData([
                         final_data[j].mara_matnr,
                         final_data[j].mara_mtart,
@@ -95,8 +107,8 @@
                         final_data[j].mara_pstat,
                         final_data[j].mara_mbrsh,
                         final_data[j].mara_meins,
-                        final_data[j].mara_prdha
-
+                        final_data[j].mara_prdha,
+                        maktxData.join(',')
                     ]);
                 }
 
@@ -115,8 +127,6 @@
                 .rows()
                 .remove()
                 .draw();
-        //     $('.results').html('')
-       // $('#example').dataTable().clear().draw();
         loadMore()
     })
     $("#search-text").bind("keypress", {}, keypressInBox);
@@ -132,9 +142,7 @@
                     .rows()
                     .remove()
                     .draw();
-            //    $('#example').dataTable().clear().draw();
 
-            //     $('.results').html('')
             loadMore()
         }
     };

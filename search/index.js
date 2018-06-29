@@ -11,21 +11,34 @@ function prepareQuery(body) {
 
     let s1 = {
         "match": {
-            "mara_matnr": body.text
+            "mara_matnr": {
+                "query": body.text,
+                "fuzziness": 2,
+                "prefix_length": 1
+            }
         }
 
     }
     query.bool.should.push(s1)
     let s2 = {
         "match": {
-            "mara_mtart": body.text
+            "mara_mtart": {
+                "query": body.text,
+                "fuzziness": 2,
+                "prefix_length": 1
+
+            }
         }
 
     }
     query.bool.should.push(s2)
     let s3 = {
         "match": {
-            "mara_ernam": body.text
+            "mara_ernam": {
+                "query": body.text,
+                "fuzziness": 2,
+                "prefix_length": 1
+            }
         }
     }
     query.bool.should.push(s3)
@@ -34,7 +47,11 @@ function prepareQuery(body) {
             'path': 'makt_props',
             'query': {
                 "match": {
-                    "makt_props.makt_maktg": body.text
+                    "makt_props.makt_maktx": {
+                        "query": body.text,
+                        "fuzziness": 2,
+                        "prefix_length": 1
+                    }
                 }
             }
         }
@@ -74,14 +91,14 @@ function searchQuery(req, res) {
     }
     client.search(esQuery)
         .then(function (esDocs) {
-             if(esDocs){
-                 res.status(200).send({result:esDocs.hits.hits,count:esDocs.hits.total})
-             }else{
-                 res.status(500).json({msg:'something went wrong'})
-             }
+                if (esDocs) {
+                    res.status(200).send({result: esDocs.hits.hits,count:esDocs.hits.total, time:"About "+ esDocs.hits.total+ " results "+'('+esDocs.took/1000+' seconds)'})
+                } else {
+                    res.status(500).json({msg: 'something went wrong'})
+                }
             }
         ).catch(function (error) {
-            res.status(500).json({msg:'something is not correct'})
+        res.status(500).json({msg: 'something is not correct'})
     })
 }
 
