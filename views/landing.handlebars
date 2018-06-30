@@ -26,6 +26,7 @@
             <tr>
                 <th>Material Number</th>
                 <th>Meterial Type</th>
+                <th>Description</th>
                 <th>Material Group</th>
                 <th>Packaging Material Type</th>
                 <th>Created On</th>
@@ -34,7 +35,7 @@
                 <th>Industry Sector</th>
                 <th>Base Unit of Measure</th>
                 <th>Product hierarchy</th>
-                <th>Description</th>
+
             </tr>
             <tbody>
             </tbody>
@@ -100,6 +101,7 @@
                     $('#example').dataTable().fnAddData([
                         final_data[j].mara_matnr,
                         final_data[j].mara_mtart,
+                        final_data[j].makt_props[0].makt_maktx,
                         final_data[j].mara_matkl,
                         final_data[j].mara_vhart,
                         final_data[j].mara_ersda,
@@ -108,7 +110,7 @@
                         final_data[j].mara_mbrsh,
                         final_data[j].mara_meins,
                         final_data[j].mara_prdha,
-                        final_data[j].makt_props[0].makt_maktx
+
                     ]);
                 }
 

@@ -14,7 +14,8 @@ function prepareQuery(body) {
             "mara_matnr": {
                 "query": body.text,
                 "fuzziness": 2,
-                "prefix_length": 1
+                "prefix_length": 1,
+                "operator":"and"
             }
         }
 
@@ -25,8 +26,8 @@ function prepareQuery(body) {
             "mara_mtart": {
                 "query": body.text,
                 "fuzziness": 2,
-                "prefix_length": 1
-
+                "prefix_length": 1,
+                "operator":"and"
             }
         }
 
@@ -37,7 +38,8 @@ function prepareQuery(body) {
             "mara_ernam": {
                 "query": body.text,
                 "fuzziness": 2,
-                "prefix_length": 1
+                "prefix_length": 1,
+                "operator":"and"
             }
         }
     }
@@ -50,7 +52,8 @@ function prepareQuery(body) {
                     "makt_props.makt_maktx": {
                         "query": body.text,
                         "fuzziness": 2,
-                        "prefix_length": 1
+                        "prefix_length": 1,
+                        "operator":"and"
                     }
                 }
             }
