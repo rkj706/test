@@ -6,57 +6,147 @@
             <div id="custom-search-input">
                 <div class="input-group col-md-12">
                     <input type="text" id="search-text" class="form-control input-lg" placeholder="Search ..."/>
+
                     <span class="input-group-btn">
                         <button class="btn btn-info btn-lg" id="search" type="button">
                             Search
                         </button>
                     </span>
                 </div>
+
             </div>
+            <ul class="dropdown-menu">
+                <li><a href="#">HTML</a></li>
+                <li><a href="#">CSS</a></li>
+                <li><a href="#">JavaScript</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
 
         </div>
         <div class="col-md-3"></div>
     </div>
 
-        <table id="example" class="display hidden results" style="width:100%">
-            <thead>
-            <tr>
-                <th style="color:#3c763d" id="resultCount"></th>
-            </tr>
-            <tr>
-                <th>Material Number</th>
-                <th>Meterial Type</th>
-                <th>Description</th>
-                <th>Material Group</th>
-                <th>Packaging Material Type</th>
-                <th>Created On</th>
-                <th>Name of Person who Created the Object </th>
-                <th>Maintenance status </th>
-                <th>Industry Sector</th>
-                <th>Base Unit of Measure</th>
-                <th>Product hierarchy</th>
+    <table id="example" class="display hidden results" style="width:100%">
+        <thead>
+        <tr>
+            <th style="color:#3c763d" id="resultCount"></th>
+        </tr>
+        <tr>
+            <th>Material Number</th>
+            <th>Meterial Type</th>
+            <th>Description</th>
+            <th>Material Group</th>
+            <th>Packaging Material Type</th>
+            <th>Created On</th>
+            <th>Name of Person who Created the Object</th>
+            <th>Maintenance status</th>
+            <th>Industry Sector</th>
+            <th>Base Unit of Measure</th>
+            <th>Product hierarchy</th>
 
-            </tr>
-            <tbody>
-            </tbody>
-            </thead>
+        </tr>
+        <tbody>
+        </tbody>
+        </thead>
 
-        </table>
+    </table>
     <div class="row">
-        <input class="hidden btn btn-default" id="loadMore" value="Load More" type="button" onclick="loadMore()">
+        <div id="show-pagination">
+        </div>
+        <!--<input class="hidden btn btn-default" id="loadMore" value="Load More" type="button" onclick="loadMore()">-->
     </div>
 </div>
 
 <script type="text/html" id="template">
+    <% if(data.showPrevious){%>
+    <input type="button" onclick="previousSlotPagination()" class="pagination previous" value="<">
+    <%}%>
+    <%for(let dcount=data.start;dcount<=data.count;dcount++){%>
+    <input type="button" onclick="showNextPage(this)" class="pagination" value=<%=dcount%>>
+    <%}%>
 
+    <% if(data.showNext){%>
+    <input id="nextSlot" type="button" onclick="nextSlotPagination()" class="pagination next" value=">">
+    <%}%>
 </script>
 <script>
-    let pagination = 0
-    var giCount = 1;
+    let maximumPagination = 0
 
-    function loadMore() {
-        let searchText = $("#search-text").val().trim()
-        if (searchText == "" || !searchText || searchText.length < 3) {
+    function nextSlotPagination() {
+        let text = getUrlParameter('search-text')
+        let pageNo = getUrlParameter('page')
+        if (!pageNo) {
+            pageNo = 0
+        }
+        pageNo = parseInt(pageNo) + 1
+        if (text) {
+            location.href = '/?search-text=' + text + '&&page=' + pageNo
+        }
+    }
+
+    function previousSlotPagination() {
+        let text = getUrlParameter('search-text')
+        let pageNo = getUrlParameter('page')
+        if (!pageNo) {
+            pageNo = 0
+        }
+        pageNo = parseInt(pageNo) - 1
+        if(pageNo<0){
+            pageNo=0
+        }
+        if (text) {
+            location.href = '/?search-text=' + text + '&&page=' + pageNo
+        }
+    }
+
+    function showNextPage(that) {
+        let text = getUrlParameter('search-text')
+        let pageNo = $(that).val()
+        let redirectText = '/?search-text=' + text
+        if (pageNo > 0) {
+            redirectText = redirectText + '&page=' + pageNo
+        }
+        if (!pageNo || pageNo < 0) {
+            pageNo = 0
+        }
+
+        location.href = redirectText
+    }
+
+    let showNext = false
+    let showPrevious = false
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
+    };
+    (function () {
+        let text = getUrlParameter('search-text')
+        if (text) {
+            let pageNo = getUrlParameter('page')
+            if (!pageNo || !pageNo / 1) {
+                pageNo = 0
+            }
+            if (pageNo > 0) {
+                pageNo = pageNo - 1
+            }
+            loadMore(text.trim(), pageNo)
+        }
+
+    })()
+
+    function loadMore(searchText, pagination) {
+        //  let searchText = $("#search-text").val().trim()
+        if (searchText && (searchText == "" || !searchText || searchText.length < 3)) {
             $('#example').addClass('hidden')
             $('#loadMore').addClass('hidden')
             return false
@@ -66,38 +156,53 @@
             data: JSON.stringify({
                 text: searchText,
                 from: pagination * 10,
-                source:['mara_matnr','mara_mtart','mara_matkl','mara_vhart','mara_ersda','mara_ernam','mara_pstat','mara_mbrsh','mara_meins','mara_prdha','makt_props']
+                source: ['mara_matnr', 'mara_mtart', 'mara_matkl', 'mara_vhart', 'mara_ersda', 'mara_ernam', 'mara_pstat', 'mara_mbrsh', 'mara_meins', 'mara_prdha', 'makt_props']
             }),
             method: 'POST',
             dataType: 'json',
             contentType: "application/json",
             success: function (data) {
                 $('.results').removeClass('hidden')
-//                var template = $('#template').html();
-//                // complie template and bind context
-//                var compiled_html = _.template(template)({
-//                    data: data
-//                });
-                if(data.result.length>1){
+                var template = $('#template').html();
+                let pageCount = Math.floor(data.count / 10)
+                let extraPage = Math.floor(data.count % 10)
+                if (pageCount > 0 && extraPage > 0) {
+                    pageCount = pageCount + 1
+                }
+                let pageStart = 1
+                if(pagination>0){
+                    showPrevious=true
+                }
+                if (pageCount > 5) {
+                    if (pagination <= 0) {
+                        pageStart = pagination + 1
+                    } else {
+                        pageStart = pagination
+                    }
+                    pageCount=pagination+5
+                    $(".next").removeClass('hidden')
+                    showNext = true
+                }
+
+                var compiled_html = _.template(template)({
+                    data: {start: pageStart, count: pageCount, showNext: showNext, showPrevious: showPrevious}
+                })
+                if (data.result.length > 1) {
                     $("#resultCount").html(data.time)
                 }
-                if (data.result.length >= 10 && data.count > 10) {
-                    $("#loadMore").removeClass('hidden')
-                } else {
-                    $("#loadMore").addClass('hidden')
+
+                if (data.count > 10) {
+                    $("#show-pagination").append(compiled_html)
                 }
-              //  $('#example').append(compiled_html);
-                let final_data=data.result.map(function (tempdata) {
-                    return tempdata._source
-                })
-                console.log(final_data)
+                if(data.result.length<10){
+                    $("#nextSlot").attr('disabled',true)
+                }
+                //  $('#example').append(compiled_html);
+                let final_data = data.result
                 var counter = 1;
 
+                for (let j = 0; j < final_data.length; j++) {
 
-                for(let j=0;j<final_data.length;j++) {
-//                    let maktxData=final_data[j].makt_props.map(function (makt_prop_data) {
-//                        return makt_prop_data.makt_maktx
-//                    })
                     $('#example').dataTable().fnAddData([
                         final_data[j].mara_matnr,
                         final_data[j].mara_mtart,
@@ -123,13 +228,8 @@
     }
 
     $("#search").on('click', function () {
-        pagination = 0
-        var table = $('#example').DataTable();
-        table
-                .rows()
-                .remove()
-                .draw();
-        loadMore()
+        let searchText = $("#search-text").val().trim()
+        location.href = '/?search-text=' + searchText
     })
     $("#search-text").bind("keypress", {}, keypressInBox);
 
@@ -137,18 +237,34 @@
         var code = (e.keyCode ? e.keyCode : e.which);
         if (code == 13) { //Enter keycode
             e.preventDefault();
-            pagination = 0
-            var table = $('#example').DataTable();
-
-            table
-                    .rows()
-                    .remove()
-                    .draw();
-
-            loadMore()
+            let searchText = $("#search-text").val().trim()
+            location.href = '/?search-text=' + searchText
         }
     };
     $(document).ready(function () {
-        $('#example').DataTable({"paging":   false,});
+        $('#example').DataTable({"paging": false,});
+        /* $('#search-text').on('keyup', function (word) {
+             let txt = $('#search-text').val().trim()
+             if (txt.length > 2) {
+                 $.ajax({
+                     url: '/api/suggest-search',
+                     method: 'POST',
+                     dataType: 'json',
+                     data:JSON.stringify({
+                         text:txt,
+                         source:['mara_matnr','mara_mtart','mara_ernam','makt_props.makt_maktx']
+                     }),
+                     contentType: "application/json",
+                     success: function (data) {
+                             let showText=[]
+                             let mara_ernam=data.mara_ernam.split(' ')
+
+
+                     }
+                 })
+                 //
+             }
+         })
+         */
     });
 </script>
