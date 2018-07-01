@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7c20b63-8be4-441b-87e4-8a032f76e2ff" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/landing.css" afterPath="$PROJECT_DIR$/public/css/landing.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/search/index.js" afterPath="$PROJECT_DIR$/search/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/landing.handlebars" afterPath="$PROJECT_DIR$/views/landing.handlebars" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -22,11 +19,11 @@
       <file leaf-file-name="landing.handlebars" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/landing.handlebars">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="87" column="49" lean-forward="true" selection-start-line="87" selection-start-column="49" selection-end-line="87" selection-end-column="49" />
+            <state relative-caret-position="36">
+              <caret line="72" column="29" lean-forward="true" selection-start-line="72" selection-start-column="29" selection-end-line="72" selection-end-column="29" />
               <folding>
-                <element signature="e#3153#3500#0#HTML" expanded="false" />
-                <element signature="e#3615#4074#0#HTML" expanded="false" />
+                <element signature="e#3152#3499#0#HTML" expanded="false" />
+                <element signature="e#3614#4073#0#HTML" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -74,7 +71,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>join</find>
       <find>search-text</find>
       <find>operator</find>
       <find>description</find>
@@ -104,6 +100,7 @@
       <find>disabled</find>
       <find>d</find>
       <find>console</find>
+      <find>&amp;&amp;</find>
     </findStrings>
     <replaceStrings>
       <replace>,&lt;</replace>
@@ -132,8 +129,8 @@
         <option value="$PROJECT_DIR$/config/index.js" />
         <option value="$PROJECT_DIR$/col_appendix.csv" />
         <option value="$PROJECT_DIR$/public/css/landing.css" />
-        <option value="$PROJECT_DIR$/views/landing.handlebars" />
         <option value="$PROJECT_DIR$/search/index.js" />
+        <option value="$PROJECT_DIR$/views/landing.handlebars" />
       </list>
     </option>
   </component>
@@ -249,12 +246,12 @@
       <workItem from="1530214997358" duration="1926000" />
       <workItem from="1530289028613" duration="8211000" />
       <workItem from="1530371669994" duration="16268000" />
-      <workItem from="1530442361213" duration="7777000" />
+      <workItem from="1530442361213" duration="7958000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82017000" />
+    <option name="totallyTimeSpent" value="82198000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="57" y="21" width="1303" height="780" extended-state="6" />
@@ -344,8 +341,8 @@
         <state relative-caret-position="8892">
           <caret line="247" column="11" lean-forward="false" selection-start-line="247" selection-start-column="11" selection-end-line="247" selection-end-column="11" />
           <folding>
-            <element signature="e#3153#3500#0#HTML" expanded="false" />
-            <element signature="e#3615#4074#0#HTML" expanded="false" />
+            <element signature="e#3152#3499#0#HTML" expanded="false" />
+            <element signature="e#3614#4073#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -407,8 +404,8 @@
         <state relative-caret-position="8784">
           <caret line="244" column="14" lean-forward="true" selection-start-line="244" selection-start-column="14" selection-end-line="244" selection-end-column="14" />
           <folding>
-            <element signature="e#3153#3500#0#HTML" expanded="false" />
-            <element signature="e#3615#4074#0#HTML" expanded="false" />
+            <element signature="e#3152#3499#0#HTML" expanded="false" />
+            <element signature="e#3614#4073#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -477,8 +474,8 @@
         <state relative-caret-position="9144">
           <caret line="254" column="8" lean-forward="false" selection-start-line="254" selection-start-column="8" selection-end-line="254" selection-end-column="8" />
           <folding>
-            <element signature="e#3153#3500#0#HTML" expanded="false" />
-            <element signature="e#3615#4074#0#HTML" expanded="false" />
+            <element signature="e#3152#3499#0#HTML" expanded="false" />
+            <element signature="e#3614#4073#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -530,8 +527,8 @@
         <state relative-caret-position="108">
           <caret line="3" column="19" lean-forward="true" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
           <folding>
-            <element signature="e#3153#3500#0#HTML" expanded="false" />
-            <element signature="e#3615#4074#0#HTML" expanded="false" />
+            <element signature="e#3152#3499#0#HTML" expanded="false" />
+            <element signature="e#3614#4073#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -690,11 +687,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/landing.handlebars">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="87" column="49" lean-forward="true" selection-start-line="87" selection-start-column="49" selection-end-line="87" selection-end-column="49" />
+        <state relative-caret-position="36">
+          <caret line="72" column="29" lean-forward="true" selection-start-line="72" selection-start-column="29" selection-end-line="72" selection-end-column="29" />
           <folding>
-            <element signature="e#3153#3500#0#HTML" expanded="false" />
-            <element signature="e#3615#4074#0#HTML" expanded="false" />
+            <element signature="e#3152#3499#0#HTML" expanded="false" />
+            <element signature="e#3614#4073#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
