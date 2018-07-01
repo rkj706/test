@@ -62,7 +62,7 @@
     <input type="button" onclick="previousSlotPagination()" class="pagination previous" value="<">
     <%}%>
     <%for(let dcount=data.start;dcount<=data.count;dcount++){%>
-    <input type="button" onclick="showNextPage(this)" class="pagination" value=<%=dcount%>>
+    <a  onclick="showNextPage(this)" href="javascript:void(0)" value=<%=dcount%>><%=dcount%></a>
     <%}%>
 
     <% if(data.showNext){%>
@@ -101,7 +101,7 @@
 
     function showNextPage(that) {
         let text = getUrlParameter('search-text')
-        let pageNo = $(that).val()
+        let pageNo = $(that).attr('value')
         let redirectText = '/?search-text=' + text
         if (pageNo > 0) {
             redirectText = redirectText + '&page=' + pageNo
@@ -202,11 +202,14 @@
                 var counter = 1;
 
                 for (let j = 0; j < final_data.length; j++) {
-
+//                    let maktMaktx=final_data[j]['makt_props'].map(function (data) {
+//                        return data.makt_maktx
+//                    })
+                    console.log(final_data[j]['makt_props'][0].makt_maktx)
                     $('#example').dataTable().fnAddData([
                         final_data[j].mara_matnr,
                         final_data[j].mara_mtart,
-                        final_data[j].makt_props[0].makt_maktx,
+                        final_data[j]['makt_props'][0].makt_maktx,
                         final_data[j].mara_matkl,
                         final_data[j].mara_vhart,
                         final_data[j].mara_ersda,

@@ -102,62 +102,134 @@ function prepareQuery(body, pureMatch) {
         operator = 'and'
     }
     let s1 = {
-        "match": {
-            "mara_matnr": {
-                "query": searchString
-            }
-        }
-    }
-    if (!pureMatch) {
-        s1.match.mara_matnr['fuzziness'] = 2
-        s1.match.mara_matnr['prefix_length'] = 1
-        s1.match.mara_matnr['operator'] = operator
-    }
-    query.bool.should.push(s1)
-    let s2 = {
-        "match": {
-            "mara_mtart": {
-                "query": searchString
-            }
+        "bool": {
+            "should": [
+                {
+                    "match": {
+                        "mara_matnr": {
+                            "query": searchString,
+                            "boost": 3,
+                            "operator": operator
+                        }
+                    }
+                }, {
+                    "match": {
+                        "mara_matnr": {
+                            "query": searchString,
+                            "fuzziness": 2,
+                            "boost": 2,
+                            "operator": operator
+                        }
+                    }
+                }, {
+                    "match_phrase_prefix": {
+                        "mara_matnr": searchString
+                    }
+                }
+
+            ], "minimum_should_match": 1
         }
 
     }
-    if (!pureMatch) {
-        s2.match.mara_mtart['fuzziness'] = 2
-        s2.match.mara_mtart['prefix_length'] = 1
-        s2.match.mara_mtart['operator'] = operator
+
+    query.bool.should.push(s1)
+    let s2 = {
+        "bool": {
+            "should": [
+                {
+                    "match": {
+                        "mara_mtart": {
+                            "query": searchString,
+                            "operator": operator,
+                            "boost": 3
+                        }
+                    }
+                }, {
+                    "match": {
+                        "mara_mtart": {
+                            "query": searchString,
+                            "fuzziness": 2,
+                            "operator": operator,
+                            "boost": 2
+                        }
+                    }
+                }, {
+                    "match_phrase_prefix": {
+                        "mara_mtart": searchString
+                    }
+                }
+            ], "minimum_should_match": 1
+        }
+
+
     }
+
     query.bool.should.push(s2)
     let s3 = {
-        "match": {
-            "mara_ernam": {
-                "query": searchString
-            }
+        "bool": {
+            "should": [
+                {
+                    "match": {
+                        "mara_ernam": {
+                            "query": searchString,
+                            "boost": 3,
+                            "operator": operator
+                        }
+                    }
+                }, {
+                    "match": {
+                        "mara_ernam": {
+                            "query": searchString,
+                            "fuzziness": 2,
+                            "boost": 2,
+                            "operator": operator
+                        }
+                    }
+                }, {
+                    "match_phrase_prefix": {
+                        "mara_ernam": searchString
+                    }
+                }
+            ], "minimum_should_match": 1
         }
+
     }
-    if (!pureMatch) {
-        s3.match.mara_ernam['fuzziness'] = 2
-        s3.match.mara_ernam['prefix_length'] = 1
-        s3.match.mara_ernam['operator'] = operator
-    }
+
     query.bool.should.push(s3)
     let s4 = {
         'nested': {
             'path': 'makt_props',
             'query': {
-                "match": {
-                    "makt_props.makt_maktx": {
-                        "query": searchString
-                    }
+                "bool": {
+                    "should": [
+                        {
+                            "match": {
+                                "makt_props.makt_maktx": {
+                                    "query": searchString,
+                                    "boost": 2,
+                                    "operator": operator
+                                }
+                            }
+                        }, {
+                            "match": {
+                                "makt_props.makt_maktx": {
+                                    "query": searchString,
+                                    "fuzziness": 2,
+                                    "boost": 1.5,
+                                    "operator": operator
+                                }
+                            }
+                        }, {
+                            "match_phrase_prefix": {
+                                "makt_props.makt_maktx": searchString
+                            }
+                        }
+                    ], "minimum_should_match": 1
                 }
             }
         }
     }
-    if (!pureMatch) {
-        s4.nested.query.match['makt_props.makt_maktx']['fuzziness'] = 2
-        s4.nested.query.match['makt_props.makt_maktx']['prefix_length'] = 1
-        s4.nested.query.match['makt_props.makt_maktx']['operator'] = operator
-    }
+
     query.bool.should.push(s4)
     query.bool['minimum_should_match'] = 1
     return query
@@ -204,9 +276,9 @@ function searchQuery(req, res) {
                     let result = esDocs.hits.hits.map(function (results) {
                         return results._source
                     })
-                    let total=esDocs.hits.total
-                    if(result.length<1){
-                        total=0
+                    let total = esDocs.hits.total
+                    if (result.length < 1) {
+                        total = 0
                     }
                     res.status(200).send({
                         result: result,
