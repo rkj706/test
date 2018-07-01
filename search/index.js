@@ -106,6 +106,16 @@ function prepareQuery(body, pureMatch) {
             "should": [
                 {
                     "match": {
+                        "mara_mtart": {
+                            "query": searchString,
+                            "operator": 'and',
+                            "boost": 4
+                        }
+                    }
+                }
+                ,
+                {
+                    "match": {
                         "mara_matnr": {
                             "query": searchString,
                             "boost": 3,
@@ -140,6 +150,15 @@ function prepareQuery(body, pureMatch) {
                     "match": {
                         "mara_mtart": {
                             "query": searchString,
+                            "operator": 'and',
+                            "boost": 4
+                        }
+                    }
+                },
+                {
+                    "match": {
+                        "mara_mtart": {
+                            "query": searchString,
                             "operator": operator,
                             "boost": 3
                         }
@@ -168,6 +187,15 @@ function prepareQuery(body, pureMatch) {
     let s3 = {
         "bool": {
             "should": [
+                {
+                    "match": {
+                        "mara_ernam": {
+                            "query": searchString,
+                            "boost": 4,
+                            "operator": 'and'
+                        }
+                    }
+                },
                 {
                     "match": {
                         "mara_ernam": {
@@ -206,7 +234,16 @@ function prepareQuery(body, pureMatch) {
                             "match": {
                                 "makt_props.makt_maktx": {
                                     "query": searchString,
-                                    "boost": 2,
+                                    "boost": 4,
+                                    "operator": 'and'
+                                }
+                            }
+                        },
+                        {
+                            "match": {
+                                "makt_props.makt_maktx": {
+                                    "query": searchString,
+                                    "boost": 3,
                                     "operator": operator
                                 }
                             }
@@ -215,7 +252,7 @@ function prepareQuery(body, pureMatch) {
                                 "makt_props.makt_maktx": {
                                     "query": searchString,
                                     "fuzziness": 2,
-                                    "boost": 1.5,
+                                    "boost": 2,
                                     "operator": operator
                                 }
                             }
