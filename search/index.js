@@ -11,6 +11,7 @@ function prepareSuggestQuery(body) {
     query.bool['should'] = []
     let operator = 'or'
     let searchString = body.text
+    let mixWord=searchString.replace(/ /g,'')
     if (body.text.indexOf('+') > -1) {
         searchString = searchString.replace(/\+/g, ' ');
         operator = 'and'
@@ -97,6 +98,7 @@ function prepareQuery(body, pureMatch) {
     query.bool['should'] = []
     let operator = 'or'
     let searchString = body.text
+    let mixWord=searchString.replace(/ /g,'')
     if (body.text.indexOf('+') > -1) {
         searchString = searchString.replace(/\+/g, ' ');
         operator = 'and'
@@ -106,7 +108,15 @@ function prepareQuery(body, pureMatch) {
             "should": [
                 {
                     "match": {
-                        "mara_mtart": {
+                        "mara_matnr": {
+                            "query":mixWord,
+                            "boost":3
+                        }
+                    }
+                },
+                {
+                    "match": {
+                        "mara_matnr": {
                             "query": searchString,
                             "operator": 'and',
                             "boost": 4
@@ -146,6 +156,14 @@ function prepareQuery(body, pureMatch) {
     let s2 = {
         "bool": {
             "should": [
+                {
+                    "match": {
+                        "mara_mtart": {
+                            "query":mixWord,
+                            "boost":3
+                        }
+                    }
+                },
                 {
                     "match": {
                         "mara_mtart": {
@@ -190,6 +208,14 @@ function prepareQuery(body, pureMatch) {
                 {
                     "match": {
                         "mara_ernam": {
+                            "query":mixWord,
+                            "boost":3
+                        }
+                    }
+                },
+                {
+                    "match": {
+                        "mara_ernam": {
                             "query": searchString,
                             "boost": 4,
                             "operator": 'and'
@@ -230,6 +256,14 @@ function prepareQuery(body, pureMatch) {
             'query': {
                 "bool": {
                     "should": [
+                        {
+                            "match": {
+                                "makt_props.makt_maktx": {
+                                    "query":mixWord,
+                                    "boost":3
+                                }
+                            }
+                        },
                         {
                             "match": {
                                 "makt_props.makt_maktx": {

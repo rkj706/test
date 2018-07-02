@@ -62,7 +62,7 @@
     <input type="button" onclick="previousSlotPagination()" class="pagination previous" value="<">
     <%}%>
     <%for(let dcount=data.start;dcount<=data.count;dcount++){%>
-    <a  onclick="showNextPage(this)" href="javascript:void(0)" value=<%=dcount%>><%=dcount%></a>
+    <a  onclick="showNextPage(this)" id="page_no_<%=dcount%>" href="javascript:void(0)" value=<%=dcount%>><b><%=dcount%></b></a>
     <%}%>
 
     <% if(data.showNext){%>
@@ -131,6 +131,7 @@
     };
     (function () {
         let text = getUrlParameter('search-text')
+        $('#search-text').val(text)
         if (text) {
             let pageNo = getUrlParameter('page')
             if (!pageNo || !pageNo / 1) {
@@ -139,6 +140,7 @@
             if (pageNo > 0) {
                 pageNo = pageNo - 1
             }
+
             loadMore(text.trim(), pageNo)
         }
 
@@ -197,7 +199,8 @@
                 if(data.result.length<10){
                     $("#nextSlot").attr('disabled',true)
                 }
-                //  $('#example').append(compiled_html);
+                let pageNo=pagination+1
+                $('#page_no_'+pageNo).addClass('clicked')
                 let final_data = data.result
                 var counter = 1;
 
