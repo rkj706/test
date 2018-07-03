@@ -11,7 +11,7 @@ function prepareSuggestQuery(body) {
     query.bool['should'] = []
     let operator = 'or'
     let searchString = body.text
-    let mixWord=searchString.replace(/ /g,'')
+    let mixWord = searchString.replace(/ /g, '')
     if (body.text.indexOf('+') > -1) {
         searchString = searchString.replace(/\+/g, ' ');
         operator = 'and'
@@ -98,155 +98,236 @@ function prepareQuery(body, pureMatch) {
     query.bool['should'] = []
     let operator = 'or'
     let searchString = body.text
-    let mixWord=searchString.replace(/ /g,'')
+    let mixWord = searchString.replace(/ /g, '')
     if (body.text.indexOf('+') > -1) {
         searchString = searchString.replace(/\+/g, ' ');
         operator = 'and'
     }
     let s1 = {
         "bool": {
-            "should": [
-                {
-                    "match": {
-                        "mara_matnr": {
-                            "query":mixWord,
-                            "boost":3
-                        }
-                    }
-                },
-                {
-                    "match": {
-                        "mara_matnr": {
-                            "query": searchString,
-                            "operator": 'and',
-                            "boost": 4
-                        }
-                    }
-                }
-                ,
-                {
-                    "match": {
-                        "mara_matnr": {
-                            "query": searchString,
-                            "boost": 3,
-                            "operator": operator
-                        }
-                    }
-                }, {
-                    "match": {
-                        "mara_matnr": {
-                            "query": searchString,
-                            "fuzziness": 2,
-                            "boost": 2,
-                            "operator": operator
-                        }
-                    }
-                }, {
-                    "match_phrase_prefix": {
-                        "mara_matnr": searchString
-                    }
-                }
-
-            ], "minimum_should_match": 1
+            "should": [], "minimum_should_match": 1
         }
+    }
+    if (operator == 'or') {
 
+        let appendQuery = [
+            {
+                "match": {
+                    "mara_matnr": {
+                        "query": mixWord,
+                        "boost": 30
+                    }
+                }
+            },
+            {
+                "match": {
+                    "mara_matnr": {
+                        "query": searchString,
+                        "operator": "and",
+                        "fuzziness": 2
+                    }
+                }
+            },
+            {
+                "match": {
+                    "mara_matnr": {
+                        "query": searchString,
+                        "operator": "and",
+                        "boost": 300
+                    }
+                }
+            },
+            {
+                "match": {
+                    "mara_matnr": {
+                        "query": searchString,
+                        "operator": "or",
+                        "fuzziness": 2
+                    }
+                }
+            },
+            {
+                "match": {
+                    "mara_matnr": {
+                        "query": searchString,
+                        "operator": "or",
+                        "boost": 3
+                    }
+                }
+            },
+            {
+                "match_phrase_prefix": {
+                    "mara_matnr": searchString
+                }
+            }
+
+        ]
+        s1.bool.should = appendQuery
+    }
+    else {
+        let appendQuery = [
+            {
+                "match": {
+                    "mara_matnr": {
+                        "query": searchString,
+                        "fuzziness": 2,
+                        "operator": 'and'
+                    }
+                }
+            }
+        ]
+        s1.bool.should=appendQuery
     }
 
     query.bool.should.push(s1)
     let s2 = {
         "bool": {
             "should": [
-                {
-                    "match": {
-                        "mara_mtart": {
-                            "query":mixWord,
-                            "boost":3
-                        }
-                    }
-                },
-                {
-                    "match": {
-                        "mara_mtart": {
-                            "query": searchString,
-                            "operator": 'and',
-                            "boost": 4
-                        }
-                    }
-                },
-                {
-                    "match": {
-                        "mara_mtart": {
-                            "query": searchString,
-                            "operator": operator,
-                            "boost": 3
-                        }
-                    }
-                }, {
-                    "match": {
-                        "mara_mtart": {
-                            "query": searchString,
-                            "fuzziness": 2,
-                            "operator": operator,
-                            "boost": 2
-                        }
-                    }
-                }, {
-                    "match_phrase_prefix": {
-                        "mara_mtart": searchString
-                    }
-                }
             ], "minimum_should_match": 1
         }
+    }
+    if(operator=='or'){
 
+        let appendQuery = [
+            {
+                "match": {
+                    "mara_mtart": {
+                        "query": mixWord,
+                        "boost": 30
+                    }
+                }
+            },
+            {
+                "match": {
+                    "mara_mtart": {
+                        "query": searchString,
+                        "operator": "and",
+                        "fuzziness": 2
+                    }
+                }
+            },
+            {
+                "match": {
+                    "mara_mtart": {
+                        "query": searchString,
+                        "operator": "and",
+                        "boost": 300
+                    }
+                }
+            },
+            {
+                "match": {
+                    "mara_mtart": {
+                        "query": searchString,
+                        "operator": "or",
+                        "fuzziness": 2
+                    }
+                }
+            },
+            {
+                "match": {
+                    "mara_mtart": {
+                        "query": searchString,
+                        "operator": "or",
+                        "boost": 3
+                    }
+                }
+            },
+            {
+                "match_phrase_prefix": {
+                    "mara_mtart": searchString
+                }
+            }
 
+        ]
+        s2.bool.should = appendQuery
+    }else{
+        let appendQuery=   {
+            "match": {
+                "mara_mtart": {
+                    "query": searchString,
+                    "fuzziness": 2,
+                    "operator": 'and',
+                }
+            }
+        }
+        s2.bool.should=appendQuery
     }
 
     query.bool.should.push(s2)
     let s3 = {
         "bool": {
             "should": [
-                {
-                    "match": {
-                        "mara_ernam": {
-                            "query":mixWord,
-                            "boost":3
-                        }
-                    }
-                },
-                {
-                    "match": {
-                        "mara_ernam": {
-                            "query": searchString,
-                            "boost": 4,
-                            "operator": 'and'
-                        }
-                    }
-                },
-                {
-                    "match": {
-                        "mara_ernam": {
-                            "query": searchString,
-                            "boost": 3,
-                            "operator": operator
-                        }
-                    }
-                }, {
-                    "match": {
-                        "mara_ernam": {
-                            "query": searchString,
-                            "fuzziness": 2,
-                            "boost": 2,
-                            "operator": operator
-                        }
-                    }
-                }, {
-                    "match_phrase_prefix": {
-                        "mara_ernam": searchString
-                    }
-                }
             ], "minimum_should_match": 1
         }
+    }
+    if(operator=='or'){
 
+
+        let appendQuery = [
+            {
+                "match": {
+                    "mara_ernam": {
+                        "query": mixWord,
+                        "boost": 30
+                    }
+                }
+            },
+            {
+                "match": {
+                    "mara_ernam": {
+                        "query": searchString,
+                        "operator": "and",
+                        "fuzziness": 2
+                    }
+                }
+            },
+            {
+                "match": {
+                    "mara_ernam": {
+                        "query": searchString,
+                        "operator": "and",
+                        "boost": 300
+                    }
+                }
+            },
+            {
+                "match": {
+                    "mara_ernam": {
+                        "query": searchString,
+                        "operator": "or",
+                        "fuzziness": 2
+                    }
+                }
+            },
+            {
+                "match": {
+                    "mara_ernam": {
+                        "query": searchString,
+                        "operator": "or",
+                        "boost": 3
+                    }
+                }
+            },
+            {
+                "match_phrase_prefix": {
+                    "mara_ernam": searchString
+                }
+            }
+
+        ]
+        s3.bool.should = appendQuery
+    }else{
+        let appenQuery=   {
+            "match": {
+                "mara_ernam": {
+                    "query": searchString,
+                    "fuzziness": 2,
+                    "operator": 'and'
+                }
+            }
+        }
+        s3.bool.should=appenQuery
     }
 
     query.bool.should.push(s3)
@@ -255,54 +336,84 @@ function prepareQuery(body, pureMatch) {
             'path': 'makt_props',
             'query': {
                 "bool": {
-                    "should": [
-                        {
-                            "match": {
-                                "makt_props.makt_maktx": {
-                                    "query":mixWord,
-                                    "boost":3
-                                }
-                            }
-                        },
-                        {
-                            "match": {
-                                "makt_props.makt_maktx": {
-                                    "query": searchString,
-                                    "boost": 4,
-                                    "operator": 'and'
-                                }
-                            }
-                        },
-                        {
-                            "match": {
-                                "makt_props.makt_maktx": {
-                                    "query": searchString,
-                                    "boost": 3,
-                                    "operator": operator
-                                }
-                            }
-                        }, {
-                            "match": {
-                                "makt_props.makt_maktx": {
-                                    "query": searchString,
-                                    "fuzziness": 2,
-                                    "boost": 2,
-                                    "operator": operator
-                                }
-                            }
-                        }, {
-                            "match_phrase_prefix": {
-                                "makt_props.makt_maktx": searchString
-                            }
-                        }
-                    ], "minimum_should_match": 1
+                    "should": [], "minimum_should_match": 1
                 }
             }
         }
     }
+    if (operator == 'or') {
+        let appendQuery = [
+            {
+                "match": {
+                    "makt_props.makt_maktx": {
+                        "query": mixWord,
+                        "boost": 30
+                    }
+                }
+            },
+            {
+                "match": {
+                    "makt_props.makt_maktx": {
+                        "query": searchString,
+                        "operator": "and",
+                        "fuzziness": 2
+                    }
+                }
+            },
+            {
+                "match": {
+                    "makt_props.makt_maktx": {
+                        "query": searchString,
+                        "operator": "and",
+                        "boost": 300
+                    }
+                }
+            },
+            {
+                "match": {
+                    "makt_props.makt_maktx": {
+                        "query": searchString,
+                        "operator": "or",
+                        "fuzziness": 2
+                    }
+                }
+            },
+            {
+                "match": {
+                    "makt_props.makt_maktx": {
+                        "query": searchString,
+                        "operator": "or",
+                        "boost": 3
+                    }
+                }
+            },
+            {
+                "match_phrase_prefix": {
+                    "makt_props.makt_maktx": searchString
+                }
+            }
+
+        ]
+        s4.nested.query.bool.should = appendQuery
+    } else {
+        let appendQuery = [
+            {
+                "match": {
+                    "makt_props.makt_maktx": {
+                        "query": searchString,
+                        "operator": "and",
+                        "fuzziness": 2
+                    }
+                }
+            }
+        ]
+        s4.nested.query.bool.should = appendQuery
+    }
+
 
     query.bool.should.push(s4)
     query.bool['minimum_should_match'] = 1
+
     return query
 }
 
