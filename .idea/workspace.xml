@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7c20b63-8be4-441b-87e4-8a032f76e2ff" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/signup/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/auth/signup/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/signup/passport.js" beforeDir="false" afterPath="$PROJECT_DIR$/auth/signup/passport.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/router.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -329,12 +323,12 @@
       <workItem from="1530615351121" duration="2746000" />
       <workItem from="1531381098871" duration="1115000" />
       <workItem from="1531409019696" duration="2026000" />
-      <workItem from="1531476728508" duration="8822000" />
+      <workItem from="1531476728508" duration="8989000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117033000" />
+    <option name="totallyTimeSpent" value="117200000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1440" height="797" extended-state="0" />
