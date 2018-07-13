@@ -15,6 +15,12 @@ const cookieParser = require('cookie-parser');
 //var readline = require('readline');
 //require('./reply')
 
+const mongoose=require('mongoose');
+const session = require('express-session');
+const connection = mongoose.createConnection(config.db.mongo.url);
+const MongoStore = require('connect-mongo')(session);
+
+
 // const fs = require('fs');
 var app=express();
 
@@ -29,6 +35,12 @@ app.set('views', rootPath + '/views');
 app.set('view engine', 'handlebars');
 app.use(express.static(path.join(rootPath, 'public')));
 
+app.use(session({
+    secret: config.db.mongo.sessionSecret,
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: connection })
+}));
 
 
 app.use(cookieParser());
@@ -43,6 +55,9 @@ if(config.ingest){
 }
 
 var server=http.createServer(app);
-server.listen('5000',function () {
+server.listen('5005',function (err) {
+    if(err){
+        console.log(err)
+    }
     console.log('server is running');
 })

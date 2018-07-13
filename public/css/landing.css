@@ -2,6 +2,10 @@
     color: red;
     display: none;
 }
+.navbar-inverse{
+    background-color: #8c8c8c;
+    text-align: right;
+}
 #example_length{
     display:none;
 }

@@ -14,6 +14,7 @@ function  signup() {
     const email=$("#sp_email").val();
     const pass=$("#sp_pass").val();
     const conf_pass=$("#sp_cn_pass").val();
+    const company=$("#sp_company").val()
 
     if(!(validateEmail(email))){
         console.log("Ss");
@@ -49,7 +50,8 @@ function  signup() {
                 email: email,
                 password: pass,
                 firstName:firstName,
-                lastName:lastName
+                lastName:lastName,
+                company:company
 
             }),
             method: 'POST',
@@ -86,7 +88,7 @@ function signin() {
             success: function (data) {
 
                if(data.code && data.code=="200"){
-                   location.href="/dashboard";
+                   location.href="/";
 
                }else{
                    alert(data.message);
