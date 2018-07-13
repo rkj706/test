@@ -67,7 +67,7 @@ function processFile(inputFile) {
 
         function self() {
             if (data[i]) {
-               
+
                 insert(data[i], function (data) {
                     if (data) {
                         i = i + 1
