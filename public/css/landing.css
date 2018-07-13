@@ -1,10 +1,14 @@
+
+.navbar-nav>li>a:hover {
+    color: gray;
+}
 .sp_error{
     color: red;
     display: none;
 }
 .navbar-inverse{
-    background-color: #8c8c8c;
-    text-align: right;
+    background-color: white;
+    float: right;
 }
 #example_length{
     display:none;
