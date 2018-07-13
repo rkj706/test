@@ -30,7 +30,7 @@ app.engine('handlebars', exphbs({
     layoutsDir: rootPath + '/views/layouts/',
     defaultLayout: 'main',
     partialsDir: [rootPath + '/views/partials/']
-}));
+}))
 app.set('views', rootPath + '/views');
 app.set('view engine', 'handlebars');
 app.use(express.static(path.join(rootPath, 'public')));
