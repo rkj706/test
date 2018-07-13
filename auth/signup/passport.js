@@ -51,6 +51,7 @@ module.exports = function(passport) {
 
         if(req.body.email || req.body.password ||req.body.company  || req.body.firstName || req.body.lastName){
           let errorMsg={message:"Fields can't be empty"}
+          console.log(errorMsg)
           req.returnMessage=errorMsg;
           return done(err);
         }
@@ -61,6 +62,7 @@ module.exports = function(passport) {
 
           if (err){
             let errorMsg={message:"something went wrong"}
+            console.log(errorMsg)
             req.returnMessage=errorMsg;
             return done(err);
           }
@@ -87,9 +89,10 @@ module.exports = function(passport) {
             // save the user
             newUser.save(function(err) {
               if (err){
+                console.log(err)
                 throw err;
               }else {
-
+        console.log('registered')
              newUser.message="registered";
                 return done(null, newUser);
               }

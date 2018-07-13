@@ -10,7 +10,7 @@ var config = {
             profileIndex: 'makt'
         },
         db:{
-            mongo:{url:'mongodb://localhost:27017/davinchi',sessionSecret: 'ytjfXIAd8TA1ULSN2e45'}
+            mongo:{url:'mongodb://13.127.62.240:27017/davinchi',sessionSecret: 'ytjfXIAd8TA1ULSN2e45'}
         },
     },
     prod: {}
