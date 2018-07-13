@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7c20b63-8be4-441b-87e4-8a032f76e2ff" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/public/js/authentication.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/authentication.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mara_makt.jl" beforeDir="false" afterPath="$PROJECT_DIR$/mara_makt.jl" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="mongoDb.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/mongoDb.js">
+      <file leaf-file-name="landing.handlebars" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/landing.handlebars">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="34" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
+            <state relative-caret-position="148">
+              <caret line="214" column="65" selection-start-line="214" selection-start-column="55" selection-end-line="214" selection-end-column="65" />
             </state>
           </provider>
         </entry>
@@ -29,13 +29,13 @@
       <file leaf-file-name="authentication.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/authentication.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
+            <state relative-caret-position="73">
+              <caret line="67" column="19" selection-start-line="67" selection-start-column="19" selection-end-line="67" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="router.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="router.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/router.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
@@ -44,20 +44,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="auth.service.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/auth/auth.service.js">
+      <file leaf-file-name="ingest.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ingest.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="31" column="7" lean-forward="true" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
+            <state relative-caret-position="120">
+              <caret line="41" column="55" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="55" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="passport.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/auth/signup/passport.js">
+      <file leaf-file-name="mara_makt.jl" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mara_makt.jl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="49" column="35" lean-forward="true" selection-start-line="49" selection-start-column="35" selection-end-line="49" selection-end-column="35" />
+            <state relative-caret-position="90">
+              <caret line="6" column="4173" selection-start-line="6" selection-start-column="4173" selection-end-line="6" selection-end-column="4173" />
             </state>
           </provider>
         </entry>
@@ -84,7 +84,7 @@
         <entry file="file://$PROJECT_DIR$/auth/signup/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
-              <caret line="14" column="30" lean-forward="true" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+              <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -107,15 +107,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -128,13 +119,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>mara_matnr</find>
-      <find>fuzziness</find>
-      <find>source</find>
-      <find>data</find>
-      <find>showPrevious</find>
-      <find>loadMore</find>
-      <find>&lt;%=dcount%&gt;</find>
       <find>clear</find>
       <find>showNextPage</find>
       <find>pageNo-1</find>
@@ -158,6 +142,13 @@
       <find>checkAuthentication</find>
       <find>authenti</find>
       <find>base_url</find>
+      <find>descr</find>
+      <find>apple</find>
+      <find>000000000000000038</find>
+      <find>000000000000000058</find>
+      <find>0038</find>
+      <find>props</find>
+      <find>000000000000000023</find>
     </findStrings>
     <replaceStrings>
       <replace>,&lt;</replace>
@@ -179,7 +170,6 @@
         <option value="$PROJECT_DIR$/public/chats" />
         <option value="$PROJECT_DIR$/public/css/datatable.css" />
         <option value="$PROJECT_DIR$/public/js/datatable.js" />
-        <option value="$PROJECT_DIR$/ingest.js" />
         <option value="$PROJECT_DIR$/col_appendix.csv" />
         <option value="$PROJECT_DIR$/lib/elasticSearch.js" />
         <option value="$PROJECT_DIR$/views/landing.handlebars" />
@@ -198,6 +188,9 @@
         <option value="$PROJECT_DIR$/public/css/landing.css" />
         <option value="$PROJECT_DIR$/public/js/authentication.js" />
         <option value="$PROJECT_DIR$/router.js" />
+        <option value="$PROJECT_DIR$/asas" />
+        <option value="$PROJECT_DIR$/ingest.js" />
+        <option value="$PROJECT_DIR$/mara_makt.jl" />
       </list>
     </option>
   </component>
@@ -221,10 +214,10 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="25" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="797" />
+    <option name="height" value="800" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -324,19 +317,20 @@
       <workItem from="1530615351121" duration="2746000" />
       <workItem from="1531381098871" duration="1115000" />
       <workItem from="1531409019696" duration="2026000" />
-      <workItem from="1531476728508" duration="11979000" />
+      <workItem from="1531476728508" duration="17509000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120190000" />
+    <option name="totallyTimeSpent" value="125720000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1440" height="797" extended-state="0" />
+    <frame x="-1" y="23" width="1440" height="803" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24930556" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.0" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" />
@@ -384,13 +378,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/css/landing.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -554,20 +541,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ingest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2592">
-          <caret line="72" column="17" selection-start-line="72" selection-start-column="17" selection-end-line="72" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mara_makt.jl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="4" column="1706" selection-start-line="4" selection-start-column="1706" selection-end-line="4" selection-end-column="1706" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/col_appendix.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7380">
@@ -645,13 +618,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/landing.handlebars">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="80" column="33" selection-start-line="80" selection-start-column="33" selection-end-line="80" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -697,6 +663,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/landing.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/auth/signup/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/landing.handlebars">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="214" column="65" selection-start-line="214" selection-start-column="55" selection-end-line="214" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asas">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="3812" selection-start-column="3807" selection-end-column="3812" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/authentication.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="67" column="19" selection-start-line="67" selection-start-column="19" selection-end-line="67" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/auth/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -717,34 +728,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/landing.css">
+    <entry file="file://$PROJECT_DIR$/ingest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+        <state relative-caret-position="120">
+          <caret line="41" column="55" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/auth/signup/index.js">
+    <entry file="file://$PROJECT_DIR$/mara_makt.jl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="30" lean-forward="true" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/authentication.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        <state relative-caret-position="90">
+          <caret line="6" column="4173" selection-start-line="6" selection-start-column="4173" selection-end-line="6" selection-end-column="4173" />
         </state>
       </provider>
     </entry>

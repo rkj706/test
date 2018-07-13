@@ -67,10 +67,7 @@ function processFile(inputFile) {
 
         function self() {
             if (data[i]) {
-                console.log('inserting ' + i)
-                if(i<20){
-                    data[i].makt_props[0].makt_maktx=jsonValue[i]
-                }
+               
                 insert(data[i], function (data) {
                     if (data) {
                         i = i + 1
