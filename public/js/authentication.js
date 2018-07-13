@@ -44,7 +44,7 @@ function  signup() {
     }
     else {
         $.ajax({
-            url: base_url+'/signup',
+            url: '/signup',
             data:JSON.stringify({
 
                 email: email,
@@ -58,7 +58,8 @@ function  signup() {
             dataType: 'json',
             contentType: "application/json",
             success: function (data) {
-                    alert(data.message);
+                    console.log(data)
+                    alert(data);
             }
         })
     }
@@ -86,6 +87,7 @@ function signin() {
             dataType: 'json',
             contentType: "application/json",
             success: function (data) {
+                console.log(data)
 
                if(data.code && data.code=="200"){
                    location.href="/";
