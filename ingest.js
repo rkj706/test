@@ -80,10 +80,12 @@ function processFile(inputFile) {
                 insert(data[i], function (data) {
                     if (data) {
                         i = i + 1
+                        mrno=data[i].mara_matnr
                         self()
                     } else {
                         err.push(i)
                         i = i + 1
+                        mrno=data[i].mara_matnr
                         self()
                     }
                 })
@@ -91,7 +93,7 @@ function processFile(inputFile) {
                 console.log(err.length)
                 console.log('finished')
             }
-            mrno=data[i].mara_matnr
+
         }
 
         //
