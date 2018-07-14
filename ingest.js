@@ -47,8 +47,8 @@ function processFile(inputFile) {
         "APPLE IPHONE VERSION 6S COLOUR BLACK SIZE 6. MANUFACTURED ONLY FOR INDIA AND CHINA",
         "APPLE IPHONE VERSION 6S COLOUR BLACK SIZE 6. MANUFACTURED ONLY FOR INDIA & CHINA",
         "APPLE IPHONE VERSION 6S COLOUR BLACK SIZE 6. MFG ONLY FOR INDIA & CHINA",
-        " SPECIAL TEMPERED GLASS. REFER TO PURCHASE MANUAL FOR FABRICATION AND ASSEMBLY. RETINA ENABLED.",
-        " SPECIAL TEMPERED GLAS. REFER TO PURCHASE MANUAL FOR FABRICATION AND ASSEMBLY. RETINA ENABLED",
+        "SPECIAL TEMPERED GLASS. REFER TO PURCHASE MANUAL FOR FABRICATION AND ASSEMBLY. RETINA ENABLED.",
+        "SPECIAL TEMPERED GLAS. REFER TO PURCHASE MANUAL FOR FABRICATION AND ASSEMBLY. RETINA ENABLED",
         "High Definition (HD) Audio. Conexant CX20585 codec. Volume up, down, and mute buttons. Mic mute button",
         "APPLE IPHONE, VERSION 6S, COLOUR BLACK, SIZE 6S, WEIGHT 100 GRAMS. MANUFACTURED ONLY FOR INDIA AND CHINA.  SPECIAL TEMPERED GLASS. REFER TO PURCHASE MANUAL FOR FABRICATION AND ASSEMBLY. RETINA ENABLED. High Definition (HD) Audio.  Mic mute button",
         "APPLE IPHONE, VERSION 6S, COLOUR BLACK; SIZE 6S; WEIGHT 100 GRAMS; MANUFACTURED ONLY FOR INDIA AND CHINA; SPECIAL TEMPERED GLASS; REFER TO PURCHASE MANUAL FOR FABRICATION AND ASSEMBLY; RETINA ENABLED; High Definition (HD) Audio;  Mic mute button",
@@ -64,10 +64,19 @@ function processFile(inputFile) {
         let i = 0
          self()
         let err = []
-
+        let mrno=data[0].mara_matnr
+        let jcount=0
+        let scount=0
         function self() {
             if (data[i]) {
-
+                if(jcount<20){
+                 if(data[i].mara_matnr!=mrno){
+                   scount=i
+                     data[scount].makt_props=[]
+                 }
+                 data[scount].makt_props.push({makt_maktx:jsonValue[jcount]})
+                 jcount=jcount+1
+                }
                 insert(data[i], function (data) {
                     if (data) {
                         i = i + 1
@@ -82,6 +91,7 @@ function processFile(inputFile) {
                 console.log(err.length)
                 console.log('finished')
             }
+            mrno=data[i].mara_matnr
         }
 
         //
