@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a7c20b63-8be4-441b-87e4-8a032f76e2ff" name="Default" comment="" />
+    <list default="true" id="a7c20b63-8be4-441b-87e4-8a032f76e2ff" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/mara_makt.jl" beforeDir="false" afterPath="$PROJECT_DIR$/mara_makt.jl" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -50,20 +52,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret lean-forward="true" />
-            </state>
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="mara_makt.jl" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mara_makt.jl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mara_makt.jl">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="7" selection-start-column="2" selection-end-column="12" />
+            <state relative-caret-position="156">
+              <caret line="4200" column="108" selection-start-line="4200" selection-start-column="108" selection-end-line="4200" selection-end-column="108" />
             </state>
           </provider>
         </entry>
@@ -153,8 +151,8 @@
       <find>NaN,</find>
       <find>NaN</find>
       <find>apple</find>
-      <find>NaN</find>
       <find>mara_matnr</find>
+      <find>NaN</find>
     </findStrings>
     <replaceStrings>
       <replace>,&lt;</replace>
@@ -196,8 +194,8 @@
         <option value="$PROJECT_DIR$/router.js" />
         <option value="$PROJECT_DIR$/asas" />
         <option value="$PROJECT_DIR$/views/landing.handlebars" />
-        <option value="$PROJECT_DIR$/mara_makt.jl" />
         <option value="$PROJECT_DIR$/ingest.js" />
+        <option value="$PROJECT_DIR$/mara_makt.jl" />
       </list>
     </option>
   </component>
@@ -238,11 +236,6 @@
             <path>
               <item name="test" type="b2602c69:ProjectViewProjectNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="test" type="b2602c69:ProjectViewProjectNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -309,12 +302,12 @@
       <workItem from="1531381098871" duration="1115000" />
       <workItem from="1531409019696" duration="2026000" />
       <workItem from="1531476728508" duration="19025000" />
-      <workItem from="1531539448505" duration="5819000" />
+      <workItem from="1531539448505" duration="6048000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133055000" />
+    <option name="totallyTimeSpent" value="133284000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="800" extended-state="6" />
@@ -713,13 +706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mara_makt.jl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="7" selection-start-column="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ingest.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="346">
@@ -735,9 +721,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mara_makt.jl">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
+        <state relative-caret-position="156">
+          <caret line="4200" column="108" selection-start-line="4200" selection-start-column="108" selection-end-line="4200" selection-end-column="108" />
         </state>
       </provider>
     </entry>
