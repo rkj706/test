@@ -60,7 +60,7 @@ function processFile(inputFile) {
         "WINSHUTTLE PRIVATELIMITED",
         "WINSHUTTLE PTE LIMITED",
     ]
-    rl.on('close', function (line) {
+   /* rl.on('close', function (line) {
         let i = 0
          self()
         let err = []
@@ -98,6 +98,37 @@ function processFile(inputFile) {
 
         //
     });
+    */
+    rl.on('close', function (line) {
+        let i = 0
+        self()
+        let err = []
+
+        function self() {
+            if (data[i]) {
+                console.log('inserting ' + i)
+                if(i<20){
+                 //   data[i].makt_props[0].makt_maktx=jsonValue[i]
+                }
+                insert(data[i], function (data) {
+                    if (data) {
+                        i = i + 1
+                        self()
+                    } else {
+                        err.push(i)
+                        i = i + 1
+                        self()
+                    }
+                })
+            } else {
+                console.log(err.length)
+                console.log('finished')
+            }
+        }
+
+
+    });
+
 }
 
 function start() {
