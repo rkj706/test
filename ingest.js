@@ -105,6 +105,7 @@ function processFile(inputFile) {
         let err = []
 
         function self() {
+             console.log('count '+data.length)
             if (data[i]) {
                 console.log('inserting ' + i)
                 if(i<20){
