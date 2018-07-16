@@ -205,10 +205,11 @@
                 var counter = 1;
 
                 for (let j = 0; j < final_data.length; j++) {
+                    console.log(final_data[j]['makt_props'])
                    let maktMaktx=final_data[j]['makt_props'].map(function (data) {
                        return data.makt_maktx
-                   }
-                    maktMaktx=maktMaktx.join('\n\n');
+                   })
+                    maktMaktx=maktMaktx.join("<br /><br />");
                     console.log(final_data[j]['makt_props'][0].makt_maktx)
                     $('#example').dataTable().fnAddData([
                         final_data[j].mara_matnr,
