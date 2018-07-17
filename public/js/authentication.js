@@ -9,7 +9,7 @@ function validateEmail(email) {
 }
 function logout() {
     $.ajax({
-        url: base_url+'/logout',
+        url: '../logout',
         method: 'GET',
         dataType: 'json',
         contentType: "application/json",
@@ -58,7 +58,7 @@ function  signup() {
     }
     else {
         $.ajax({
-            url: base_url+'/auth/signup',
+            url: '../auth/signup',
             data:JSON.stringify({
 
                 email: email,
@@ -89,7 +89,7 @@ function signin() {
         return false;
     }else{
         $.ajax({
-            url: base_url+'/auth/signin',
+            url: '../auth/signin',
             data:JSON.stringify({
 
                 email: email,
