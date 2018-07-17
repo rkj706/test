@@ -15,7 +15,8 @@ router.post('/', passport.authenticate('local-login'),
         if(req.user.message){
             return  res.status(200).json({status:req.user.status,message:req.user.message});
         }else{
-            auth.setTokenCookie(req,res)
+           auth.setTokenCookie(req,res)
+
         }
 
     }

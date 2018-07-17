@@ -147,6 +147,7 @@
     })()
 
     function loadMore(searchText, pagination) {
+
         //  let searchText = $("#search-text").val().trim()
         if (searchText && (searchText == "" || !searchText || searchText.length < 3)) {
             $('#example').addClass('hidden')
@@ -164,6 +165,7 @@
             dataType: 'json',
             contentType: "application/json",
             success: function (data) {
+
                 $('.results').removeClass('hidden')
                 var template = $('#template').html();
                 let pageCount = Math.floor(data.count / 10)
@@ -230,7 +232,9 @@
                 pagination++;
 //                $('#example').DataTable({"paging":   false});
             }, error: function (error) {
-                alert(error.message)
+
+               let msg=JSON.parse(error.responseText)
+                alert(msg.message)
             }
         })
     }

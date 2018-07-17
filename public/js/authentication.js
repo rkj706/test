@@ -1,11 +1,25 @@
 /**
  * Created by rakesh on 28/9/17.
  */
-const base_url="http://localhost:5000/auth";
+const base_url="http://localhost:5000";
 
 function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
+}
+function logout() {
+    $.ajax({
+        url: base_url+'/logout',
+        method: 'GET',
+        dataType: 'json',
+        contentType: "application/json",
+        success: function (data) {
+            location.href='../'
+        },
+        error:function (err) {
+            console.log(err)
+        }
+    })
 }
 function  signup() {
 
@@ -44,7 +58,7 @@ function  signup() {
     }
     else {
         $.ajax({
-            url: base_url+'/signup',
+            url: base_url+'/auth/signup',
             data:JSON.stringify({
 
                 email: email,
@@ -58,8 +72,7 @@ function  signup() {
             dataType: 'json',
             contentType: "application/json",
             success: function (data) {
-                console.log(data)
-                    alert(data);
+                    alert(data.message);
             }
         })
     }
@@ -76,7 +89,7 @@ function signin() {
         return false;
     }else{
         $.ajax({
-            url: base_url+'/signin',
+            url: base_url+'/auth/signin',
             data:JSON.stringify({
 
                 email: email,
@@ -89,7 +102,7 @@ function signin() {
             success: function (data) {
 
                if(data.code && data.code=="200"){
-                   location.href="../";
+                    location.href="../";
 
                }else{
                    alert(data.message);

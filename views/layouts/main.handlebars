@@ -32,18 +32,27 @@
 <!--</ul>-->
 <!--</div>-->
 <!--</nav>-->
+
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="#"></a>
         </div>
         <ul class="nav navbar-nav">
+            {{#if userInfo}}
+                <li><a href="#">Welcome {{{userInfo}}}</a></li>
+                <li><a href="javascript:void(0)" onclick="logout()"> Logout</a></li>
+            {{else}}
 
-            <li><a href="javascript:void(0)" data-toggle="modal" data-target="#signin">Login</a></li>
-            <li><a href="javascript:void(0)" data-toggle="modal" data-target="#signup">SignUp</a></li>
+                <li><a href="javascript:void(0)" data-toggle="modal" data-target="#signin">Login</a></li>
+                <li><a href="javascript:void(0)" data-toggle="modal" data-target="#signup">SignUp</a></li>
+            {{/if}}
         </ul>
     </div>
 </nav>
+
+
+
 
 
 {{{body}}}
@@ -110,10 +119,11 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <input type="button" class="form-control" value="Signup" onclick="signup()">
+            </div>
         </div>
-        <div class="form-group">
-            <input type="button" class="form-control" value="Signup" onclick="signup()">
-        </div>
+
     </div>
 
 </div>

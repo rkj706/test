@@ -2,6 +2,9 @@
 .navbar-nav>li>a:hover {
     color: gray;
 }
+.container-fluid{
+    background-color: currentColor;
+}
 .sp_error{
     color: red;
     display: none;

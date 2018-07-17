@@ -8,6 +8,7 @@ var LocalStrategy   = require('passport-local').Strategy;
 
 // load up the user model
 var User            = require('../../models/users');
+const config=require('../../config/index')
 // const AMQP = require('../../lib/amqp')
 // expose this function to our app using module.exports
 module.exports = function(passport) {
@@ -49,11 +50,11 @@ module.exports = function(passport) {
       // User.findOne wont fire unless data is sent back
       process.nextTick(function() {
 
-        if(req.body.email || req.body.password ||req.body.company  || req.body.firstName || req.body.lastName){
+        if(!req.body.email || !req.body.password ||!req.body.company  || !req.body.firstName || !req.body.lastName){
           let errorMsg={message:"Fields can't be empty"}
           console.log(errorMsg)
           req.returnMessage=errorMsg;
-          return done(err);
+          return done(errorMsg);
         }
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to signup already exists
@@ -83,8 +84,10 @@ module.exports = function(passport) {
             newUser.password = newUser.generateHash(password);
             newUser.company=req.body.company
 
-            newUser.screenName=newUser.generateScreenName(req.body.firstName+req.body.lastName);
-
+            newUser.screenName=req.body.firstName+' '+req.body.lastName
+            if(config.profileActivateDefault){
+              newUser.status=true
+            }
 
             // save the user
             newUser.save(function(err) {

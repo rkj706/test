@@ -11,6 +11,7 @@ const bodyParser=require('body-parser');
 const exphbs  = require('express-handlebars');
 const config=require('./config')
 const cookieParser = require('cookie-parser');
+const passport=require('passport');
 //var Stream = require('stream');
 //var readline = require('readline');
 //require('./reply')
@@ -34,7 +35,21 @@ app.engine('handlebars', exphbs({
 app.set('views', rootPath + '/views');
 app.set('view engine', 'handlebars');
 app.use(express.static(path.join(rootPath, 'public')));
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
 
+// Passport Configuration
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
+        done(err, user);
+    });
+});
+
+app.use(cookieParser());
 app.use(session({
     secret: config.db.mongo.sessionSecret,
     resave: true,
@@ -42,8 +57,6 @@ app.use(session({
     store: new MongoStore({ mongooseConnection: connection })
 }));
 
-
-app.use(cookieParser());
 
 
 

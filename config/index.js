@@ -1,7 +1,7 @@
 var env = process.env.NODE_ENV || 'development'
 var config = {
     development: {
-        ingest:true,
+        ingest:false,
         port: 5003,
         baseURI: '',
         elasticSearch: {
@@ -12,6 +12,8 @@ var config = {
         db:{
             mongo:{url:'mongodb://localhost:27017/davinchi',sessionSecret: 'ytjfXIAd8TA1ULSN2e45'}
         },
+        JWTsecret: 'Ob8GcD4LyZpw5hvUtpXh!',
+        profileActivateDefault:true
     },
     prod: {}
 }
