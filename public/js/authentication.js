@@ -72,7 +72,9 @@ function  signup() {
             dataType: 'json',
             contentType: "application/json",
             success: function (data) {
-                    alert(data.message);
+                    alert(data.message)
+                    $("#signup").modal('hide')
+
             }
         })
     }

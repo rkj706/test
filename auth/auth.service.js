@@ -74,7 +74,11 @@ const checkAuthentication = function (req,result) {
                      result({status:false})
                 }
                 else{
-                    result({status:true,userName:user.screenName})
+                    let admin=false
+                    if(user.role && user.role==1){
+                        admin=true
+                    }
+                    result({status:true,userName:user.screenName,admin:admin})
                 }
 
             })

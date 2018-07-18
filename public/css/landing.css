@@ -5,6 +5,9 @@
 .container-fluid{
     background-color: currentColor;
 }
+.main-body{
+    padding-top: 10%;
+}
 .sp_error{
     color: red;
     display: none;

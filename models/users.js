@@ -15,7 +15,8 @@ password:String,
 location:{type:String,default:'india'},
 status:{type:Boolean,default:false},
 company:{type:String},
-screenName:{type:String,index:true}
+screenName:{type:String,index:true},
+role:{type:Number,default:0} // 0: user,1:admin
 });
 userSchema.methods.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);

@@ -1,0 +1,106 @@
+<div class="main-body">
+    <div class="row">
+        <select onclick="showUser(this)">
+            <option value="inactivated" id="u_inactivated">Show Inactivated Users</option>
+            <option value="activated" id="u_activated">Show Activated Users</option>
+        </select>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="manage-job">
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script type="text/html" id="template">
+    <table class="table">
+        <thead>
+        <tr>
+            <th> Name</th>
+            <th> Email</th>
+            <th> Activate</th>
+            <th> Status</th>
+            <th> Activate/Deactivate</th>
+            <!--<th><img src="img/postedon.png"/> Date Posted</th>-->
+            <!--<th><img src="img/postedby.png"/> Owner</th>-->
+            <!--<th><img src="img/shortlisted-01.png"/> Shortlisted</th>-->
+            <!--<th><img src="img/contact-01.png"/> Contact</th>-->
+            <!--<th><img src="img/CSV-01.png"/> CSV</th>-->
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for (var i in data) {%>
+        <tr>
+            <th><p><%= data[i].screenName %></p></th>
+            <th><p><%= data[i].email %></p></th>
+            <th><p><%= data[i].status %></p></th>
+            <th><p><%= data[i].company %></p></th>
+            <% if(data[i].status==true){ %>
+            <th><input type="button" email="<%= data[i].email %>" value="Activated" onclick="action(this,false)" class="activated"></th>
+            <% } else { %>
+            <th><input type="button" email="<%= data[i].email %>" value="Activate" onclick="action(this,true)" class="activate"></th>
+            <% }%>
+        </tr>
+        <% } %>
+        </tbody>
+    </table>
+</script>
+<script>
+    function action(that,status) {
+        let email=$(that).attr('email')
+        $.ajax({
+                    url: '../api/updateUser',
+                    data: JSON.stringify({
+                        status: status,
+                        email:email
+
+                    }),
+                    method: 'POST',
+                    dataType: 'json',
+                    contentType: "application/json",
+                    success: function (data) {
+                        if (data.code == 200) {
+                            alert(data.message)
+                            location.href = '../manageuser'
+                        }
+
+                    }, error: function (error) {
+                        let msg = JSON.parse(error.responseText)
+                        alert(msg.message)
+                    }
+                }
+        )
+    }
+
+    function showUser(that) {
+        let selectedValue = $(that).val()
+        let u_status = false
+        if (selectedValue == 'activated') {
+            u_status = true
+        }
+        $.ajax({
+            url: '../api/getUsers',
+            data: JSON.stringify({
+                status: u_status
+            }),
+            method: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (data) {
+                $('.manage-job').html('')
+                var template = $('#template').html();
+                var compiled_html = _.template(template)({
+                    data: data
+                })
+                $('.manage-job').append(compiled_html);
+
+            }
+        })
+
+    }
+
+</script>

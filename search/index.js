@@ -2,10 +2,12 @@ const client = require('../lib/elasticSearch')
 const config = require('../config/index')
 
 const express = require('express')
+const User=require('../models/users')
 let router = express.Router()
 router.post('/search', searchQuery)
 router.post('/suggest-search', searchMatch)
-
+router.post('/getUsers',getUsers)
+router.post('/updateUser',changeUserStatus)
 function prepareSuggestQuery(body) {
     let query = {bool: {}}
     query.bool['should'] = []
@@ -476,4 +478,36 @@ function searchQuery(req, res) {
     })
 }
 
+function getUsers(req,res){
+    let userRole=req.user.role
+    let userStatus=req.body.status
+    if(userRole && userRole==1){
+        User.find({status:userStatus},{screenName:1,company:1,email:1,status:1,_id:0},function (error,userlist) {
+            if(error){
+                res.status(500).json({message:'something went wrong,please try after sometime .'})
+            }else{
+                res.status(200).json(userlist)
+            }
+        })
+    }else {
+        res.status(200).json({code:403,message:'you are not authorize to access.'})
+    }
+
+}
+function changeUserStatus(req,res){
+    let userRole=req.user.role
+    let userStatus=req.body.status
+    let userEmail=req.body.email
+    if(userRole && userRole==1){
+      User.update({email:userEmail},{$set:{status:userStatus}},function (err,response) {
+          if(err){
+              res.status(500).json({message:'something went wrong'})
+          }else{
+              res.status(200).json({code:200,message:'done'})
+          }
+      })
+    }else {
+        res.status(200).json({code:403,message:'you are not authorize to access.'})
+    }
+}
 module.exports = router

@@ -6,14 +6,25 @@ module.exports = function (app) {
     app.use('/auth',require('./auth'));
     app.use('/api',auth.verifyToken,require('./search'))
     app.use('/logout',logOut)
+    app.use('/manageuser',manageuser)
     app.use('/',landing);
 
+}
+function manageuser(req,res) {
+    auth.checkAuthentication(req,function (result) {
+        if(result.status && result.admin){
+            res.render('admin',{userInfo:result.userName,admin:result.admin});
+        }
+        else{
+            res.redirect('../');
+        }
+    })
 }
 
 function landing(req,res) {
     auth.checkAuthentication(req,function (result) {
        if(result.status){
-           res.render('landing',{userInfo:result.userName});
+           res.render('landing',{userInfo:result.userName,admin:result.admin});
        }else{
            res.render('landing');
        }
@@ -23,7 +34,6 @@ function landing(req,res) {
 
 }
 function logOut(req,res) {
-    console.log('not coming')
     req.logout();
     req.session.destroy(function (err) {
         res.clearCookie('token')

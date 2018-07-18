@@ -1,9 +1,10 @@
-<div class="">
+<div class="main-body">
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
+
+        <div class="col-md-3">.</div>
+        <div class="col-md-6 ">
             <h2>Search</h2>
-            <div id="custom-search-input">
+            <div id="custom-search-input row">
                 <div class="input-group col-md-12">
                     <input type="text" id="search-text" class="form-control input-lg" placeholder="Search ..."/>
 
@@ -15,6 +16,8 @@
                 </div>
 
             </div>
+            <div class="col-md-3">
+
             <ul class="dropdown-menu">
                 <li><a href="#">HTML</a></li>
                 <li><a href="#">CSS</a></li>
@@ -23,8 +26,10 @@
             </ul>
 
         </div>
-        <div class="col-md-3"></div>
+
+        </div>
     </div>
+
 
     <table id="example" class="display hidden results" style="width:100%">
         <thead>
@@ -155,7 +160,7 @@
             return false
         }
         $.ajax({
-            url: '/api/search',
+            url: '../api/search',
             data: JSON.stringify({
                 text: searchText,
                 from: pagination * 10,
