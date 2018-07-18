@@ -13,7 +13,7 @@ var config = {
             mongo:{url:'mongodb://localhost:27017/davinchi',sessionSecret: 'ytjfXIAd8TA1ULSN2e45'}
         },
         JWTsecret: 'Ob8GcD4LyZpw5hvUtpXh!',
-        profileActivateDefault:true
+        profileActivateDefault:false
     },
     prod: {}
 }
