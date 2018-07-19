@@ -88,6 +88,16 @@ function  signup() {
     }
 
 }
+$(document).on('ready',function () {
+    $('#signup').on('shown.bs.modal', function (e) {
+        $('.sp_error').html()
+        // do something...
+    })
+    $('#signin').on('shown.bs.modal', function (e) {
+        $('.sp_error').html()
+        // do something...
+    })
+})
 function signin() {
 
     const email=$("#sn_email").val();

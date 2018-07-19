@@ -72,7 +72,7 @@ module.exports = function(passport) {
           if (user) {
             // var returnMessage={message:"That email is already taken."}
             user.status="409"
-            user.message="That email is already taken.";
+            user.message="This email is already taken";
             return done(null,user);
           } else {
 
