@@ -73,7 +73,7 @@ function  signup() {
             success: function (data) {
 
                     if(data.message && data.code==200){
-                        $('.sp_error').html()
+                        $('.sp_error').html("")
                         alert(data.message)
                         $("#signup").modal('hide')
                     }else{
@@ -89,12 +89,12 @@ function  signup() {
 
 }
 $(document).on('ready',function () {
-    $('#signup').on('shown.bs.modal', function (e) {
-        $('.sp_error').html()
+    $('#signup').on('hidden.bs.modal', function (e) {
+        $('.sp_error').html("")
         // do something...
     })
     $('#signin').on('shown.bs.modal', function (e) {
-        $('.sp_error').html()
+        $('.sp_error').html("")
         // do something...
     })
 })
