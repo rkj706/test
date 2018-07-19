@@ -1,34 +1,26 @@
 <div class="main-body">
     <div class="row">
         <select onclick="showUser(this)">
-            <option value="inactivated" id="u_inactivated">Display Active users</option>
-            <option value="activated" id="u_activated">Display Inactive users</option>
+            <option value="inactivated" id="u_inactivated">Display Inactive users</option>
+            <option value="activated" id="u_activated">Display Actived users</option>
         </select>
     </div>
     <div class="row">
-        <div class="col-md-12">
             <div class="manage-job">
 
             </div>
-        </div>
     </div>
 
 
 </div>
 <script type="text/html" id="template">
-    <table class="table">
-        <thead>
+    <table  class="display dataTable no-footer" style="width: 100%;" role="grid" aria-describedby="example_info">
+    <thead>
         <tr>
             <th> Name</th>
             <th> Email ID</th>
-            <th> Status</th>
+            <th> Company</th>
             <th> Action</th>
-            <!--<th><img src="img/postedon.png"/> Date Posted</th>-->
-            <!--<th><img src="img/postedby.png"/> Owner</th>-->
-            <!--<th><img src="img/shortlisted-01.png"/> Shortlisted</th>-->
-            <!--<th><img src="img/contact-01.png"/> Contact</th>-->
-            <!--<th><img src="img/CSV-01.png"/> CSV</th>-->
-            <th>&nbsp;</th>
         </tr>
         </thead>
         <tbody>
@@ -36,7 +28,7 @@
         <tr>
             <td class="odd"><p><%= data[i].screenName %></p></td>
             <td class="odd"><p><%= data[i].email %></p></td>
-            <td class="odd"><p><%= data[i].status %></p></td>
+            <td class="odd"><p><%= data[i].company %></p></td>
             <% if(data[i].status==true){ %>
             <td class="odd"><input type="button" email="<%= data[i].email %>" value="Activated" onclick="action(this,false)" class="activated"></td>
             <% } else { %>

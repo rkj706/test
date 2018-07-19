@@ -43,9 +43,10 @@
             {{#if userInfo}}
                 {{#if admin}}
 
-                    <li><a href="#">Welcome {{{userInfo}}}</a></li>
-                    <li><a href="javascript:void(0)" onclick="logout()"> Log Out</a></li>
+                    <li><a href="../">Welcome {{{userInfo}}}</a></li>
+
                    <li><a href="../manageuser">Manage Users</a></li>
+                    <li><a href="javascript:void(0)" onclick="logout()"> Log Out</a></li>
                 {{/if}}
             {{else}}
 
