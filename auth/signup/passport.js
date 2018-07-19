@@ -68,11 +68,10 @@ module.exports = function(passport) {
             return done(err);
           }
 
-
           // check to see if theres already a user with that email
           if (user) {
             // var returnMessage={message:"That email is already taken."}
-            user.status="400"
+            user.status="409"
             user.message="That email is already taken.";
             return done(null,user);
           } else {
@@ -95,8 +94,8 @@ module.exports = function(passport) {
                 console.log(err)
                 throw err;
               }else {
-        console.log('registered')
              newUser.message="registered";
+             newUser.code=200
                 return done(null, newUser);
               }
 

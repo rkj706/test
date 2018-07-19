@@ -22,7 +22,7 @@ function logout() {
     })
 }
 function  signup() {
-
+    $(".sp_error").html()
     const firstName=$("#sp_fName").val();
     const lastName=$("#sp_lName").val();
     const email=$("#sp_email").val();
@@ -31,7 +31,6 @@ function  signup() {
     const company=$("#sp_company").val()
 
     if(!(validateEmail(email))){
-        console.log("Ss");
         $(".sp_error").css('display','block');
         $(".sp_error").html('* Email is Invalid');
 
@@ -72,8 +71,17 @@ function  signup() {
             dataType: 'json',
             contentType: "application/json",
             success: function (data) {
-                    alert(data.message)
-                    $("#signup").modal('hide')
+
+                    if(data.message && data.code==200){
+                        $('.sp_error').html()
+                        alert(data.message)
+                        $("#signup").modal('hide')
+                    }else{
+                        $(".sp_error").css('display','block');
+                        $(".sp_error").html(data.message);
+                        return false;
+                    }
+
 
             }
         })
