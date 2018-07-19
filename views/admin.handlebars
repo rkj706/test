@@ -1,8 +1,8 @@
 <div class="main-body">
     <div class="row">
         <select onclick="showUser(this)">
-            <option value="inactivated" id="u_inactivated">Display Inactive users</option>
-            <option value="activated" id="u_activated">Display Actived users</option>
+            <option value="inactivated" id="u_inactivated">Display inactive users</option>
+            <option value="activated" id="u_activated">Display active users</option>
         </select>
     </div>
     <div class="row">
@@ -30,7 +30,7 @@
             <td class="odd"><p><%= data[i].email %></p></td>
             <td class="odd"><p><%= data[i].company %></p></td>
             <% if(data[i].status==true){ %>
-            <td class="odd"><input type="button" email="<%= data[i].email %>" value="Activated" onclick="action(this,false)" class="activated"></td>
+            <td class="odd"><input type="button" email="<%= data[i].email %>" value="Inactivate" onclick="action(this,false)" class="activated"></td>
             <% } else { %>
             <td class="odd"><input type="button" email="<%= data[i].email %>" value="Activate" onclick="action(this,true)" class="activate"></td>
             <% }%>
