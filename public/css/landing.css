@@ -1,9 +1,20 @@
-
+.navbar{
+    background-color: white !important;
+    border-color: white !important;
+    color: black !important;
+}
+.manage-job{
+    padding-top: 5%;
+    padding-left: 10%;
+}
+li>a{
+    color: black !important;
+}
 .navbar-nav>li>a:hover {
-    color: gray;
+    color: black !important;
 }
 .container-fluid{
-    background-color: currentColor;
+    /*background-color: currentColor;*/
 }
 .main-body{
     padding-top: 10%;

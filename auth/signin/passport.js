@@ -71,7 +71,7 @@ module.exports = function(passport) {
         }
         if(!user.status){
             user.status="403"
-            user.message="profile is not activated yet";
+            user.message="User is not activated yet";
             return done(null, user);
 
         }

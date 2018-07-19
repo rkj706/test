@@ -1,8 +1,8 @@
 <div class="main-body">
     <div class="row">
         <select onclick="showUser(this)">
-            <option value="inactivated" id="u_inactivated">Show Inactivated Users</option>
-            <option value="activated" id="u_activated">Show Activated Users</option>
+            <option value="inactivated" id="u_inactivated">Display Active users</option>
+            <option value="activated" id="u_activated">Display Inactive users</option>
         </select>
     </div>
     <div class="row">
@@ -20,10 +20,9 @@
         <thead>
         <tr>
             <th> Name</th>
-            <th> Email</th>
-            <th> Activate</th>
+            <th> Email ID</th>
             <th> Status</th>
-            <th> Activate/Deactivate</th>
+            <th> Action</th>
             <!--<th><img src="img/postedon.png"/> Date Posted</th>-->
             <!--<th><img src="img/postedby.png"/> Owner</th>-->
             <!--<th><img src="img/shortlisted-01.png"/> Shortlisted</th>-->
@@ -35,14 +34,13 @@
         <tbody>
         <% for (var i in data) {%>
         <tr>
-            <th><p><%= data[i].screenName %></p></th>
-            <th><p><%= data[i].email %></p></th>
-            <th><p><%= data[i].status %></p></th>
-            <th><p><%= data[i].company %></p></th>
+            <td class="odd"><p><%= data[i].screenName %></p></td>
+            <td class="odd"><p><%= data[i].email %></p></td>
+            <td class="odd"><p><%= data[i].status %></p></td>
             <% if(data[i].status==true){ %>
-            <th><input type="button" email="<%= data[i].email %>" value="Activated" onclick="action(this,false)" class="activated"></th>
+            <td class="odd"><input type="button" email="<%= data[i].email %>" value="Activated" onclick="action(this,false)" class="activated"></td>
             <% } else { %>
-            <th><input type="button" email="<%= data[i].email %>" value="Activate" onclick="action(this,true)" class="activate"></th>
+            <td class="odd"><input type="button" email="<%= data[i].email %>" value="Activate" onclick="action(this,true)" class="activate"></td>
             <% }%>
         </tr>
         <% } %>
