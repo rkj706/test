@@ -35,9 +35,10 @@ function landing(req,res) {
 }
 function logOut(req,res) {
     req.logout();
+    res.clearCookie('token',{ path: '/' })
+    res.clearCookie('screenName',{ path: '/' })
     req.session.destroy(function (err) {
-        res.clearCookie('token')
-        res.clearCookie('screenName')
+
         res.status(200).json({message:'loggedOut'})
     });
 }

@@ -20,8 +20,8 @@ function setTokenCookie(req, res) {
       let token = signToken(req.user._id)
       let screenName=req.user.screenName
 
-      res.cookie('token', token);
-      res.cookie('screenName',screenName)
+      res.cookie('token', token,{ path: '/' });
+      res.cookie('screenName',screenName,{ path: '/' })
       res.status(200).json({code:200,message:"authenticated"})
 }
 
