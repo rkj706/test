@@ -43,9 +43,9 @@ function  signup() {
         return false;
     }
 
-    if(pass==""||conf_pass=="" || pass.length>10||conf_pass>10){
+    if(pass==""||conf_pass=="" || pass.length<5 || pass.length>16){
         $(".sp_error").css('display','block');
-        $(".sp_error").html("* Password length Can't be less than 5 or greater than 10 ");
+        $(".sp_error").html("* Password length Can't be less than 5 or greater than 16c ");
 
         return false;
     }

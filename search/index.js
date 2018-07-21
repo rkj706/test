@@ -474,6 +474,7 @@ function searchQuery(req, res) {
                 }
             }
         ).catch(function (error) {
+            console.log(error)
         res.status(500).json({msg: 'something is not correct'})
     })
 }
