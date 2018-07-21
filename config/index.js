@@ -1,7 +1,7 @@
 var env = process.env.NODE_ENV || 'development'
 var config = {
     development: {
-        ingest:false,
+        ingest:true,
         port: 5003,
         baseURI: '',
         elasticSearch: {

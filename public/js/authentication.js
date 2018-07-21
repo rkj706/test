@@ -36,7 +36,7 @@ function  signup() {
 
         return false;
     }
-    if(firstName==""||lastName=="" || pass.length>10||conf_pass>10){
+    if(firstName==""||lastName==""){
         $(".sp_error").css('display','block');
         $(".sp_error").html("* First Name and Last Name  Can't be less than 5 or greater than 10 ");
 
@@ -45,7 +45,7 @@ function  signup() {
 
     if(pass==""||conf_pass=="" || pass.length>10||conf_pass>10){
         $(".sp_error").css('display','block');
-        $(".sp_error").html("* Password  Can't be less than 5 or greater than 10 ");
+        $(".sp_error").html("* Password length Can't be less than 5 or greater than 10 ");
 
         return false;
     }
