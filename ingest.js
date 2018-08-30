@@ -5,7 +5,7 @@ const config = require('./config/index')
 
 function insert(query, callback) {
     let baseData = {
-        index: config.elasticSearch.profileIndex,
+        index: config.elasticSearch.profileIndex.customer,
         type: config.elasticSearch.profileType,
         body: query
     }
@@ -38,7 +38,7 @@ function processFile(inputFile) {
 
         //insert(line1)
     })
-    let jsonValue = [
+  /*  let jsonValue = [
         "APPLE IPHONE, VERSION 6S, COLOUR BLACK, SIZE 6",
         "Apple iphone, VERSION 6S, COLOUR BLACK, SIZE 6",
         "APPLEIPHONE VERSION 6S, COLOURBLACK, SIZE 6",
@@ -60,7 +60,7 @@ function processFile(inputFile) {
         "WINSHUTTLE PRIVATELIMITED",
         "WINSHUTTLE PTE LIMITED",
     ]
-   /* rl.on('close', function (line) {
+    rl.on('close', function (line) {
         let i = 0
          self()
         let err = []
@@ -134,7 +134,7 @@ function processFile(inputFile) {
 
 function start() {
 
-    processFile(__dirname + '/' + 'mara_makt.jl');
+    processFile(__dirname + '/' + 'customer_master.jl');
 }
 
 module.exports = {

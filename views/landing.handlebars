@@ -1,11 +1,24 @@
-<div class="main-body">
+<div class="main-body container">
+    <div class="row">
+        <h2>Search</h2>
+    </div>
     <div class="row">
 
-        <div class="col-md-3">.</div>
-        <div class="col-md-6 ">
-            <h2>Search</h2>
+        <div class="col-md-3 index_select">
+
+            <div>
+            <select class="form-control" id="selected_index">
+                <option>Select Index</option>
+                <option value="market">Meterial</option>
+                <option value="customer">Customer</option>
+            </select>
+            </div>
+        </div>
+
+        <div class="col-md-9">
             <div id="custom-search-input row">
                 <div class="input-group col-md-12">
+
                     <input type="text" id="search-text" class="form-control input-lg" placeholder="Search ..."/>
 
                     <span class="input-group-btn">
@@ -27,11 +40,12 @@
 
         </div>
 
+
         </div>
     </div>
 
 
-    <table id="example" class="display hidden results" style="width:100%">
+    <table id="meterial_table" class="display hidden results" style="width:100%">
         <thead>
         <tr>
             <th style="color:#3c763d" id="resultCount"></th>
@@ -80,18 +94,20 @@
     function nextSlotPagination() {
         let text = getUrlParameter('search-text')
         let pageNo = getUrlParameter('page')
+        let index=getUrlParameter('index') || 'makt'
         if (!pageNo) {
             pageNo = 0
         }
         pageNo = parseInt(pageNo) + 1
         if (text) {
-            location.href = '/?search-text=' + text + '&page=' + pageNo
+            location.href = '/?search-text=' + text + '&page=' + pageNo + '&index='+index
         }
     }
 
     function previousSlotPagination() {
         let text = getUrlParameter('search-text')
         let pageNo = getUrlParameter('page')
+        let index=getUrlParameter('index') || 'makt'
         if (!pageNo) {
             pageNo = 0
         }
@@ -100,16 +116,17 @@
             pageNo=0
         }
         if (text) {
-            location.href = '/?search-text=' + text + '&&page=' + pageNo
+            location.href = '/?search-text=' + text + '&page=' + pageNo+'&index='+index
         }
     }
 
     function showNextPage(that) {
         let text = getUrlParameter('search-text')
         let pageNo = $(that).attr('value')
+        let index=getUrlParameter('index') || 'makt'
         let redirectText = '/?search-text=' + text
         if (pageNo > 0) {
-            redirectText = redirectText + '&page=' + pageNo
+            redirectText = redirectText + '&page=' + pageNo +'&index='+index
         }
         if (!pageNo || pageNo < 0) {
             pageNo = 0
@@ -134,9 +151,14 @@
             }
         }
     };
+
     (function () {
         let text = getUrlParameter('search-text')
-        $('#search-text').val(text)
+        let index=getUrlParameter('index') || 'market'
+
+        $("#search-text").val(text)
+        $("#selected_index").val(index)
+
         if (text) {
             let pageNo = getUrlParameter('page')
             if (!pageNo || !pageNo / 1) {
@@ -146,25 +168,33 @@
                 pageNo = pageNo - 1
             }
 
-            loadMore(text.trim(), pageNo)
+            loadMore(index,text.trim(), pageNo)
         }
 
     })()
 
-    function loadMore(searchText, pagination) {
-
+    function loadMore(index,searchText, pagination) {
         //  let searchText = $("#search-text").val().trim()
+        if(!index || index==""){
+            return false
+        }
+        let source=[]
+        if(index=='market')
+        {
+            source=['mara_matnr', 'mara_mtart', 'mara_matkl', 'mara_vhart', 'mara_ersda', 'mara_ernam', 'mara_pstat', 'mara_mbrsh', 'mara_meins', 'mara_prdha', 'makt_props']
+        }
         if (searchText && (searchText == "" || !searchText || searchText.length < 3)) {
-            $('#example').addClass('hidden')
+            $('#meterial_table').addClass('hidden')
             $('#loadMore').addClass('hidden')
             return false
         }
         $.ajax({
             url: '../api/search',
             data: JSON.stringify({
+                index:index,
                 text: searchText,
                 from: pagination * 10,
-                source: ['mara_matnr', 'mara_mtart', 'mara_matkl', 'mara_vhart', 'mara_ersda', 'mara_ernam', 'mara_pstat', 'mara_mbrsh', 'mara_meins', 'mara_prdha', 'makt_props']
+                source: source
             }),
             method: 'POST',
             dataType: 'json',
@@ -197,7 +227,8 @@
                     data: {start: pageStart, count: pageCount, showNext: showNext, showPrevious: showPrevious}
                 })
                 if (data.result.length > 1) {
-                    $("#resultCount").html(data.time)
+                    console.log(data.time)
+                    $("#resultCount").html("<span>"+data.time+"</span>"+"<h3><i class=\"fa fa-save\"></i></h3>")
                 }
 
                 if (data.count > 10) {
@@ -212,13 +243,12 @@
                 var counter = 1;
 
                 for (let j = 0; j < final_data.length; j++) {
-                    console.log(final_data[j]['makt_props'])
                    let maktMaktx=final_data[j]['makt_props'].map(function (data) {
                        return data.makt_maktx
                    })
                     maktMaktx=maktMaktx.join("<br /><br />");
                     console.log(final_data[j]['makt_props'][0].makt_maktx)
-                    $('#example').dataTable().fnAddData([
+                    $('#meterial_table').dataTable().fnAddData([
                         final_data[j].mara_matnr,
                         final_data[j].mara_mtart,
                         maktMaktx,
@@ -235,7 +265,7 @@
                 }
 
                 pagination++;
-//                $('#example').DataTable({"paging":   false});
+//                $('#meterial_table').DataTable({"paging":   false});
             }, error: function (error) {
 
                let msg=JSON.parse(error.responseText)
@@ -246,7 +276,8 @@
 
     $("#search").on('click', function () {
         let searchText = $("#search-text").val().trim()
-        location.href = '/?search-text=' + searchText
+        let index=$("#selected_index").val()
+        location.href = '/?search-text=' + searchText+'&index='+index
     })
     $("#search-text").bind("keypress", {}, keypressInBox);
 
@@ -255,11 +286,19 @@
         if (code == 13) { //Enter keycode
             e.preventDefault();
             let searchText = $("#search-text").val().trim()
-            location.href = '/?search-text=' + searchText
+            let index=$("#selected_index").val()
+            location.href = '/?search-text=' + searchText+'&index='+index
         }
     };
     $(document).ready(function () {
-        $('#example').DataTable({"order": [],"paging": false,});
+        $('#meterial_table').DataTable({
+            "dom": 'Zlfrtip',
+            "colResize": {
+                "tableWidthFixed": false
+            },
+            "paging":false
+
+        });
         /* $('#search-text').on('keyup', function (word) {
              let txt = $('#search-text').val().trim()
              if (txt.length > 2) {

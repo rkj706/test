@@ -7,7 +7,10 @@ var config = {
         elasticSearch: {
             host: 'localhost:9200',
             profileType: 'data',
-            profileIndex: 'makt'
+            profileIndex: {
+                market:'makt',
+                customer:'customer'
+            }
         },
         db:{
             mongo:{url:'mongodb://localhost:27017/davinchi',sessionSecret: 'ytjfXIAd8TA1ULSN2e45'}
@@ -18,4 +21,3 @@ var config = {
     prod: {}
 }
 module.exports = config[env]
-
