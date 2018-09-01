@@ -18,6 +18,8 @@ var config = {
         JWTsecret: 'Ob8GcD4LyZpw5hvUtpXh!',
         profileActivateDefault:false,
     },
-    prod: {}
+    prod: {
+
+    }
 }
 module.exports = config[env]

@@ -7,11 +7,11 @@
         <div class="col-md-3 index_select">
 
             <div>
-            <select class="form-control" id="selected_index">
-                <option>Select Index</option>
-                <option value="market">Meterial</option>
-                <option value="customer">Customer</option>
-            </select>
+                <select class="form-control" id="selected_index">
+                    <option>Select Index</option>
+                    <option value="market">Meterial</option>
+                    <option value="customer">Customer</option>
+                </select>
             </div>
         </div>
 
@@ -31,24 +31,44 @@
             </div>
             <div class="col-md-3">
 
-            <ul class="dropdown-menu">
-                <li><a href="#">HTML</a></li>
-                <li><a href="#">CSS</a></li>
-                <li><a href="#">JavaScript</a></li>
-                <li><a href="#">About Us</a></li>
-            </ul>
+                <ul class="dropdown-menu">
+                    <li><a href="#">HTML</a></li>
+                    <li><a href="#">CSS</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
 
-        </div>
+            </div>
 
 
         </div>
     </div>
 
+    <table id="customer_table" class="display hidden customer_results" style="width: 100%">
+        <thead>
+        <tr>
+            <th style="color:#3c763d" class="resultCount"></th>
+        </tr>
+        <tr>
+            <th>kna1_kunnr</th>
+            <th>kna1_land1</th>
+            <th>kna1_name1</th>
+            <th>kna1_name2</th>
+            <th>kna1_ort01</th>
+            <th>kna1_pstlz</th>
+            <th>kna1_stras</th>
+            <th>knb1_props</th>
+            <th>knvk_props</th>
+        </tr>
 
+        <tbody>
+        </tbody>
+        </thead>
+    </table>
     <table id="meterial_table" class="display hidden results" style="width:100%">
         <thead>
         <tr>
-            <th style="color:#3c763d" id="resultCount"></th>
+            <th style="color:#3c763d" class="resultCount"></th>
         </tr>
         <tr>
             <th>Material Number</th>
@@ -62,8 +82,8 @@
             <th>Industry Sector</th>
             <th>Base Unit of Measure</th>
             <th>Product hierarchy</th>
-
         </tr>
+
         <tbody>
         </tbody>
         </thead>
@@ -76,12 +96,14 @@
     </div>
 </div>
 
+
 <script type="text/html" id="template">
     <% if(data.showPrevious){%>
     <input type="button" onclick="previousSlotPagination()" class="pagination previous" value="<">
     <%}%>
     <%for(let dcount=data.start;dcount<=data.count;dcount++){%>
-    <a  onclick="showNextPage(this)" id="page_no_<%=dcount%>" href="javascript:void(0)" value=<%=dcount%>><b><%=dcount%></b></a>
+    <a onclick="showNextPage(this)" id="page_no_<%=dcount%>" href="javascript:void(0)"
+       value=<%=dcount%>><b><%=dcount%></b></a>
     <%}%>
 
     <% if(data.showNext){%>
@@ -94,39 +116,39 @@
     function nextSlotPagination() {
         let text = getUrlParameter('search-text')
         let pageNo = getUrlParameter('page')
-        let index=getUrlParameter('index') || 'makt'
+        let index = getUrlParameter('index') || 'makt'
         if (!pageNo) {
             pageNo = 0
         }
         pageNo = parseInt(pageNo) + 1
         if (text) {
-            location.href = '/?search-text=' + text + '&page=' + pageNo + '&index='+index
+            location.href = '/?search-text=' + text + '&page=' + pageNo + '&index=' + index
         }
     }
 
     function previousSlotPagination() {
         let text = getUrlParameter('search-text')
         let pageNo = getUrlParameter('page')
-        let index=getUrlParameter('index') || 'makt'
+        let index = getUrlParameter('index') || 'makt'
         if (!pageNo) {
             pageNo = 0
         }
         pageNo = parseInt(pageNo) - 1
-        if(pageNo<0){
-            pageNo=0
+        if (pageNo < 0) {
+            pageNo = 0
         }
         if (text) {
-            location.href = '/?search-text=' + text + '&page=' + pageNo+'&index='+index
+            location.href = '/?search-text=' + text + '&page=' + pageNo + '&index=' + index
         }
     }
 
     function showNextPage(that) {
         let text = getUrlParameter('search-text')
         let pageNo = $(that).attr('value')
-        let index=getUrlParameter('index') || 'makt'
+        let index = getUrlParameter('index') || 'makt'
         let redirectText = '/?search-text=' + text
         if (pageNo > 0) {
-            redirectText = redirectText + '&page=' + pageNo +'&index='+index
+            redirectText = redirectText + '&page=' + pageNo + '&index=' + index
         }
         if (!pageNo || pageNo < 0) {
             pageNo = 0
@@ -154,7 +176,7 @@
 
     (function () {
         let text = getUrlParameter('search-text')
-        let index=getUrlParameter('index') || 'market'
+        let index = getUrlParameter('index') || 'market'
 
         $("#search-text").val(text)
         $("#selected_index").val(index)
@@ -168,20 +190,19 @@
                 pageNo = pageNo - 1
             }
 
-            loadMore(index,text.trim(), pageNo)
+            loadMore(index, text.trim(), pageNo)
         }
 
     })()
 
-    function loadMore(index,searchText, pagination) {
+    function loadMore(index, searchText, pagination) {
         //  let searchText = $("#search-text").val().trim()
-        if(!index || index==""){
+        if (!index || index == "") {
             return false
         }
-        let source=[]
-        if(index=='market')
-        {
-            source=['mara_matnr', 'mara_mtart', 'mara_matkl', 'mara_vhart', 'mara_ersda', 'mara_ernam', 'mara_pstat', 'mara_mbrsh', 'mara_meins', 'mara_prdha', 'makt_props']
+        let source = []
+        if (index == 'market') {
+            source = ['mara_matnr', 'mara_mtart', 'mara_matkl', 'mara_vhart', 'mara_ersda', 'mara_ernam', 'mara_pstat', 'mara_mbrsh', 'mara_meins', 'mara_prdha', 'makt_props']
         }
         if (searchText && (searchText == "" || !searchText || searchText.length < 3)) {
             $('#meterial_table').addClass('hidden')
@@ -191,7 +212,7 @@
         $.ajax({
             url: '../api/search',
             data: JSON.stringify({
-                index:index,
+                index: index,
                 text: searchText,
                 from: pagination * 10,
                 source: source
@@ -200,8 +221,11 @@
             dataType: 'json',
             contentType: "application/json",
             success: function (data) {
-
-                $('.results').removeClass('hidden')
+                if (index == 'market') {
+                    $('.results').removeClass('hidden')
+                } else {
+                    $('.customer_results').removeClass('hidden')
+                }
                 var template = $('#template').html();
                 let pageCount = Math.floor(data.count / 10)
                 let extraPage = Math.floor(data.count % 10)
@@ -209,8 +233,8 @@
                     pageCount = pageCount + 1
                 }
                 let pageStart = 1
-                if(pagination>0){
-                    showPrevious=true
+                if (pagination > 0) {
+                    showPrevious = true
                 }
                 if (pageCount > 5) {
                     if (pagination <= 0) {
@@ -218,7 +242,7 @@
                     } else {
                         pageStart = pagination
                     }
-                    pageCount=pagination+5
+                    pageCount = pagination + 5
                     $(".next").removeClass('hidden')
                     showNext = true
                 }
@@ -228,47 +252,80 @@
                 })
                 if (data.result.length > 1) {
                     console.log(data.time)
-                    $("#resultCount").html("<span>"+data.time+"</span>"+"<h3><i class=\"fa fa-save\"></i></h3>")
+                    // $(".resultCount").html("<span>" + data.time + "</span>" + "<h3><i class=\"fa fa-save\"></i></h3>")
                 }
 
                 if (data.count > 10) {
                     $("#show-pagination").append(compiled_html)
                 }
-                if(data.result.length<10){
-                    $("#nextSlot").attr('disabled',true)
+                if (data.result.length < 10) {
+                    $("#nextSlot").attr('disabled', true)
                 }
-                let pageNo=pagination+1
-                $('#page_no_'+pageNo).addClass('clicked')
+                let pageNo = pagination + 1
+                $('#page_no_' + pageNo).addClass('clicked')
                 let final_data = data.result
                 var counter = 1;
+                if (index == "market") {
+                    for (let j = 0; j < final_data.length; j++) {
+                        let maktMaktx = final_data[j]['makt_props'].map(function (data) {
+                            return data.makt_maktx
+                        })
+                        maktMaktx = maktMaktx.join("<br /><br />");
+                        console.log(final_data[j]['makt_props'][0].makt_maktx)
+                        $('#meterial_table').dataTable().fnAddData([
+                            final_data[j].mara_matnr,
+                            final_data[j].mara_mtart,
+                            maktMaktx,
+                            final_data[j].mara_matkl,
+                            final_data[j].mara_vhart,
+                            final_data[j].mara_ersda,
+                            final_data[j].mara_ernam,
+                            final_data[j].mara_pstat,
+                            final_data[j].mara_mbrsh,
+                            final_data[j].mara_meins,
+                            final_data[j].mara_prdha,
 
-                for (let j = 0; j < final_data.length; j++) {
-                   let maktMaktx=final_data[j]['makt_props'].map(function (data) {
-                       return data.makt_maktx
-                   })
-                    maktMaktx=maktMaktx.join("<br /><br />");
-                    console.log(final_data[j]['makt_props'][0].makt_maktx)
-                    $('#meterial_table').dataTable().fnAddData([
-                        final_data[j].mara_matnr,
-                        final_data[j].mara_mtart,
-                        maktMaktx,
-                        final_data[j].mara_matkl,
-                        final_data[j].mara_vhart,
-                        final_data[j].mara_ersda,
-                        final_data[j].mara_ernam,
-                        final_data[j].mara_pstat,
-                        final_data[j].mara_mbrsh,
-                        final_data[j].mara_meins,
-                        final_data[j].mara_prdha,
+                        ]);
+                    }
+                } else {
+                    for (let j = 0; j < final_data.length; j++) {
+                        let knb1_props = []
 
-                    ]);
+                        final_data[j]["knb1_props"].forEach(function (data) {
+                            let html_data = []
+                            html_data.push("knb1_akont: " + data["knb1_akont"] + ',' + " knb1_bukrs : " + data['knb1_bukrs'] + ',' + " knb1_kunnr: " + data['knb1_kunnr'] + ',' + " knb1_zterm :" + data['knb1_zterm'])
+                            knb1_props.push(html_data)
+                        })
+                        knb1_props = knb1_props.join("<br /><br />");
+
+                       let knvk_props=[]
+                            final_data[j]["knvk_props"].forEach(function (data) {
+                                let html_data=[]
+                                html_data.push("knvk_kunnr: "+data['knvk_kunnr']+','+" knvk_namev: "+data['knvk_namev']+','+" knvk_name1: "+data['knvk_name1'])
+                                knvk_props.push(html_data)
+                            })
+                        knvk_props = knvk_props.join("<br /><br />");
+                        $('#customer_table').dataTable().fnAddData([
+                            final_data[j].kna1_kunnr,
+                            final_data[j].kna1_land1,
+                            final_data[j].kna1_name1,
+                            final_data[j].kna1_name2,
+                            final_data[j].kna1_ort01,
+                            final_data[j].kna1_pstlz,
+                            final_data[j].kna1_stras,
+                            knb1_props,
+                            knvk_props
+
+
+                        ]);
+                    }
                 }
 
                 pagination++;
-//                $('#meterial_table').DataTable({"paging":   false});
+
             }, error: function (error) {
 
-               let msg=JSON.parse(error.responseText)
+                let msg = JSON.parse(error.responseText)
                 alert(msg.message)
             }
         })
@@ -276,8 +333,8 @@
 
     $("#search").on('click', function () {
         let searchText = $("#search-text").val().trim()
-        let index=$("#selected_index").val()
-        location.href = '/?search-text=' + searchText+'&index='+index
+        let index = $("#selected_index").val()
+        location.href = '/?search-text=' + searchText + '&index=' + index
     })
     $("#search-text").bind("keypress", {}, keypressInBox);
 
@@ -286,8 +343,8 @@
         if (code == 13) { //Enter keycode
             e.preventDefault();
             let searchText = $("#search-text").val().trim()
-            let index=$("#selected_index").val()
-            location.href = '/?search-text=' + searchText+'&index='+index
+            let index = $("#selected_index").val()
+            location.href = '/?search-text=' + searchText + '&index=' + index
         }
     };
     $(document).ready(function () {
@@ -296,7 +353,15 @@
             "colResize": {
                 "tableWidthFixed": false
             },
-            "paging":false
+            "paging": false
+
+        });
+        $('#customer_table').DataTable({
+            "dom": 'Zlfrtip',
+            "colResize": {
+                "tableWidthFixed": false
+            },
+            "paging": false
 
         });
         /* $('#search-text').on('keyup', function (word) {
