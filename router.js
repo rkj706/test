@@ -4,7 +4,7 @@ module.exports = function (app) {
 
 
     app.use('/auth',require('./auth'));
-    app.use('/api',auth.verifyToken,require('./search'))
+    app.use('/api',require('./search'))
     app.use('/logout',logOut)
     app.use('/manageuser',manageuser)
     app.use('/',landing);

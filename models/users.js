@@ -37,7 +37,6 @@ userSchema.methods.generateScreenName=function (name) {
 
         return name+text;
 
-
 }
 
 

@@ -20,8 +20,7 @@ const mongoose=require('mongoose');
 const session = require('express-session');
 const connection = mongoose.createConnection(config.db.mongo.url);
 const MongoStore = require('connect-mongo')(session);
-
-
+const excel=require('./excel')
 // const fs = require('fs');
 var app=express();
 
@@ -72,5 +71,7 @@ server.listen('5000',function (err) {
     if(err){
         console.log(err)
     }
+  // excel.uploadFileAndWrtite()
     console.log('server is running');
+
 })

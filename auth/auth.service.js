@@ -70,7 +70,6 @@ const checkAuthentication = function (req,result) {
                     result({status:false})
                 }
                else if (payload.exp <= moment().unix()) {
-                    console.log('here is the issue')
                      result({status:false})
                 }
                 else{

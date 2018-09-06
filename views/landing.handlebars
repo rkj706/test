@@ -4,7 +4,7 @@
     </div>
     <div class="row">
 
-        <div class="col-md-3 index_select">
+        <div class="col-md-2 index_select">
 
             <div>
                 <select class="form-control" id="selected_index">
@@ -13,8 +13,12 @@
                     <option value="customer">Customer</option>
                 </select>
             </div>
-        </div>
 
+
+        </div>
+        <div class="col-md-1">
+            <i class="fa fa-upload" aria-hidden="true"></i>
+        </div>
         <div class="col-md-9">
             <div id="custom-search-input row">
                 <div class="input-group col-md-12">
@@ -29,20 +33,24 @@
                 </div>
 
             </div>
-            <div class="col-md-3">
-
-                <ul class="dropdown-menu">
-                    <li><a href="#">HTML</a></li>
-                    <li><a href="#">CSS</a></li>
-                    <li><a href="#">JavaScript</a></li>
-                    <li><a href="#">About Us</a></li>
-                </ul>
-
-            </div>
 
 
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-6">
+
+            <form id="upload-photos" method="post" action="/api/uploadFile" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input id="photos-input" class="hidden" type="file" name="photos[]" multiple="multiple" >
+                </div>
+                <input type="hidden" name="csrf_token" value="just_a_text_field" />
+                <!--<input class="btn btn-default" type="submit" name="Photo Uploads" value="Upload Photos" />-->
+            </form>
+        </div>
+    </div>
+
+
 
     <table id="customer_table" class="display hidden customer_results" style="width: 100%">
         <thead>
@@ -226,7 +234,7 @@
                 } else {
                     $('.customer_results').removeClass('hidden')
                 }
-                var template = $('#template').html();
+                var template = $('#template').html()
                 let pageCount = Math.floor(data.count / 10)
                 let extraPage = Math.floor(data.count % 10)
                 if (pageCount > 0 && extraPage > 0) {
@@ -363,7 +371,7 @@
             },
             "paging": false
 
-        });
+        })
         /* $('#search-text').on('keyup', function (word) {
              let txt = $('#search-text').val().trim()
              if (txt.length > 2) {
@@ -388,4 +396,86 @@
          })
          */
     });
+
+
+$("#photos-input").on('change',function () {
+    $("#upload-photos").submit();
+
+})
+    // file upload
+
+
+    $('#upload-photos').on('submit', function (event) {
+        event.preventDefault();
+
+        // Get the files from input, create new FormData.
+        var files = $('#photos-input').get(0).files,
+                formData = new FormData();
+
+        if (files.length === 0) {
+            alert('Select atleast 1 file to upload.');
+            return false;
+        }
+
+        if (files.length > 1) {
+            alert('You can only upload up to 3 files.');
+            return false;
+        }
+
+        // Append the files to the formData.
+        for (var i=0; i < files.length; i++) {
+            var file = files[i];
+            formData.append('photos[]', file, file.name);
+        }
+
+        formData.append('index',$('#selected_index').val())
+        // Note: We are only appending the file inputs to the FormData.
+        uploadFiles(formData);
+    });
+    function uploadFiles(formData) {
+        $.ajax({
+            url: '/api/uploadFile',
+            method: 'post',
+            data: formData,
+            processData: false,
+            contentType: false,
+            xhr: function () {
+                var xhr = new XMLHttpRequest();
+
+                // Add progress event listener to the upload.
+                xhr.upload.addEventListener('progress', function (event) {
+                    var progressBar = $('.progress-bar');
+
+                    if (event.lengthComputable) {
+                        var percent = (event.loaded / event.total) * 100;
+                        progressBar.width(percent + '%');
+
+                        if (percent === 100) {
+                            progressBar.removeClass('active');
+                        }
+                    }
+                });
+
+                return xhr;
+            }
+        }).done(handleSuccess).fail(function (xhr, status) {
+            alert(status);
+        });
+    }
+    function handleSuccess(data) {
+        if (data.length > 0) {
+            var html = '';
+            for (var i=0; i < data.length; i++) {
+                var img = data[i];
+
+            }
+
+            $('#album').html(html);
+        } else {
+            alert('No images were uploaded.')
+        }
+    }
+    $('.fa-upload').on('click',function () {
+        $('#photos-input').trigger('click')
+    })
 </script>
