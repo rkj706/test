@@ -216,3 +216,17 @@ th{
 .fa-save{
     float: right;
 }
+.fa-close{
+    padding: 9px;
+    font-size: 27px !important;
+    color: darkred;
+    cursor: pointer;
+}
+.fa-file-excel-o{
+    font-size: 27px !important;
+    color: green;
+    cursor: pointer;
+}
+.fa-upload{
+    cursor: pointer;
+}

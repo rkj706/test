@@ -6,6 +6,8 @@ var path = require('path'),
     formidable = require('formidable'),
     readChunk = require('read-chunk'),
     fileType = require('file-type');
+const rootPath = path.normalize(__dirname);
+
 const express = require('express')
 const User=require('../models/users')
 let router = express.Router()
@@ -14,6 +16,8 @@ router.post('/suggest-search', searchMatch)
 router.post('/getUsers',getUsers)
 router.post('/updateUser',changeUserStatus)
 router.post('/uploadFile',uploadFile)
+router.post('/download',download)
+
 function generateFileName() {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -684,6 +688,21 @@ function searchQuery(req, res) {
 
 }
 
+function download(req,res) {
+
+    var name=req.body.fileName;
+    var filePath = path.join(__dirname,name);
+    var stat = fs.statSync(filePath);
+
+    res.writeHead(200, {
+        'Content-Type': 'application/json',
+        'Content-Length': stat.size
+    });
+
+    var readStream = fileSystem.createReadStream(filePath);
+    // We replaced all the event handlers with a simple call to readStream.pipe()
+    readStream.pipe(res);
+}
 function uploadFile(req,res) {
     var photos = [],
         form = new formidable.IncomingForm();
@@ -704,7 +723,6 @@ function uploadFile(req,res) {
         var buffer = null,
             type = null,
             filename = '';
-
         // Read a chunk of the file.
         buffer = readChunk.sync(file.path, 0, 262);
         // Get the file type using the buffer read using read-chunk
@@ -717,7 +735,7 @@ function uploadFile(req,res) {
 
             // Move the file with the new file name
             fs.rename(file.path, 'uploads/' + filename);
-
+            console.log('filenamr '+filename)
             // Add to the list of photos
             photos.push({
                 status: true,
@@ -791,4 +809,5 @@ function changeUserStatus(req,res){
         res.status(200).json({code:403,message:'you are not authorize to access.'})
     }
 }
+
 module.exports = router

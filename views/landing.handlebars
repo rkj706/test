@@ -18,6 +18,9 @@
         </div>
         <div class="col-md-1">
             <i class="fa fa-upload" aria-hidden="true"></i>
+            <i class="fa fa-file-excel-o hidden" aria-hidden="true"></i>
+            <i class="fa hidden fa-close"></i>
+
         </div>
         <div class="col-md-9">
             <div id="custom-search-input row">
@@ -459,23 +462,46 @@ $("#photos-input").on('change',function () {
                 return xhr;
             }
         }).done(handleSuccess).fail(function (xhr, status) {
+
             alert(status);
         });
     }
     function handleSuccess(data) {
         if (data.length > 0) {
-            var html = '';
-            for (var i=0; i < data.length; i++) {
-                var img = data[i];
-
-            }
-
-            $('#album').html(html);
+            $('.fa-upload').addClass('hidden')
+            $('.fa-file-excel-o').removeClass('hidden')
+            $('.fa-close').removeClass('hidden')
+            $('.fa-file-excel-o').attr('fileName',data[0].publicPath)
+            // var html = '';
+            // for (var i=0; i < data.length; i++) {
+            //     var img = data[i];
+            //
+            // }
+            //
+            // $('#album').html(html);
         } else {
             alert('No images were uploaded.')
         }
     }
+    $('.fa-close').on('click',function () {
+        $('.fa-file-excel-o').addClass('hidden')
+        $('.fa-upload').removeClass('hidden')
+        $(this).addClass('hidden')
+    })
     $('.fa-upload').on('click',function () {
         $('#photos-input').trigger('click')
+    })
+    $('.fa-file-excel-o').on('click',function () {
+        $.ajax({
+            url: '../api/download',
+            data: JSON.stringify({
+                fileName:$(this).attr('filename')
+            }),
+            method: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (data) {
+                console.log(data)
+            }})
     })
 </script>
