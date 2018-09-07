@@ -3,7 +3,7 @@ const client = require('./lib/elasticSearch')
 const elasticQuery=require('./lib/query')
 var Excel = require('exceljs');
 
-function x(col,worksheet,workbook,length,filename,index,callback) {
+function processFileAndWrite(col,worksheet,workbook,length,filename,index,callback) {
     let query;
     let writeCount=0
 
@@ -19,7 +19,7 @@ function x(col,worksheet,workbook,length,filename,index,callback) {
             worksheet.getRow(1).getCell(2).value="Search results"
             MassSearch(rowNumber,searchString, query, function (cb) {
                 if(cb) {
-                    worksheet.getRow(cb.rowNumber).getCell(1).value =cb.totalNumber.toString()
+               //     worksheet.getRow(cb.rowNumber).getCell(1).value =cb.totalNumber.toString()
 
                     if(cb.totalNumber>0){
 
@@ -39,7 +39,9 @@ function x(col,worksheet,workbook,length,filename,index,callback) {
                             callback('done')
                         }
 
-                    });
+                    }).catch(function (error) {
+                        console.log(error)
+                    })
                 }
             })
         }
@@ -57,11 +59,13 @@ function uploadFileAndWrtite(filePath,index,callback) {
         var worksheet = workbook.getWorksheet(1);
             // Get the B column
         var col = worksheet.getColumn("A");
-       x(col,worksheet,workbook,worksheet.rowCount, filename,index,function (res) {
+        processFileAndWrite(col,worksheet,workbook,worksheet.rowCount, filename,index,function (res) {
            callback(res)
        })
 
-    });
+    }).catch(function (error) {
+        console.log(error)
+    })
 }
 function MassSearch(rowNum,searchString,query,callback) {
     const index = "makt"
@@ -119,6 +123,8 @@ function MassSearch(rowNum,searchString,query,callback) {
         callback({totalNumber:0,searchString:searchString,rowNumber:rowNum})
 
 
+    }).catch(function (error) {
+        console.log(error)
     })
 
 }
