@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "app-root-dir": "^1.0.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "connect-mongo": "^2.0.1",
@@ -28,6 +29,7 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
-    "read-chunk": "^3.0.0"
+    "read-chunk": "^3.0.0",
+    "utf8": "^3.0.0"
   }
 }

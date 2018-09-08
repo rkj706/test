@@ -7,6 +7,8 @@ var path = require('path'),
     readChunk = require('read-chunk'),
     fileType = require('file-type');
 const rootPath = path.normalize(__dirname);
+var appRootDir = require('app-root-dir').get();
+const utf8 = require('utf8');
 
 const express = require('express')
 const User=require('../models/users')
@@ -689,19 +691,10 @@ function searchQuery(req, res) {
 }
 
 function download(req,res) {
-
-    var name=req.body.fileName;
-    var filePath = path.join(__dirname,name);
+    let filePath=appRootDir+'/'+req.body.fileName
     var stat = fs.statSync(filePath);
 
-    res.writeHead(200, {
-        'Content-Type': 'application/json',
-        'Content-Length': stat.size
-    });
-
-    var readStream = fileSystem.createReadStream(filePath);
-    // We replaced all the event handlers with a simple call to readStream.pipe()
-    readStream.pipe(res);
+   res.download(utf8.encode(filePath))
 }
 function uploadFile(req,res) {
     var photos = [],
