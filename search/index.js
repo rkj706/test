@@ -18,7 +18,7 @@ router.post('/suggest-search', searchMatch)
 router.post('/getUsers',getUsers)
 router.post('/updateUser',changeUserStatus)
 router.post('/uploadFile',uploadFile)
-router.post('/download',download)
+router.get('/download/:file(*)',download)
 
 function generateFileName() {
     var text = "";
@@ -691,10 +691,13 @@ function searchQuery(req, res) {
 }
 
 function download(req,res) {
-    let filePath=appRootDir+'/'+req.body.fileName
+
+    let filePath=appRootDir+'/uploads/'+req.params.file;
+
     var stat = fs.statSync(filePath);
 
-   res.download(utf8.encode(filePath))
+    res.download(filePath, req.params.file);
+
 }
 function uploadFile(req,res) {
     var photos = [],

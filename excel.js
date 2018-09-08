@@ -17,11 +17,9 @@ function processFileAndWrite(col,worksheet,workbook,length,filename,index,callba
             }
             worksheet.getRow(1).getCell(1).value="Search phrase"
             worksheet.getRow(1).getCell(2).value="Search results"
-
             MassSearch(rowNumber,searchString, query)
                 .then(function (cb) {
                     if(cb.totalNumber>0){
-
                         worksheet.getRow(cb.rowNumber).getCell(2).value= { text: 'Search', hyperlink: config.baseUrl+'/?search-text='+searchString+'&index='+index}
                         worksheet.getRow(cb.rowNumber).getCell(2).font = {
                             underline: true,
@@ -34,7 +32,6 @@ function processFileAndWrite(col,worksheet,workbook,length,filename,index,callba
                     }
                     workbook.xlsx.writeFile(__dirname + filename).then(function() {
                         writeCount=writeCount+1
-                        console.log(writeCount)
                         if(writeCount>=length-2){
                             callback('done')
                         }
@@ -62,7 +59,7 @@ function uploadFileAndWrtite(filePath,index,callback) {
             // Get the B column
         var col = worksheet.getColumn("A");
         processFileAndWrite(col,worksheet,workbook,worksheet.rowCount, filename,index,function (res) {
-            console.log(res)
+
            callback(res)
        })
 
