@@ -8,7 +8,6 @@
 
             <div>
                 <select class="form-control" id="selected_index">
-                    <option>Select Index</option>
                     <option value="market">Meterial</option>
                     <option value="customer">Customer</option>
                 </select>
@@ -122,6 +121,37 @@
 </script>
 <script>
     let maximumPagination = 0
+$(document).on('ready',function () {
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
+    };
+    let text = getUrlParameter('search-text')
+    let index = getUrlParameter('index') || 'market'
+
+    $("#search-text").val(text)
+    $("#selected_index").val(index)
+    if (text && index) {
+        let pageNo = getUrlParameter('page')
+        if (!pageNo || !pageNo / 1) {
+            pageNo = 0
+        }
+        if (pageNo > 0) {
+            pageNo = pageNo - 1
+        }
+
+        loadMore(index, text.trim(), pageNo)
+    }
 
     function nextSlotPagination() {
         let text = getUrlParameter('search-text')
@@ -169,41 +199,9 @@
 
     let showNext = false
     let showPrevious = false
-    var getUrlParameter = function getUrlParameter(sParam) {
-        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-                sURLVariables = sPageURL.split('&'),
-                sParameterName,
-                i;
 
-        for (i = 0; i < sURLVariables.length; i++) {
-            sParameterName = sURLVariables[i].split('=');
 
-            if (sParameterName[0] === sParam) {
-                return sParameterName[1] === undefined ? true : sParameterName[1];
-            }
-        }
-    };
 
-    (function () {
-        let text = getUrlParameter('search-text')
-        let index = getUrlParameter('index') || 'market'
-
-        $("#search-text").val(text)
-        $("#selected_index").val(index)
-
-        if (text) {
-            let pageNo = getUrlParameter('page')
-            if (!pageNo || !pageNo / 1) {
-                pageNo = 0
-            }
-            if (pageNo > 0) {
-                pageNo = pageNo - 1
-            }
-
-            loadMore(index, text.trim(), pageNo)
-        }
-
-    })()
 
     function loadMore(index, searchText, pagination) {
         //  let searchText = $("#search-text").val().trim()
@@ -344,7 +342,13 @@
     $("#search").on('click', function () {
         let searchText = $("#search-text").val().trim()
         let index = $("#selected_index").val()
-        location.href = '/?search-text=' + searchText + '&index=' + index
+        if (!index || index == "") {
+            alert('please select an index')
+            return false
+        }
+        else {
+            location.href = '/?search-text=' + searchText + '&index=' + index
+        }
     })
     $("#search-text").bind("keypress", {}, keypressInBox);
 
@@ -354,7 +358,12 @@
             e.preventDefault();
             let searchText = $("#search-text").val().trim()
             let index = $("#selected_index").val()
-            location.href = '/?search-text=' + searchText + '&index=' + index
+            if (!index || index == "") {
+                alert('please select an index')
+                return false
+            } else {
+                location.href = '/?search-text=' + searchText + '&index=' + index
+            }
         }
     };
     $(document).ready(function () {
@@ -491,7 +500,7 @@
 
         e.preventDefault();
 
-        var link=document.createElement('a');
+        var link = document.createElement('a');
 
         var fileName = $(this).attr('filename').substr($(this).attr('filename').lastIndexOf('/') + 1);
 
@@ -502,5 +511,5 @@
         link.click();
 
     })
-
+})
 </script>
