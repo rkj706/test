@@ -668,7 +668,6 @@ function searchQuery(req, res) {
                         let result = esDocs.hits.hits.map(function (results) {
                             return results._source
                         })
-                        console.log(result)
                         let total = esDocs.hits.total
                         if (result.length < 1) {
                             total = 0
@@ -731,7 +730,6 @@ function uploadFile(req,res) {
 
             // Move the file with the new file name
             fs.rename(file.path, 'uploads/' + filename);
-            console.log('filenamr '+filename)
             // Add to the list of photos
             photos.push({
                 status: true,

@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7c20b63-8be4-441b-87e4-8a032f76e2ff" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/excel.js" beforeDir="false" afterPath="$PROJECT_DIR$/excel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/search/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/1536481994892-data.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/1536482053636-data.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/1536482112736-data1.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/1536482192007-data1.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/views/landing.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/landing.handlebars" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -20,8 +26,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/search/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="511">
-              <caret line="700" column="1" selection-start-line="700" selection-start-column="1" selection-end-line="700" selection-end-column="1" />
+            <state relative-caret-position="540">
+              <caret line="684" column="19" selection-start-line="684" selection-start-column="12" selection-end-line="684" selection-end-column="19" />
               <folding>
                 <element signature="n#!!block;n#f#0" />
                 <element signature="n#!!block;n#prepareSuggestQuery#0" />
@@ -31,19 +37,18 @@
                 <element signature="e#5462#5674#0" />
                 <element signature="e#5729#7189#0" />
                 <element signature="n#!!block;n#prepareCustomerQuery#0" />
-                <element signature="n#!!block;n#searchQuery#0" />
                 <element signature="n#!!block;n#getUsers#0" />
-                <marker date="1536416626634" expanded="true" signature="19984:19985" ph="..." />
+                <marker date="1536494972231" expanded="true" signature="19940:19941" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="excel.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="excel.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/excel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="28" column="25" lean-forward="true" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
+            <state relative-caret-position="296">
+              <caret line="74" selection-start-line="74" selection-end-line="74" />
             </state>
           </provider>
         </entry>
@@ -57,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="landing.handlebars" pinned="false" current-in-tab="true">
+      <file leaf-file-name="landing.handlebars" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/landing.handlebars">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
-              <caret line="142" column="35" lean-forward="true" selection-start-line="142" selection-start-column="35" selection-end-line="142" selection-end-column="35" />
+            <state relative-caret-position="73">
+              <caret line="155" column="48" lean-forward="true" selection-start-line="155" selection-start-column="48" selection-end-line="155" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -127,12 +132,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tmp_uploads</find>
-      <find>Invalid file type</find>
-      <find>workbook</find>
-      <find>excel</find>
-      <find>writeExcel</find>
-      <find>console.</find>
       <find>var      index</find>
       <find>photos</find>
       <find>rowCoun</find>
@@ -157,6 +156,12 @@
       <find>#sear</find>
       <find>ale</find>
       <find>getUrlParameter</find>
+      <find>showNextPage</find>
+      <find>()</find>
+      <find>makt</find>
+      <find>console</find>
+      <find>console.lo</find>
+      <find>MassSearch</find>
     </findStrings>
     <replaceStrings>
       <replace>,&lt;</replace>
@@ -205,11 +210,11 @@
         <option value="$PROJECT_DIR$/lib/query.js" />
         <option value="$PROJECT_DIR$/public/css/landing.css" />
         <option value="$PROJECT_DIR$/index.js" />
-        <option value="$PROJECT_DIR$/search/index.js" />
-        <option value="$PROJECT_DIR$/excel.js" />
         <option value="$PROJECT_DIR$/router.js" />
         <option value="$PROJECT_DIR$/config/index.js" />
         <option value="$PROJECT_DIR$/views/landing.handlebars" />
+        <option value="$PROJECT_DIR$/search/index.js" />
+        <option value="$PROJECT_DIR$/excel.js" />
       </list>
     </option>
   </component>
@@ -255,7 +260,7 @@
             <path>
               <item name="test" type="b2602c69:ProjectViewProjectNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="search" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -330,12 +335,12 @@
       <workItem from="1532101037930" duration="5591000" />
       <workItem from="1535261688864" duration="31022000" />
       <workItem from="1535993932209" duration="2592000" />
-      <workItem from="1536003541519" duration="48112000" />
+      <workItem from="1536003541519" duration="50655000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="252909000" />
+    <option name="totallyTimeSpent" value="255452000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
@@ -718,33 +723,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/search/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="511">
-          <caret line="700" column="1" selection-start-line="700" selection-start-column="1" selection-end-line="700" selection-end-column="1" />
-          <folding>
-            <element signature="n#!!block;n#f#0" />
-            <element signature="n#!!block;n#prepareSuggestQuery#0" />
-            <element signature="n#!!block;n#searchMatch#0" />
-            <element signature="n#!!block;n#prepareQuery#0" />
-            <element signature="e#4776#5407#0" />
-            <element signature="e#5462#5674#0" />
-            <element signature="e#5729#7189#0" />
-            <element signature="n#!!block;n#prepareCustomerQuery#0" />
-            <element signature="n#!!block;n#searchQuery#0" />
-            <element signature="n#!!block;n#getUsers#0" />
-            <marker date="1536416626634" expanded="true" signature="19984:19985" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/excel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="25" lean-forward="true" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/router.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -768,8 +746,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/landing.handlebars">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="142" column="35" lean-forward="true" selection-start-line="142" selection-start-column="35" selection-end-line="142" selection-end-column="35" />
+        <state relative-caret-position="73">
+          <caret line="155" column="48" lean-forward="true" selection-start-line="155" selection-start-column="48" selection-end-line="155" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/search/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="684" column="19" selection-start-line="684" selection-start-column="12" selection-end-line="684" selection-end-column="19" />
+          <folding>
+            <element signature="n#!!block;n#f#0" />
+            <element signature="n#!!block;n#prepareSuggestQuery#0" />
+            <element signature="n#!!block;n#searchMatch#0" />
+            <element signature="n#!!block;n#prepareQuery#0" />
+            <element signature="e#4776#5407#0" />
+            <element signature="e#5462#5674#0" />
+            <element signature="e#5729#7189#0" />
+            <element signature="n#!!block;n#prepareCustomerQuery#0" />
+            <element signature="n#!!block;n#getUsers#0" />
+            <marker date="1536494972231" expanded="true" signature="19940:19941" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/excel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="74" selection-start-line="74" selection-end-line="74" />
         </state>
       </provider>
     </entry>

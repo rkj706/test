@@ -121,395 +121,392 @@
 </script>
 <script>
     let maximumPagination = 0
-$(document).on('ready',function () {
-    var getUrlParameter = function getUrlParameter(sParam) {
-        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-                sURLVariables = sPageURL.split('&'),
-                sParameterName,
-                i;
+    $(document).on('ready', function () {
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                    sURLVariables = sPageURL.split('&'),
+                    sParameterName,
+                    i;
 
-        for (i = 0; i < sURLVariables.length; i++) {
-            sParameterName = sURLVariables[i].split('=');
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
 
-            if (sParameterName[0] === sParam) {
-                return sParameterName[1] === undefined ? true : sParameterName[1];
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
+                }
+            }
+        };
+        let text = getUrlParameter('search-text')
+        let index = getUrlParameter('index') || 'market'
+        $("#search-text").val(text)
+        $("#selected_index").val(index)
+        if (text && index) {
+            let pageNo = getUrlParameter('page')
+            if (!pageNo || !pageNo / 1) {
+                pageNo = 0
+            }
+            if (pageNo > 0) {
+                pageNo = pageNo - 1
+            }
+
+            loadMore(index, text.trim(), pageNo)
+        }
+
+        function nextSlotPagination() {
+            let text = getUrlParameter('search-text')
+            let pageNo = getUrlParameter('page')
+            let index = getUrlParameter('index') || 'market'
+            if (!pageNo) {
+                pageNo = 0
+            }
+            pageNo = parseInt(pageNo) + 1
+            if (text) {
+                location.href = '/?search-text=' + text + '&page=' + pageNo + '&index=' + index
             }
         }
-    };
-    let text = getUrlParameter('search-text')
-    let index = getUrlParameter('index') || 'market'
 
-    $("#search-text").val(text)
-    $("#selected_index").val(index)
-    if (text && index) {
-        let pageNo = getUrlParameter('page')
-        if (!pageNo || !pageNo / 1) {
-            pageNo = 0
-        }
-        if (pageNo > 0) {
-            pageNo = pageNo - 1
-        }
-
-        loadMore(index, text.trim(), pageNo)
-    }
-
-    function nextSlotPagination() {
-        let text = getUrlParameter('search-text')
-        let pageNo = getUrlParameter('page')
-        let index = getUrlParameter('index') || 'makt'
-        if (!pageNo) {
-            pageNo = 0
-        }
-        pageNo = parseInt(pageNo) + 1
-        if (text) {
-            location.href = '/?search-text=' + text + '&page=' + pageNo + '&index=' + index
-        }
-    }
-
-    function previousSlotPagination() {
-        let text = getUrlParameter('search-text')
-        let pageNo = getUrlParameter('page')
-        let index = getUrlParameter('index') || 'makt'
-        if (!pageNo) {
-            pageNo = 0
-        }
-        pageNo = parseInt(pageNo) - 1
-        if (pageNo < 0) {
-            pageNo = 0
-        }
-        if (text) {
-            location.href = '/?search-text=' + text + '&page=' + pageNo + '&index=' + index
-        }
-    }
-
-    function showNextPage(that) {
-        let text = getUrlParameter('search-text')
-        let pageNo = $(that).attr('value')
-        let index = getUrlParameter('index') || 'makt'
-        let redirectText = '/?search-text=' + text
-        if (pageNo > 0) {
-            redirectText = redirectText + '&page=' + pageNo + '&index=' + index
-        }
-        if (!pageNo || pageNo < 0) {
-            pageNo = 0
+        function previousSlotPagination() {
+            let text = getUrlParameter('search-text')
+            let pageNo = getUrlParameter('page')
+            let index = getUrlParameter('index') || 'market'
+            if (!pageNo) {
+                pageNo = 0
+            }
+            pageNo = parseInt(pageNo) - 1
+            if (pageNo < 0) {
+                pageNo = 0
+            }
+            if (text) {
+                location.href = '/?search-text=' + text + '&page=' + pageNo + '&index=' + index
+            }
         }
 
-        location.href = redirectText
-    }
+        function showNextPage(that) {
+            let text = getUrlParameter('search-text')
+            let pageNo = $(that).attr('value')
+            let index = getUrlParameter('index') || 'market'
+            let redirectText = '/?search-text=' + text
+            if (pageNo > 0) {
+                redirectText = redirectText + '&page=' + pageNo + '&index=' + index
+            }
+            if (!pageNo || pageNo < 0) {
+                pageNo = 0
+            }
 
-    let showNext = false
-    let showPrevious = false
-
-
-
-
-    function loadMore(index, searchText, pagination) {
-        //  let searchText = $("#search-text").val().trim()
-        if (!index || index == "") {
-            return false
+            location.href = redirectText
         }
-        let source = []
-        if (index == 'market') {
-            source = ['mara_matnr', 'mara_mtart', 'mara_matkl', 'mara_vhart', 'mara_ersda', 'mara_ernam', 'mara_pstat', 'mara_mbrsh', 'mara_meins', 'mara_prdha', 'makt_props']
-        }
-        if (searchText && (searchText == "" || !searchText || searchText.length < 3)) {
-            $('#meterial_table').addClass('hidden')
-            $('#loadMore').addClass('hidden')
-            return false
-        }
-        $.ajax({
-            url: '../api/search',
-            data: JSON.stringify({
-                index: index,
-                text: searchText,
-                from: pagination * 10,
-                source: source
-            }),
-            method: 'POST',
-            dataType: 'json',
-            contentType: "application/json",
-            success: function (data) {
-                if (index == 'market') {
-                    $('.results').removeClass('hidden')
-                } else {
-                    $('.customer_results').removeClass('hidden')
-                }
-                var template = $('#template').html()
-                let pageCount = Math.floor(data.count / 10)
-                let extraPage = Math.floor(data.count % 10)
-                if (pageCount > 0 && extraPage > 0) {
-                    pageCount = pageCount + 1
-                }
-                let pageStart = 1
-                if (pagination > 0) {
-                    showPrevious = true
-                }
-                if (pageCount > 5) {
-                    if (pagination <= 0) {
-                        pageStart = pagination + 1
+
+        let showNext = false
+        let showPrevious = false
+
+
+        function loadMore(index, searchText, pagination) {
+            //  let searchText = $("#search-text").val().trim()
+            if (!index || index == "") {
+                return false
+            }
+            let source = []
+            if (index == 'market') {
+                source = ['mara_matnr', 'mara_mtart', 'mara_matkl', 'mara_vhart', 'mara_ersda', 'mara_ernam', 'mara_pstat', 'mara_mbrsh', 'mara_meins', 'mara_prdha', 'makt_props']
+            }
+            if (searchText && (searchText == "" || !searchText || searchText.length < 3)) {
+                $('#meterial_table').addClass('hidden')
+                $('#loadMore').addClass('hidden')
+                return false
+            }
+            $.ajax({
+                url: '../api/search',
+                data: JSON.stringify({
+                    index: index,
+                    text: searchText,
+                    from: pagination * 10,
+                    source: source
+                }),
+                method: 'POST',
+                dataType: 'json',
+                contentType: "application/json",
+                success: function (data) {
+                    if (index == 'market') {
+                        $('.results').removeClass('hidden')
                     } else {
-                        pageStart = pagination
+                        $('.customer_results').removeClass('hidden')
                     }
-                    pageCount = pagination + 5
-                    $(".next").removeClass('hidden')
-                    showNext = true
-                }
-
-                var compiled_html = _.template(template)({
-                    data: {start: pageStart, count: pageCount, showNext: showNext, showPrevious: showPrevious}
-                })
-                if (data.result.length > 1) {
-                    console.log(data.time)
-                    // $(".resultCount").html("<span>" + data.time + "</span>" + "<h3><i class=\"fa fa-save\"></i></h3>")
-                }
-
-                if (data.count > 10) {
-                    $("#show-pagination").append(compiled_html)
-                }
-                if (data.result.length < 10) {
-                    $("#nextSlot").attr('disabled', true)
-                }
-                let pageNo = pagination + 1
-                $('#page_no_' + pageNo).addClass('clicked')
-                let final_data = data.result
-                var counter = 1;
-                if (index == "market") {
-                    for (let j = 0; j < final_data.length; j++) {
-                        let maktMaktx = final_data[j]['makt_props'].map(function (data) {
-                            return data.makt_maktx
-                        })
-                        maktMaktx = maktMaktx.join("<br /><br />");
-                        console.log(final_data[j]['makt_props'][0].makt_maktx)
-                        $('#meterial_table').dataTable().fnAddData([
-                            final_data[j].mara_matnr,
-                            final_data[j].mara_mtart,
-                            maktMaktx,
-                            final_data[j].mara_matkl,
-                            final_data[j].mara_vhart,
-                            final_data[j].mara_ersda,
-                            final_data[j].mara_ernam,
-                            final_data[j].mara_pstat,
-                            final_data[j].mara_mbrsh,
-                            final_data[j].mara_meins,
-                            final_data[j].mara_prdha,
-
-                        ]);
+                    var template = $('#template').html()
+                    let pageCount = Math.floor(data.count / 10)
+                    let extraPage = Math.floor(data.count % 10)
+                    if (pageCount > 0 && extraPage > 0) {
+                        pageCount = pageCount + 1
                     }
-                } else {
-                    for (let j = 0; j < final_data.length; j++) {
-                        let knb1_props = []
-
-                        final_data[j]["knb1_props"].forEach(function (data) {
-                            let html_data = []
-                            html_data.push("knb1_akont: " + data["knb1_akont"] + ',' + " knb1_bukrs : " + data['knb1_bukrs'] + ',' + " knb1_kunnr: " + data['knb1_kunnr'] + ',' + " knb1_zterm :" + data['knb1_zterm'])
-                            knb1_props.push(html_data)
-                        })
-                        knb1_props = knb1_props.join("<br /><br />");
-
-                        let knvk_props = []
-                        final_data[j]["knvk_props"].forEach(function (data) {
-                            let html_data = []
-                            html_data.push("knvk_kunnr: " + data['knvk_kunnr'] + ',' + " knvk_namev: " + data['knvk_namev'] + ',' + " knvk_name1: " + data['knvk_name1'])
-                            knvk_props.push(html_data)
-                        })
-                        knvk_props = knvk_props.join("<br /><br />");
-                        $('#customer_table').dataTable().fnAddData([
-                            final_data[j].kna1_kunnr,
-                            final_data[j].kna1_land1,
-                            final_data[j].kna1_name1,
-                            final_data[j].kna1_name2,
-                            final_data[j].kna1_ort01,
-                            final_data[j].kna1_pstlz,
-                            final_data[j].kna1_stras,
-                            knb1_props,
-                            knvk_props
-
-
-                        ]);
+                    let pageStart = 1
+                    if (pagination > 0) {
+                        showPrevious = true
                     }
+                    if (pageCount > 5) {
+                        if (pagination <= 0) {
+                            pageStart = pagination + 1
+                        } else {
+                            pageStart = pagination
+                        }
+                        pageCount = pagination + 5
+                        $(".next").removeClass('hidden')
+                        showNext = true
+                    }
+
+                    var compiled_html = _.template(template)({
+                        data: {start: pageStart, count: pageCount, showNext: showNext, showPrevious: showPrevious}
+                    })
+                    if (data.result.length > 1) {
+                        console.log(data.time)
+                        // $(".resultCount").html("<span>" + data.time + "</span>" + "<h3><i class=\"fa fa-save\"></i></h3>")
+                    }
+
+                    if (data.count > 10) {
+                        $("#show-pagination").append(compiled_html)
+                    }
+                    if (data.result.length < 10) {
+                        $("#nextSlot").attr('disabled', true)
+                    }
+                    let pageNo = pagination + 1
+                    $('#page_no_' + pageNo).addClass('clicked')
+                    let final_data = data.result
+                    var counter = 1;
+                    if (index == "market") {
+                        for (let j = 0; j < final_data.length; j++) {
+                            let maktMaktx = final_data[j]['makt_props'].map(function (data) {
+                                return data.makt_maktx
+                            })
+                            maktMaktx = maktMaktx.join("<br /><br />");
+                            console.log(final_data[j]['makt_props'][0].makt_maktx)
+                            $('#meterial_table').dataTable().fnAddData([
+                                final_data[j].mara_matnr,
+                                final_data[j].mara_mtart,
+                                maktMaktx,
+                                final_data[j].mara_matkl,
+                                final_data[j].mara_vhart,
+                                final_data[j].mara_ersda,
+                                final_data[j].mara_ernam,
+                                final_data[j].mara_pstat,
+                                final_data[j].mara_mbrsh,
+                                final_data[j].mara_meins,
+                                final_data[j].mara_prdha,
+
+                            ]);
+                        }
+                    } else {
+                        for (let j = 0; j < final_data.length; j++) {
+                            let knb1_props = []
+
+                            final_data[j]["knb1_props"].forEach(function (data) {
+                                let html_data = []
+                                html_data.push("knb1_akont: " + data["knb1_akont"] + ',' + " knb1_bukrs : " + data['knb1_bukrs'] + ',' + " knb1_kunnr: " + data['knb1_kunnr'] + ',' + " knb1_zterm :" + data['knb1_zterm'])
+                                knb1_props.push(html_data)
+                            })
+                            knb1_props = knb1_props.join("<br /><br />");
+
+                            let knvk_props = []
+                            final_data[j]["knvk_props"].forEach(function (data) {
+                                let html_data = []
+                                html_data.push("knvk_kunnr: " + data['knvk_kunnr'] + ',' + " knvk_namev: " + data['knvk_namev'] + ',' + " knvk_name1: " + data['knvk_name1'])
+                                knvk_props.push(html_data)
+                            })
+                            knvk_props = knvk_props.join("<br /><br />");
+                            $('#customer_table').dataTable().fnAddData([
+                                final_data[j].kna1_kunnr,
+                                final_data[j].kna1_land1,
+                                final_data[j].kna1_name1,
+                                final_data[j].kna1_name2,
+                                final_data[j].kna1_ort01,
+                                final_data[j].kna1_pstlz,
+                                final_data[j].kna1_stras,
+                                knb1_props,
+                                knvk_props
+
+
+                            ]);
+                        }
+                    }
+
+                    pagination++;
+
+                }, error: function (error) {
+
+                    let msg = JSON.parse(error.responseText)
+                    alert(msg.message)
                 }
-
-                pagination++;
-
-            }, error: function (error) {
-
-                let msg = JSON.parse(error.responseText)
-                alert(msg.message)
-            }
-        })
-    }
-
-    $("#search").on('click', function () {
-        let searchText = $("#search-text").val().trim()
-        let index = $("#selected_index").val()
-        if (!index || index == "") {
-            alert('please select an index')
-            return false
+            })
         }
-        else {
-            location.href = '/?search-text=' + searchText + '&index=' + index
-        }
-    })
-    $("#search-text").bind("keypress", {}, keypressInBox);
 
-    function keypressInBox(e) {
-        var code = (e.keyCode ? e.keyCode : e.which);
-        if (code == 13) { //Enter keycode
-            e.preventDefault();
+        $("#search").on('click', function () {
             let searchText = $("#search-text").val().trim()
             let index = $("#selected_index").val()
             if (!index || index == "") {
                 alert('please select an index')
                 return false
-            } else {
+            }
+            else {
                 location.href = '/?search-text=' + searchText + '&index=' + index
             }
-        }
-    };
-    $(document).ready(function () {
-        $('#meterial_table').DataTable({
-            "dom": 'Zlfrtip',
-            "colResize": {
-                "tableWidthFixed": false
-            },
-            "paging": false
+        })
+        $("#search-text").bind("keypress", {}, keypressInBox);
 
+        function keypressInBox(e) {
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if (code == 13) { //Enter keycode
+                e.preventDefault();
+                let searchText = $("#search-text").val().trim()
+                let index = $("#selected_index").val()
+                if (!index || index == "") {
+                    alert('please select an index')
+                    return false
+                } else {
+                    location.href = '/?search-text=' + searchText + '&index=' + index
+                }
+            }
+        };
+        $(document).ready(function () {
+            $('#meterial_table').DataTable({
+                "dom": 'Zlfrtip',
+                "colResize": {
+                    "tableWidthFixed": false
+                },
+                "paging": false
+
+            });
+            $('#customer_table').DataTable({
+                "dom": 'Zlfrtip',
+                "colResize": {
+                    "tableWidthFixed": false
+                },
+                "paging": false
+
+            })
+            /* $('#search-text').on('keyup', function (word) {
+                 let txt = $('#search-text').val().trim()
+                 if (txt.length > 2) {
+                     $.ajax({
+                         url: '/api/suggest-search',
+                         method: 'POST',
+                         dataType: 'json',
+                         data:JSON.stringify({
+                             text:txt,
+                             source:['mara_matnr','mara_mtart','mara_ernam','makt_props.makt_maktx']
+                         }),
+                         contentType: "application/json",
+                         success: function (data) {
+                                 let showText=[]
+                                 let mara_ernam=data.mara_ernam.split(' ')
+
+
+                         }
+                     })
+                     //
+                 }
+             })
+             */
         });
-        $('#customer_table').DataTable({
-            "dom": 'Zlfrtip',
-            "colResize": {
-                "tableWidthFixed": false
-            },
-            "paging": false
+
+
+        $("#photos-input").on('change', function () {
+            $("#upload-photos").submit();
 
         })
-        /* $('#search-text').on('keyup', function (word) {
-             let txt = $('#search-text').val().trim()
-             if (txt.length > 2) {
-                 $.ajax({
-                     url: '/api/suggest-search',
-                     method: 'POST',
-                     dataType: 'json',
-                     data:JSON.stringify({
-                         text:txt,
-                         source:['mara_matnr','mara_mtart','mara_ernam','makt_props.makt_maktx']
-                     }),
-                     contentType: "application/json",
-                     success: function (data) {
-                             let showText=[]
-                             let mara_ernam=data.mara_ernam.split(' ')
+        // file upload
 
 
-                     }
-                 })
-                 //
-             }
-         })
-         */
-    });
+        $('#upload-photos').on('submit', function (event) {
+            event.preventDefault();
 
+            // Get the files from input, create new FormData.
+            var files = $('#photos-input').get(0).files,
+                    formData = new FormData();
 
-    $("#photos-input").on('change', function () {
-        $("#upload-photos").submit();
-
-    })
-    // file upload
-
-
-    $('#upload-photos').on('submit', function (event) {
-        event.preventDefault();
-
-        // Get the files from input, create new FormData.
-        var files = $('#photos-input').get(0).files,
-                formData = new FormData();
-
-        if (files.length === 0) {
-            alert('Select atleast 1 file to upload.');
-            return false;
-        }
-
-        if (files.length > 1) {
-            alert('You can only upload up to 3 files.');
-            return false;
-        }
-
-        // Append the files to the formData.
-        for (var i = 0; i < files.length; i++) {
-            var file = files[i];
-            formData.append('photos[]', file, file.name);
-        }
-
-        formData.append('index', $('#selected_index').val())
-        // Note: We are only appending the file inputs to the FormData.
-        uploadFiles(formData);
-    });
-
-    function uploadFiles(formData) {
-        $.ajax({
-            url: '/api/uploadFile',
-            method: 'post',
-            data: formData,
-            processData: false,
-            contentType: false,
-            xhr: function () {
-                var xhr = new XMLHttpRequest();
-
-                // Add progress event listener to the upload.
-                xhr.upload.addEventListener('progress', function (event) {
-                    var progressBar = $('.progress-bar');
-
-                    if (event.lengthComputable) {
-                        var percent = (event.loaded / event.total) * 100;
-                        progressBar.width(percent + '%');
-
-                        if (percent === 100) {
-                            progressBar.removeClass('active');
-                        }
-                    }
-                });
-                return xhr;
+            if (files.length === 0) {
+                alert('Select atleast 1 file to upload.');
+                return false;
             }
-        }).done(handleSuccess).fail(function (xhr, status) {
 
-            alert(status);
+            if (files.length > 1) {
+                alert('You can only upload up to 3 files.');
+                return false;
+            }
+
+            // Append the files to the formData.
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                formData.append('photos[]', file, file.name);
+            }
+
+            formData.append('index', $('#selected_index').val())
+            // Note: We are only appending the file inputs to the FormData.
+            uploadFiles(formData);
         });
-    }
 
-    function handleSuccess(data) {
-        if (data.length > 0) {
-            $('.fa-upload').addClass('hidden')
-            $('.fa-file-excel-o').removeClass('hidden')
-            $('.fa-close').removeClass('hidden')
-            $('.fa-file-excel-o').attr('fileName', data[0].publicPath)
+        function uploadFiles(formData) {
+            $.ajax({
+                url: '/api/uploadFile',
+                method: 'post',
+                data: formData,
+                processData: false,
+                contentType: false,
+                xhr: function () {
+                    var xhr = new XMLHttpRequest();
 
-        } else {
-            alert('No images were uploaded.')
+                    // Add progress event listener to the upload.
+                    xhr.upload.addEventListener('progress', function (event) {
+                        var progressBar = $('.progress-bar');
+
+                        if (event.lengthComputable) {
+                            var percent = (event.loaded / event.total) * 100;
+                            progressBar.width(percent + '%');
+
+                            if (percent === 100) {
+                                progressBar.removeClass('active');
+                            }
+                        }
+                    });
+                    return xhr;
+                }
+            }).done(handleSuccess).fail(function (xhr, status) {
+
+                alert(status);
+            });
         }
-    }
 
-    $('.fa-close').on('click', function () {
-        $('.fa-file-excel-o').addClass('hidden')
-        $('.fa-upload').removeClass('hidden')
-        $(this).addClass('hidden')
+        function handleSuccess(data) {
+            if (data.length > 0) {
+                $('.fa-upload').addClass('hidden')
+                $('.fa-file-excel-o').removeClass('hidden')
+                $('.fa-close').removeClass('hidden')
+                $('.fa-file-excel-o').attr('fileName', data[0].publicPath)
+
+            } else {
+                alert('No images were uploaded.')
+            }
+        }
+
+        $('.fa-close').on('click', function () {
+            $('.fa-file-excel-o').addClass('hidden')
+            $('.fa-upload').removeClass('hidden')
+            $(this).addClass('hidden')
+        })
+        $('.fa-upload').on('click', function () {
+            $('#photos-input').trigger('click')
+        })
+
+        $('.fa-file-excel-o').on('click', function (e) {
+
+            e.preventDefault();
+
+            var link = document.createElement('a');
+
+            var fileName = $(this).attr('filename').substr($(this).attr('filename').lastIndexOf('/') + 1);
+
+            link.href = '../api/download/' + fileName;
+
+            link.download = fileName.substr(fileName.lastIndexOf('/') + 1);
+
+            link.click();
+
+        })
     })
-    $('.fa-upload').on('click', function () {
-        $('#photos-input').trigger('click')
-    })
-
-    $('.fa-file-excel-o').on('click', function (e) {
-
-        e.preventDefault();
-
-        var link = document.createElement('a');
-
-        var fileName = $(this).attr('filename').substr($(this).attr('filename').lastIndexOf('/') + 1);
-
-        link.href = '../api/download/' + fileName;
-
-        link.download = fileName.substr(fileName.lastIndexOf('/') + 1);
-
-        link.click();
-
-    })
-})
 </script>

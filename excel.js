@@ -17,8 +17,10 @@ function processFileAndWrite(col,worksheet,workbook,length,filename,index,callba
             }
             worksheet.getRow(1).getCell(1).value="Search phrase"
             worksheet.getRow(1).getCell(2).value="Search results"
-            MassSearch(rowNumber,searchString, query)
+            var dataBaseIndex=index
+            MassSearch(rowNumber,dataBaseIndex,searchString, query)
                 .then(function (cb) {
+                    console.log('total number '+cb.totalNumber)
                     if(cb.totalNumber>0){
                         worksheet.getRow(cb.rowNumber).getCell(2).value= { text: 'Search', hyperlink: config.baseUrl+'/?search-text='+searchString+'&index='+index}
                         worksheet.getRow(cb.rowNumber).getCell(2).font = {
@@ -68,9 +70,8 @@ function uploadFileAndWrtite(filePath,index,callback) {
         console.log(error)
     })
 }
-function MassSearch(rowNum,searchString,query,callback) {
+function MassSearch(rowNum,index,searchString,query) {
     return new Promise(function (resolve,reject) {
-        const index = "makt"
         const type = config.elasticSearch.profileType
         const source = []
         let from =  0
@@ -113,6 +114,7 @@ function MassSearch(rowNum,searchString,query,callback) {
                         // if (result.length < 1) {
                         //     total=0
                         // }
+                        console.log('totalNumber '+total)
                         resolve({totalNumber:total,searchString:searchString,rowNumber:rowNum})
 
                     } else {
@@ -121,6 +123,7 @@ function MassSearch(rowNum,searchString,query,callback) {
                     }
                 }
             ).catch(function (error) {
+                console.log(error)
             console.log('MassSearch client search error')
             resolve({totalNumber:0,searchString:searchString,rowNumber:rowNum})
 
