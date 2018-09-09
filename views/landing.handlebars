@@ -2,114 +2,166 @@
     <div class="row">
         <h2>Search</h2>
     </div>
+
     <div class="row">
 
         <div class="col-md-2 index_select">
 
             <div>
                 <select class="form-control" id="selected_index">
-                    <option value="makt">Meterial</option>
+                    <option value="makt">Material</option>
                     <option value="customer">Customer</option>
                 </select>
             </div>
 
         </div>
-        <div class="col-md-1">
-            <i class="fa fa-upload" aria-hidden="true"></i>
-            <i class="fa fa-file-excel-o hidden" aria-hidden="true"></i>
-            <i class="fa hidden fa-close"></i>
-
+        <div class="col-md-4" style="text-align:left;">
+            <div class="btn-group btn-toggle">
+                <button class="btn btn-s btn-primary search active">Text search</button>
+                <button class="btn btn-s mass-search btn-default">Mass search</button>
+            </div>
         </div>
-        <div class="col-md-9">
-            <div id="custom-search-input row">
-                <div class="input-group col-md-12">
+    </div>
+    <div class="row">
+        <div style="margin-top:50px;">
+            <div id='massSearch' style="display:none;">
+                <div class="col-md-2"></div>
+                <div class="container col-md-9">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="phrase_column">Search Phrase Column:</label>
+                            <div class="col-xs-2">
+                                <input type="text" class="form-control" id="phrase_column" placeholder="Enter Search Phrase Column"
+                                    value='A'></input>
+                                <!-- <small id="searchPhraseHelp" class="form-text text-muted">Enter the column name that
+                                contains
+                                the search phrase.</small>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="result_coulmn">Search Result Column:</label>
+                            <div class="col-xs-2">
+                                <input type="text" class="form-control" id="result_coulmn" placeholder="Search Result Column"
+                                    value='B'></input>
+                                <!-- <small id="searchResultHelp" class="form-text text-muted">Enter the column name that
+                                will
+                                contain the search results.</small> -->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="row_start">Start row:</label>
+                            <div class="col-xs-2">
+                                <input type="text" class="form-control" id="row_start" placeholder="Search Row" value='1'></input>
+                                <!-- <small id="startRowHelp" class="form-text text-muted">Enter the row number to start
+                                search..</small> -->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-8">
+                                <button type="button" class="btn btn-primary pull-left upload-button"><span style="margin-right:5px;">Upload
+                                        File</span> <i class="fa fa-upload" style="font-size:16px"></i></button>
+                                <button type="button" class="btn btn-primary pull-left download-button hidden"><span
+                                        style="margin-right:5px;">Download</span> <i class="fa fa-download" style="font-size:16px"></i></button>
+                                <button type="button" style="margin-left:5px;" class="btn btn-info pull-left reset-mass-search-button hidden"><span
+                                        style="margin-right:5px;">Reset</span> <i class="fa fa-refresh" style="font-size:16px"></i></button>
+                            </div>
 
-                    <input type="text" id="search-text" class="form-control input-lg" placeholder="Search ..."/>
+                        </div>
+                    </form>
 
-                    <span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" id="search" type="button">
-                            Search
-                        </button>
-                    </span>
+
+                    <div class="col-md-6">
+
+                        <form id="upload-photos" method="post" action="/api/uploadFile" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <input id="photos-input" class="hidden" type="file" name="photos[]" multiple="multiple">
+                            </div>
+                            <input type="hidden" name="csrf_token" value="just_a_text_field" />
+                            <!--<input class="btn btn-default" type="submit" name="Photo Uploads" value="Upload Photos" />-->
+                        </form>
+                    </div>
                 </div>
-
+                <div class="col-md-2"></div>
             </div>
 
 
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3">
-            <input type="text" class="form-control" placeholder="row start" id="row_start">
-            <input type="text" class="form-control" placeholder="search phrase column ex: A,B,C" id="phrase_column">
-            <input type="text" class="form-control" placeholder="resut coulmn ex: A,B.C" id="result_coulmn">
-        </div>
-        <div class="col-md-6">
 
-            <form id="upload-photos" method="post" action="/api/uploadFile" enctype="multipart/form-data">
-                <div class="form-group">
-                    <input id="photos-input" class="hidden" type="file" name="photos[]" multiple="multiple">
+
+            <div id='textSearch'>
+                <div class="col-md-2"></div>
+                <div class="col-md-9">
+                    <div id="custom-search-input row">
+                        <div class="input-group col-md-12">
+
+                            <input type="text" id="search-text" class="form-control input-lg" placeholder="Search ..." />
+
+                            <span class="input-group-btn">
+                                <button class="btn btn-info btn-lg" id="search" type="button">
+                                    Search
+                                </button>
+                            </span>
+                        </div>
+
+                    </div>
                 </div>
-                <input type="hidden" name="csrf_token" value="just_a_text_field"/>
-                <!--<input class="btn btn-default" type="submit" name="Photo Uploads" value="Upload Photos" />-->
-            </form>
+                <div class="col-md-2"></div>
+                <div>
+                    <table id="customer_table" class="display hidden customer_results" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th style="color:#3c763d" class="resultCount"></th>
+                            </tr>
+                            <tr>
+                                <th>kna1_kunnr</th>
+                                <th>kna1_land1</th>
+                                <th>kna1_name1</th>
+                                <th>kna1_name2</th>
+                                <th>kna1_ort01</th>
+                                <th>kna1_pstlz</th>
+                                <th>kna1_stras</th>
+                                <th>knb1_props</th>
+                                <th>knvk_props</th>
+                            </tr>
+
+                        <tbody>
+                        </tbody>
+                        </thead>
+                    </table>
+                    <table id="meterial_table" class="display hidden results" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th style="color:#3c763d" class="resultCount"></th>
+                            </tr>
+                            <tr>
+                                <th>Material Number</th>
+                                <th>Material Type</th>
+                                <th>Description</th>
+                                <th>Material Group</th>
+                                <th>Packaging Material Type</th>
+                                <th>Created On</th>
+                                <th>Name of Person who Created the Object</th>
+                                <th>Maintenance status</th>
+                                <th>Industry Sector</th>
+                                <th>Base Unit of Measure</th>
+                                <th>Product hierarchy</th>
+                            </tr>
+
+                        <tbody>
+                        </tbody>
+                        </thead>
+
+                    </table>
+                    <div class="row">
+                        <div id="show-pagination">
+                        </div>
+                        <!--<input class="hidden btn btn-default" id="loadMore" value="Load More" type="button" onclick="loadMore()">-->
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-
-
-
-    <table id="customer_table" class="display hidden customer_results" style="width: 100%">
-        <thead>
-        <tr>
-            <th style="color:#3c763d" class="resultCount"></th>
-        </tr>
-        <tr>
-            <th>kna1_kunnr</th>
-            <th>kna1_land1</th>
-            <th>kna1_name1</th>
-            <th>kna1_name2</th>
-            <th>kna1_ort01</th>
-            <th>kna1_pstlz</th>
-            <th>kna1_stras</th>
-            <th>knb1_props</th>
-            <th>knvk_props</th>
-        </tr>
-
-        <tbody>
-        </tbody>
-        </thead>
-    </table>
-    <table id="meterial_table" class="display hidden results" style="width:100%">
-        <thead>
-        <tr>
-            <th style="color:#3c763d" class="resultCount"></th>
-        </tr>
-        <tr>
-            <th>Material Number</th>
-            <th>Material Type</th>
-            <th>Description</th>
-            <th>Material Group</th>
-            <th>Packaging Material Type</th>
-            <th>Created On</th>
-            <th>Name of Person who Created the Object</th>
-            <th>Maintenance status</th>
-            <th>Industry Sector</th>
-            <th>Base Unit of Measure</th>
-            <th>Product hierarchy</th>
-        </tr>
-
-        <tbody>
-        </tbody>
-        </thead>
-
-    </table>
-    <div class="row">
-        <div id="show-pagination">
-        </div>
-        <!--<input class="hidden btn btn-default" id="loadMore" value="Load More" type="button" onclick="loadMore()">-->
     </div>
 </div>
-
 
 <script type="text/html" id="template">
     <% if(data.showPrevious){%>
@@ -129,9 +181,9 @@
     $(document).on('ready', function () {
         function getUrlParameter(sParam) {
             var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-                    sURLVariables = sPageURL.split('&'),
-                    sParameterName,
-                    i;
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
 
             for (i = 0; i < sURLVariables.length; i++) {
                 sParameterName = sURLVariables[i].split('=');
@@ -258,7 +310,7 @@
                     }
 
                     var compiled_html = _.template(template)({
-                        data: {start: pageStart, count: pageCount, showNext: showNext, showPrevious: showPrevious}
+                        data: { start: pageStart, count: pageCount, showNext: showNext, showPrevious: showPrevious }
                     })
                     if (data.result.length > 1) {
                         // console.log(data.time)
@@ -400,8 +452,8 @@
                          success: function (data) {
                                  let showText=[]
                                  let mara_ernam=data.mara_ernam.split(' ')
-
-
+ 
+ 
                          }
                      })
                      //
@@ -423,7 +475,7 @@
 
             // Get the files from input, create new FormData.
             var files = $('#photos-input').get(0).files,
-                    formData = new FormData();
+                formData = new FormData();
 
             if (files.length === 0) {
                 alert('Select atleast 1 file to upload.');
@@ -442,9 +494,9 @@
             }
 
             formData.append('index', $('#selected_index').val())
-            formData.append('row_start',$('#row_start').val())
-            formData.append('phrase_column',$('#phrase_column').val())
-            formData.append('result_coulmn',$('#result_coulmn').val())
+            formData.append('row_start', $('#row_start').val())
+            formData.append('phrase_column', $('#phrase_column').val())
+            formData.append('result_coulmn', $('#result_coulmn').val())
             // Note: We are only appending the file inputs to the FormData.
             uploadFiles(formData);
         });
@@ -482,26 +534,26 @@
 
         function handleSuccess(data) {
             if (data.length > 0) {
-                $('.fa-upload').addClass('hidden')
-                $('.fa-file-excel-o').removeClass('hidden')
-                $('.fa-close').removeClass('hidden')
-                $('.fa-file-excel-o').attr('fileName', data[0].publicPath)
+                $('.upload-button').addClass('hidden')
+                $('.download-button').removeClass('hidden')
+                $('.reset-mass-search-button').removeClass('hidden')
+                $('.download-button').attr('fileName', data[0].publicPath)
 
             } else {
                 alert('No images were uploaded.')
             }
         }
 
-        $('.fa-close').on('click', function () {
-            $('.fa-file-excel-o').addClass('hidden')
-            $('.fa-upload').removeClass('hidden')
+        $('.reset-mass-search-button').on('click', function () {
+            $('.download-button').addClass('hidden')
+            $('.upload-button').removeClass('hidden')
             $(this).addClass('hidden')
         })
-        $('.fa-upload').on('click', function () {
+        $('.upload-button').on('click', function () {
             $('#photos-input').trigger('click')
         })
 
-        $('.fa-file-excel-o').on('click', function (e) {
+        $('.download-button').on('click', function (e) {
 
             e.preventDefault();
 
@@ -517,4 +569,30 @@
 
         })
     })
+
+    $('.btn-toggle').click(function () {
+        var previousActive = $(this).find('.btn.active');
+        if ($(previousActive).hasClass('mass-search')) {
+            console.log('mass');
+            $('#massSearch').hide();
+            $('#textSearch').show();
+        }
+
+        if ($(previousActive).hasClass('search')) {
+            console.log('search');
+            $('#textSearch').hide();
+            $('#massSearch').show();
+        }
+
+        $(this).find('.btn').toggleClass('active');
+
+        if ($(this).find('.btn-primary').size() > 0) {
+            $(this).find('.btn').toggleClass('btn-primary');
+        }
+
+
+        $(this).find('.btn').toggleClass('btn-default');
+    });
+
+
 </script>
