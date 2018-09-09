@@ -84,7 +84,7 @@ function searchMatch(req, res) {
     if (!text) {
         res.status(200).send({result: [], count: 0, time: 0})
     } else {
-        const index = config.elasticSearch.profileIndex.market
+        const index = config.elasticSearch.profileIndex.mkat
         const type = config.elasticSearch.profileType
         const query = prepareSuggestQuery(req.body)
         const esQuery = {

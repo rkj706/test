@@ -9,7 +9,7 @@ var config = {
             host: 'localhost:9200',
             profileType: 'data',
             profileIndex: {
-                market:'makt',
+                makt:'makt',
                 customer:'customer'
             }
         },

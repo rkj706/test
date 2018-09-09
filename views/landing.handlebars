@@ -8,7 +8,7 @@
 
             <div>
                 <select class="form-control" id="selected_index">
-                    <option value="market">Meterial</option>
+                    <option value="makt">Meterial</option>
                     <option value="customer">Customer</option>
                 </select>
             </div>
@@ -122,7 +122,7 @@
 <script>
     let maximumPagination = 0
     $(document).on('ready', function () {
-        var getUrlParameter = function getUrlParameter(sParam) {
+        function getUrlParameter(sParam) {
             var sPageURL = decodeURIComponent(window.location.search.substring(1)),
                     sURLVariables = sPageURL.split('&'),
                     sParameterName,
@@ -130,14 +130,13 @@
 
             for (i = 0; i < sURLVariables.length; i++) {
                 sParameterName = sURLVariables[i].split('=');
-
                 if (sParameterName[0] === sParam) {
                     return sParameterName[1] === undefined ? true : sParameterName[1];
                 }
             }
         };
         let text = getUrlParameter('search-text')
-        let index = getUrlParameter('index') || 'market'
+        let index = getUrlParameter('index')
         $("#search-text").val(text)
         $("#selected_index").val(index)
         if (text && index) {
@@ -155,7 +154,7 @@
         function nextSlotPagination() {
             let text = getUrlParameter('search-text')
             let pageNo = getUrlParameter('page')
-            let index = getUrlParameter('index') || 'market'
+            let index = getUrlParameter('index') || 'makt'
             if (!pageNo) {
                 pageNo = 0
             }
@@ -168,7 +167,7 @@
         function previousSlotPagination() {
             let text = getUrlParameter('search-text')
             let pageNo = getUrlParameter('page')
-            let index = getUrlParameter('index') || 'market'
+            let index = getUrlParameter('index') || 'makt'
             if (!pageNo) {
                 pageNo = 0
             }
@@ -184,7 +183,7 @@
         function showNextPage(that) {
             let text = getUrlParameter('search-text')
             let pageNo = $(that).attr('value')
-            let index = getUrlParameter('index') || 'market'
+            let index = getUrlParameter('index') || 'makt'
             let redirectText = '/?search-text=' + text
             if (pageNo > 0) {
                 redirectText = redirectText + '&page=' + pageNo + '&index=' + index
@@ -206,7 +205,7 @@
                 return false
             }
             let source = []
-            if (index == 'market') {
+            if (index == 'makt') {
                 source = ['mara_matnr', 'mara_mtart', 'mara_matkl', 'mara_vhart', 'mara_ersda', 'mara_ernam', 'mara_pstat', 'mara_mbrsh', 'mara_meins', 'mara_prdha', 'makt_props']
             }
             if (searchText && (searchText == "" || !searchText || searchText.length < 3)) {
@@ -226,7 +225,7 @@
                 dataType: 'json',
                 contentType: "application/json",
                 success: function (data) {
-                    if (index == 'market') {
+                    if (index == 'makt') {
                         $('.results').removeClass('hidden')
                     } else {
                         $('.customer_results').removeClass('hidden')
@@ -256,7 +255,7 @@
                         data: {start: pageStart, count: pageCount, showNext: showNext, showPrevious: showPrevious}
                     })
                     if (data.result.length > 1) {
-                        console.log(data.time)
+                        // console.log(data.time)
                         // $(".resultCount").html("<span>" + data.time + "</span>" + "<h3><i class=\"fa fa-save\"></i></h3>")
                     }
 
@@ -270,13 +269,13 @@
                     $('#page_no_' + pageNo).addClass('clicked')
                     let final_data = data.result
                     var counter = 1;
-                    if (index == "market") {
+                    if (index == "makt") {
                         for (let j = 0; j < final_data.length; j++) {
                             let maktMaktx = final_data[j]['makt_props'].map(function (data) {
                                 return data.makt_maktx
                             })
                             maktMaktx = maktMaktx.join("<br /><br />");
-                            console.log(final_data[j]['makt_props'][0].makt_maktx)
+                            // console.log(final_data[j]['makt_props'][0].makt_maktx)
                             $('#meterial_table').dataTable().fnAddData([
                                 final_data[j].mara_matnr,
                                 final_data[j].mara_mtart,
