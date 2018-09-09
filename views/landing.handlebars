@@ -13,7 +13,6 @@
                 </select>
             </div>
 
-
         </div>
         <div class="col-md-1">
             <i class="fa fa-upload" aria-hidden="true"></i>
@@ -40,6 +39,11 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-md-3">
+            <input type="text" class="form-control" placeholder="row start" id="row_start">
+            <input type="text" class="form-control" placeholder="search phrase column ex: A,B,C" id="phrase_column">
+            <input type="text" class="form-control" placeholder="resut coulmn ex: A,B.C" id="result_coulmn">
+        </div>
         <div class="col-md-6">
 
             <form id="upload-photos" method="post" action="/api/uploadFile" enctype="multipart/form-data">
@@ -51,6 +55,7 @@
             </form>
         </div>
     </div>
+
 
 
     <table id="customer_table" class="display hidden customer_results" style="width: 100%">
@@ -437,6 +442,9 @@
             }
 
             formData.append('index', $('#selected_index').val())
+            formData.append('row_start',$('#row_start').val())
+            formData.append('phrase_column',$('#phrase_column').val())
+            formData.append('result_coulmn',$('#result_coulmn').val())
             // Note: We are only appending the file inputs to the FormData.
             uploadFiles(formData);
         });

@@ -3,38 +3,39 @@ const client = require('./lib/elasticSearch')
 const elasticQuery=require('./lib/query')
 var Excel = require('exceljs');
 
-function processFileAndWrite(col,worksheet,workbook,length,filename,index,callback) {
+function processFileAndWrite(col,row_start,phrase_column,result_column,worksheet,workbook,length,filename,index,callback) {
     let query;
     let writeCount=0
-
+    let rowStart=row_start || 2
+    let resultColumn=result_column || "B"
+    let phraseColumn=phrase_column || "A"
+    worksheet.getRow(1).getCell(phraseColumn).value="Search phrase"
+    worksheet.getRow(1).getCell(resultColumn).value="Search results"
      col.eachCell(function (cell, rowNumber) {
-        if(rowNumber>1) {
+        if(rowNumber>=rowStart) {
             let searchString = cell.value
             if (index == 'makt') {
                 query = elasticQuery.prepareQuery({text: searchString}, false)
             }else if('customer'){
                 query=elasticQuery.prepareCustomerQuery({text:searchString},false)
             }
-            worksheet.getRow(1).getCell(1).value="Search phrase"
-            worksheet.getRow(1).getCell(2).value="Search results"
             var dataBaseIndex=index
             MassSearch(rowNumber,dataBaseIndex,searchString, query)
                 .then(function (cb) {
-                    console.log('total number '+cb.totalNumber)
                     if(cb.totalNumber>0){
-                        worksheet.getRow(cb.rowNumber).getCell(2).value= { text: 'Search', hyperlink: config.baseUrl+'/?search-text='+searchString+'&index='+index}
-                        worksheet.getRow(cb.rowNumber).getCell(2).font = {
+                        worksheet.getRow(cb.rowNumber).getCell(resultColumn).value= { text: 'Search', hyperlink: config.baseUrl+'/?search-text='+searchString+'&index='+index}
+                        worksheet.getRow(cb.rowNumber).getCell(resultColumn).font = {
                             underline: true,
 
                             color: {argb: 'FF0000FF'}
 
                         }
                     }else{
-                        worksheet.getRow(cb.rowNumber).getCell(2).value="No records found"
+                        worksheet.getRow(cb.rowNumber).getCell(resultColumn).value="No records found"
                     }
                     workbook.xlsx.writeFile(__dirname + filename).then(function() {
                         writeCount=writeCount+1
-                        if(writeCount>=length-2){
+                        if(writeCount>=length-rowStart){
                             callback('done')
                         }
 
@@ -48,7 +49,7 @@ function processFileAndWrite(col,worksheet,workbook,length,filename,index,callba
         }
     })
 }
-function uploadFileAndWrtite(filePath,index,callback) {
+function uploadFileAndWrtite(filePath,row_start,phrase_column,result_column,index,callback) {
     const type = config.elasticSearch.profileType
     //prepareQuery second parameter is flag true if pure match or false if fuzzy
     let query;
@@ -59,8 +60,9 @@ function uploadFileAndWrtite(filePath,index,callback) {
         // Get the 2nd column ('input')
         var worksheet = workbook.getWorksheet(1);
             // Get the B column
-        var col = worksheet.getColumn("A");
-        processFileAndWrite(col,worksheet,workbook,worksheet.rowCount, filename,index,function (res) {
+        let phraseColumn=phrase_column || "A"
+        var col = worksheet.getColumn(phraseColumn)
+        processFileAndWrite(col,row_start,phrase_column,result_column,worksheet,workbook,worksheet.rowCount, filename,index,function (res) {
 
            callback(res)
        })

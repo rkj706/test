@@ -761,9 +761,11 @@ function uploadFile(req,res) {
     // Parse the incoming form fields.
     form.parse(req, function (err, fields, files) {
         let index=config.elasticSearch.profileIndex[fields.index]
-
+        let row_start=fields.row_start  || null
+        let phrase_column=fields.phrase_column || null
+        let result_column=fields.result_coulmn || null
         let filePath=photos[0].publicPath
-       excel.uploadFileAndWrtite(filePath,index,function (cb) {
+       excel.uploadFileAndWrtite(filePath,row_start,phrase_column,result_column,index,function (cb) {
            res.status(200).json(photos);
        })
 //        res.status(200).json(photos);
