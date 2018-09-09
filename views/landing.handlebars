@@ -136,7 +136,8 @@
             }
         };
         let text = getUrlParameter('search-text')
-        let index = getUrlParameter('index')
+        let index = getUrlParameter('index') || "makt"
+
         $("#search-text").val(text)
         $("#selected_index").val(index)
         if (text && index) {

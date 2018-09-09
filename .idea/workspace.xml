@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7c20b63-8be4-441b-87e4-8a032f76e2ff" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/search/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/landing.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/landing.handlebars" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -47,20 +45,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+            <state relative-caret-position="75">
+              <caret line="5" column="19" lean-forward="true" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="landing.handlebars" pinned="false" current-in-tab="false">
+      <file leaf-file-name="landing.handlebars" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/landing.handlebars">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="332" column="25" selection-start-line="332" selection-start-column="20" selection-end-line="332" selection-end-column="25" />
+            <state relative-caret-position="581">
+              <caret line="138" column="53" selection-start-line="138" selection-start-column="53" selection-end-line="138" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -153,9 +151,9 @@
       <find>MassSearch</find>
       <find>getUrlParameter</find>
       <find>makt</find>
-      <find>market</find>
       <find>console.</find>
       <find>alert</find>
+      <find>market</find>
     </findStrings>
     <replaceStrings>
       <replace>,&lt;</replace>
@@ -207,8 +205,8 @@
         <option value="$PROJECT_DIR$/router.js" />
         <option value="$PROJECT_DIR$/excel.js" />
         <option value="$PROJECT_DIR$/search/index.js" />
-        <option value="$PROJECT_DIR$/views/landing.handlebars" />
         <option value="$PROJECT_DIR$/config/index.js" />
+        <option value="$PROJECT_DIR$/views/landing.handlebars" />
       </list>
     </option>
   </component>
@@ -334,12 +332,12 @@
       <workItem from="1532101037930" duration="5591000" />
       <workItem from="1535261688864" duration="31022000" />
       <workItem from="1535993932209" duration="2592000" />
-      <workItem from="1536003541519" duration="51498000" />
+      <workItem from="1536003541519" duration="51669000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="256295000" />
+    <option name="totallyTimeSpent" value="256466000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
@@ -761,17 +759,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/landing.handlebars">
+    <entry file="file://$PROJECT_DIR$/config/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="332" column="25" selection-start-line="332" selection-start-column="20" selection-end-line="332" selection-end-column="25" />
+        <state relative-caret-position="75">
+          <caret line="5" column="19" lean-forward="true" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/index.js">
+    <entry file="file://$PROJECT_DIR$/views/landing.handlebars">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+        <state relative-caret-position="581">
+          <caret line="138" column="53" selection-start-line="138" selection-start-column="53" selection-end-line="138" selection-end-column="53" />
         </state>
       </provider>
     </entry>
