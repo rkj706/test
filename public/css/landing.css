@@ -64,6 +64,8 @@ li>a{
 }
 .main-body{
     padding-top: 10%;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 .sp_error{
     color: red;

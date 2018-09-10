@@ -1,10 +1,10 @@
-<div class="main-body container">
+<div class="main-body">
     <div class="row">
         <h2>Search</h2>
     </div>
 
     <div class="row">
-
+        <div class="col-md-2"></div>
         <div class="col-md-2 index_select">
 
             <div>
@@ -15,22 +15,24 @@
             </div>
 
         </div>
-        <div class="col-md-4" style="text-align:left;">
+        <div class="col-md-4"></div>
+        <div class="col-md-3" style="text-align:left;">
             <div class="btn-group btn-toggle">
                 <button class="btn btn-s btn-primary search active">Text search</button>
                 <button class="btn btn-s mass-search btn-default">Mass search</button>
             </div>
         </div>
+        <div class="col-md-2"></div>
     </div>
     <div class="row">
         <div style="margin-top:50px;">
-            <div id='massSearch' style="display:none;">
-                <div class="col-md-2"></div>
-                <div class="container col-md-9">
+            <div id='massSearch' style="display:none;" class="row">
+                <div class="col-md-3"></div>
+                <div class="container col-md-6">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="phrase_column">Search Phrase Column:</label>
-                            <div class="col-xs-2">
+                            <label class="col-sm-6 control-label" for="phrase_column">Search Phrase Column:</label>
+                            <div class="col-sm-3">
                                 <input type="text" class="form-control" id="phrase_column" placeholder="Enter Search Phrase Column"
                                     value='A'></input>
                                 <!-- <small id="searchPhraseHelp" class="form-text text-muted">Enter the column name that
@@ -39,8 +41,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="result_coulmn">Search Result Column:</label>
-                            <div class="col-xs-2">
+                            <label class="col-sm-6 control-label" for="result_coulmn">Search Result Column:</label>
+                            <div class="col-sm-3">
                                 <input type="text" class="form-control" id="result_coulmn" placeholder="Search Result Column"
                                     value='B'></input>
                                 <!-- <small id="searchResultHelp" class="form-text text-muted">Enter the column name that
@@ -49,18 +51,17 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="row_start">Start row:</label>
-                            <div class="col-xs-2">
+                            <label class="col-sm-6 control-label" for="row_start">Start row:</label>
+                            <div class="col-sm-3">
                                 <input type="text" class="form-control" id="row_start" placeholder="Search Row" value='1'></input>
                                 <!-- <small id="startRowHelp" class="form-text text-muted">Enter the row number to start
                                 search..</small> -->
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-8">
-                                <button type="button" class="btn btn-primary pull-left upload-button"><span style="margin-right:5px;">Upload
-                                        File</span> <i class="fa fa-upload" style="font-size:16px"></i></button>
+                            <div class="col-sm-6"></div>
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-primary pull-left upload-button"><span style="margin-right:5px;">Upload</span> <i class="fa fa-upload" style="font-size:16px"></i></button>
                                 <button type="button" class="btn btn-primary pull-left download-button hidden"><span
                                         style="margin-right:5px;">Download</span> <i class="fa fa-download" style="font-size:16px"></i></button>
                                 <button type="button" style="margin-left:5px;" class="btn btn-info pull-left reset-mass-search-button hidden"><span
@@ -82,15 +83,15 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-md-2"></div>
+                <div class="col-md-3"></div>
             </div>
 
 
 
 
-            <div id='textSearch'>
-                <div class="col-md-2"></div>
-                <div class="col-md-9">
+            <div id='textSearch' class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
                     <div id="custom-search-input row">
                         <div class="input-group col-md-12">
 
@@ -105,9 +106,10 @@
 
                     </div>
                 </div>
-                <div class="col-md-2"></div>
+                <div class="col-md-3"></div>
                 <div>
-                    <table id="customer_table" class="display hidden customer_results" style="width: 100%">
+                    <div class="table-responsive">
+                    <table id="customer_table" class="display hidden customer_results table table-hover" style="width: 95%">
                         <thead>
                             <tr>
                                 <th style="color:#3c763d" class="resultCount"></th>
@@ -128,7 +130,9 @@
                         </tbody>
                         </thead>
                     </table>
-                    <table id="meterial_table" class="display hidden results" style="width:100%">
+                    </div>
+                    <div class="table-responsive">
+                    <table id="meterial_table" class="display hidden results table table-hover" style="width:95%">
                         <thead>
                             <tr>
                                 <th style="color:#3c763d" class="resultCount"></th>
@@ -152,6 +156,7 @@
                         </thead>
 
                     </table>
+                    </div>
                     <div class="row">
                         <div id="show-pagination">
                         </div>
