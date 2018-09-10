@@ -1,0 +1,72 @@
+
+  "_source": ["makt_props.makt_maktx","mara_mtart"],
+  "query": {
+    "bool": {
+      "should": [
+
+        {
+          "nested": {
+            "path": "makt_props",
+            "query": {
+              "bool": {
+                "should": [
+                  {
+
+                    "match": {
+                      "makt_props.makt_maktx": {
+                        "query": "HAWAFARBECHARGER",
+                        "boost": 30
+                      }
+                    }
+                  },
+                  {
+                    "match": {
+                      "makt_props.makt_maktx": {
+                        "query": "HAWA FARBE CHARGER",
+                        "operator": "and",
+                        "fuzziness": 2
+                      }
+                    }
+                  },
+                  {
+                    "match": {
+                      "makt_props.makt_maktx": {
+                        "query": "HAWA FARBE CHARGER",
+                        "operator": "and",
+                        "boost": 30000
+                      }
+                    }
+                  },
+                  {
+                    "match": {
+                      "makt_props.makt_maktx": {
+                        "query": "HAWA FARBE CHARGER",
+                        "operator": "or",
+                        "fuzziness": 2
+                      }
+                    }
+                  },
+                  {
+                    "match": {
+                      "makt_props.makt_maktx": {
+                        "query": "HAWA FARBE CHARGER",
+                        "operator": "or",
+                        "boost": 3
+                      }
+                    }
+                  },
+                  {
+                    "match_phrase_prefix": {
+                      "makt_props.makt_maktx": "HAWA FARBE CHARGER"
+                    }
+                  }
+                ],
+                "minimum_should_match": 1
+              }
+            }
+          }
+        }
+      ],
+      "minimum_should_match": 1
+    }
+  }

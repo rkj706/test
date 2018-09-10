@@ -1,5 +1,6 @@
 const client = require('../lib/elasticSearch')
 const config = require('../config/index')
+const elasticQuery=require('../lib/query')
 const excel=require('../excel')
 var path = require('path'),
     fs = require('fs'),
@@ -627,9 +628,9 @@ function searchQuery(req, res) {
 
         if(index=='makt'){
 
-            query= prepareQuery(req.body, false)
+            query= elasticQuery.prepareQuery(req.body, false)
         }else {
-            query=   prepareCustomerQuery(req.body,false)
+            query=   elasticQuery.prepareCustomerQuery(req.body,false)
         }
 
         const source = req.body.source
