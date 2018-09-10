@@ -86,9 +86,6 @@
                 <div class="col-md-3"></div>
             </div>
 
-
-
-
             <div id='textSearch' class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
@@ -107,66 +104,68 @@
                     </div>
                 </div>
                 <div class="col-md-3"></div>
-                <div>
-                    <div class="table-responsive">
-                    <table id="customer_table" class="display hidden customer_results table table-hover" style="width: 95%">
-                        <thead>
-                            <tr>
-                                <th style="color:#3c763d" class="resultCount"></th>
-                            </tr>
-                            <tr>
-                                <th>kna1_kunnr</th>
-                                <th>kna1_land1</th>
-                                <th>kna1_name1</th>
-                                <th>kna1_name2</th>
-                                <th>kna1_ort01</th>
-                                <th>kna1_pstlz</th>
-                                <th>kna1_stras</th>
-                                <th>knb1_props</th>
-                                <th>knvk_props</th>
-                            </tr>
 
-                        <tbody>
-                        </tbody>
-                        </thead>
-                    </table>
-                    </div>
-                    <div class="table-responsive">
-                    <table id="meterial_table" class="display hidden results table table-hover" style="width:95%">
-                        <thead>
-                            <tr>
-                                <th style="color:#3c763d" class="resultCount"></th>
-                            </tr>
-                            <tr>
-                                <th>Material Number</th>
-                                <th>Material Type</th>
-                                <th>Description</th>
-                                <th>Material Group</th>
-                                <th>Packaging Material Type</th>
-                                <th>Created On</th>
-                                <th>Name of Person who Created the Object</th>
-                                <th>Maintenance status</th>
-                                <th>Industry Sector</th>
-                                <th>Base Unit of Measure</th>
-                                <th>Product hierarchy</th>
-                            </tr>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="table-responsive">
+            <table id="customer_table" class="display hidden customer_results table table-hover" style="width: 95%">
+                <thead>
+                <tr>
+                    <th style="color:#3c763d" class="resultCount"></th>
+                </tr>
+                <tr>
+                    <th>kna1_kunnr</th>
+                    <th>kna1_land1</th>
+                    <th>kna1_name1</th>
+                    <th>kna1_name2</th>
+                    <th>kna1_ort01</th>
+                    <th>kna1_pstlz</th>
+                    <th>kna1_stras</th>
+                    <th>knb1_props</th>
+                    <th>knvk_props</th>
+                </tr>
 
-                        <tbody>
-                        </tbody>
-                        </thead>
+                <tbody>
+                </tbody>
+                </thead>
+            </table>
+        </div>
+        <div class="table-responsive">
+            <table id="meterial_table" class="display hidden results table table-hover" style="width:95%">
+                <thead>
+                <tr>
+                    <th style="color:#3c763d" class="resultCount"></th>
+                </tr>
+                <tr>
+                    <th>Material Number</th>
+                    <th>Material Type</th>
+                    <th>Description</th>
+                    <th>Material Group</th>
+                    <th>Packaging Material Type</th>
+                    <th>Created On</th>
+                    <th>Name of Person who Created the Object</th>
+                    <th>Maintenance status</th>
+                    <th>Industry Sector</th>
+                    <th>Base Unit of Measure</th>
+                    <th>Product hierarchy</th>
+                </tr>
 
-                    </table>
-                    </div>
-                    <div class="row">
-                        <div id="show-pagination">
-                        </div>
-                        <!--<input class="hidden btn btn-default" id="loadMore" value="Load More" type="button" onclick="loadMore()">-->
-                    </div>
-                </div>
+                <tbody>
+                </tbody>
+                </thead>
+
+            </table>
+        </div>
+        <div class="row">
+            <div id="show-pagination">
             </div>
         </div>
     </div>
 </div>
+
+
 
 <script type="text/html" id="template">
     <% if(data.showPrevious){%>
@@ -288,6 +287,7 @@
                 dataType: 'json',
                 contentType: "application/json",
                 success: function (data) {
+                    console.log(data)
                     if (index == 'makt') {
                         $('.results').removeClass('hidden')
                     } else {
@@ -338,7 +338,6 @@
                                 return data.makt_maktx
                             })
                             maktMaktx = maktMaktx.join("<br /><br />");
-                            // console.log(final_data[j]['makt_props'][0].makt_maktx)
                             $('#meterial_table').dataTable().fnAddData([
                                 final_data[j].mara_matnr,
                                 final_data[j].mara_mtart,
@@ -425,7 +424,6 @@
                 }
             }
         };
-        $(document).ready(function () {
             $('#meterial_table').DataTable({
                 "dom": 'Zlfrtip',
                 "colResize": {
@@ -465,7 +463,7 @@
                  }
              })
              */
-        });
+
 
 
         $("#photos-input").on('change', function () {
