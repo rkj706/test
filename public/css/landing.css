@@ -37,9 +37,9 @@
     visibility: visible;
     opacity: 1;
 }
-.fa-upload{
+/* .fa-upload{
     font-size: 30px !important;
-}
+} */
 /*tool tip css ends*/
 .navbar{
     background-color: white !important;
@@ -64,6 +64,8 @@ li>a{
 }
 .main-body{
     padding-top: 10%;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 .sp_error{
     color: red;
