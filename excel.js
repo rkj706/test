@@ -4,13 +4,17 @@ const elasticQuery=require('./lib/query')
 var Excel = require('exceljs');
 
 function processFileAndWrite(col,row_start,phrase_column,result_column,worksheet,workbook,length,filename,index,callback) {
+    let defaultStart=row_start || null
     let query;
     let writeCount=0
     let rowStart=row_start || 2
     let resultColumn=result_column || "B"
     let phraseColumn=phrase_column || "A"
-    worksheet.getRow(1).getCell(phraseColumn).value="Search phrase"
-    worksheet.getRow(1).getCell(resultColumn).value="Search results"
+    if(defaultStart && defaultStart>1) {
+        worksheet.getRow(1).getCell(phraseColumn).value = "Search phrase"
+        worksheet.getRow(1).getCell(resultColumn).value = "Search results"
+    }
+    
      col.eachCell(function (cell, rowNumber) {
         if(rowNumber>=rowStart) {
             let searchString = cell.value
