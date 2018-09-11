@@ -3,7 +3,7 @@ const client = require('./lib/elasticSearch')
 const elasticQuery=require('./lib/query')
 var Excel = require('exceljs');
 
-function processFileAndWrite(col,row_start,phrase_column,result_column,worksheet,workbook,length,filename,index,callback) {
+function processFileAndWrite(col,row_start,phrase_column,result_column,worksheet,workbook,length,filename,index,exactMatch,callback) {
     let defaultStart=row_start || null
     let query;
     let writeCount=0
@@ -14,14 +14,15 @@ function processFileAndWrite(col,row_start,phrase_column,result_column,worksheet
         worksheet.getRow(1).getCell(phraseColumn).value = "Search phrase"
         worksheet.getRow(1).getCell(resultColumn).value = "Search results"
     }
-    
+
      col.eachCell(function (cell, rowNumber) {
         if(rowNumber>=rowStart) {
             let searchString = cell.value
+
             if (index == 'makt') {
-                query = elasticQuery.prepareQuery({text: searchString}, false)
+                query = elasticQuery.prepareQuery({text: searchString},exactMatch)
             }else if('customer'){
-                query=elasticQuery.prepareCustomerQuery({text:searchString},false)
+                query=elasticQuery.prepareCustomerQuery({text:searchString},exactMatch)
             }
             var dataBaseIndex=index
             MassSearch(rowNumber,dataBaseIndex,searchString, query)
@@ -53,7 +54,7 @@ function processFileAndWrite(col,row_start,phrase_column,result_column,worksheet
         }
     })
 }
-function uploadFileAndWrtite(filePath,row_start,phrase_column,result_column,index,callback) {
+function uploadFileAndWrtite(filePath,row_start,phrase_column,result_column,index,exactMatch,callback) {
     const type = config.elasticSearch.profileType
     //prepareQuery second parameter is flag true if pure match or false if fuzzy
     let query;
@@ -66,7 +67,7 @@ function uploadFileAndWrtite(filePath,row_start,phrase_column,result_column,inde
             // Get the B column
         let phraseColumn=phrase_column || "A"
         var col = worksheet.getColumn(phraseColumn)
-        processFileAndWrite(col,row_start,phrase_column,result_column,worksheet,workbook,worksheet.rowCount, filename,index,function (res) {
+        processFileAndWrite(col,row_start,phrase_column,result_column,worksheet,workbook,worksheet.rowCount, filename,index,exactMatch,function (res) {
 
            callback(res)
        })

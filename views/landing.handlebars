@@ -87,7 +87,9 @@
             </div>
 
             <div id='textSearch' class="row">
-                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    <input type="checkbox" id="exactMatch">
+                </div>
                 <div class="col-md-6">
                     <div id="custom-search-input row">
                         <div class="input-group col-md-12">
@@ -185,9 +187,10 @@
         let text = getUrlParameter('search-text')
         let pageNo = $(that).attr('value')
         let index = getUrlParameter('index') || 'makt'
+        let exactMatch=getUrlParameter('exactMatch') || false
         let redirectText = '/?search-text=' + text
         if (pageNo > 0) {
-            redirectText = redirectText + '&page=' + pageNo + '&index=' + index
+            redirectText = redirectText + '&page=' + pageNo + '&index=' + index + '&exactMatch='+exactMatch
         }
         if (!pageNo || pageNo < 0) {
             pageNo = 0
@@ -196,9 +199,7 @@
         location.href = redirectText
     }
     let maximumPagination = 0
-    $(document).on('ready', function () {
 
-    })
 
     function getUrlParameter(sParam) {
             var sPageURL = decodeURIComponent(window.location.search.substring(1)),
@@ -213,10 +214,15 @@
                 }
             }
         };
+
         let text = getUrlParameter('search-text')
         let index = getUrlParameter('index') || "makt"
+        let exactMatch=getUrlParameter('exactMatch') || false
 
-        $("#search-text").val(text)
+    if(exactMatch==='true') {
+        $("#exactMatch").prop("checked", true)
+    }
+    $("#search-text").val(text)
         $("#selected_index").val(index)
         if (text && index) {
             let pageNo = getUrlParameter('page')
@@ -234,12 +240,13 @@
             let text = getUrlParameter('search-text')
             let pageNo = getUrlParameter('page')
             let index = getUrlParameter('index') || 'makt'
+            let exactMatch=getUrlParameter('exactMatch') || false
             if (!pageNo) {
                 pageNo = 0
             }
             pageNo = parseInt(pageNo) + 1
             if (text) {
-                location.href = '/?search-text=' + text + '&page=' + pageNo + '&index=' + index
+                location.href = '/?search-text=' + text + '&page=' + pageNo + '&index=' + index+'&exactMatch='+exactMatch
             }
         }
 
@@ -247,6 +254,7 @@
             let text = getUrlParameter('search-text')
             let pageNo = getUrlParameter('page')
             let index = getUrlParameter('index') || 'makt'
+            let exactMatch=getUrlParameter('exactMatch') || false
             if (!pageNo) {
                 pageNo = 0
             }
@@ -255,7 +263,7 @@
                 pageNo = 0
             }
             if (text) {
-                location.href = '/?search-text=' + text + '&page=' + pageNo + '&index=' + index
+                location.href = '/?search-text=' + text + '&page=' + pageNo + '&index=' + index+'&exactMatch='+exactMatch
             }
         }
 
@@ -264,8 +272,9 @@
             let pageNo = $(that).attr('value')
             let index = getUrlParameter('index') || 'makt'
             let redirectText = '/?search-text=' + text
+            let exactMatch=getUrlParameter('exactMatch') || false
             if (pageNo > 0) {
-                redirectText = redirectText + '&page=' + pageNo + '&index=' + index
+                redirectText = redirectText + '&page=' + pageNo + '&index=' + index+'&exactMatch='+exactMatch
             }
             if (!pageNo || pageNo < 0) {
                 pageNo = 0
@@ -292,13 +301,15 @@
                 $('#loadMore').addClass('hidden')
                 return false
             }
+            let exactMatch=$("#exactMatch").prop("checked")
             $.ajax({
                 url: '../api/search',
                 data: JSON.stringify({
                     index: index,
                     text: searchText,
                     from: pagination * 10,
-                    source: source
+                    exactMatch:exactMatch,
+                    source: source,
                 }),
                 method: 'POST',
                 dataType: 'json',
@@ -416,19 +427,21 @@
 
         $("#search").on('click', function () {
             let searchText = $("#search-text").val().trim()
+            let exactMatch=$("#exactMatch").prop("checked")
             let index = $("#selected_index").val()
             if (!index || index == "") {
                 alert('please select an index')
                 return false
             }
             else {
-                location.href = '/?search-text=' + searchText + '&index=' + index
+                location.href = '/?search-text=' + searchText + '&index=' + index+'&exactMatch='+exactMatch
             }
         })
         $("#search-text").bind("keypress", {}, keypressInBox);
 
         function keypressInBox(e) {
             var code = (e.keyCode ? e.keyCode : e.which);
+            let exactMatch=$("#exactMatch").prop("checked")
             if (code == 13) { //Enter keycode
                 e.preventDefault();
                 let searchText = $("#search-text").val().trim()
@@ -437,11 +450,12 @@
                     alert('please select an index')
                     return false
                 } else {
-                    location.href = '/?search-text=' + searchText + '&index=' + index
+                    location.href = '/?search-text=' + searchText + '&index=' + index + '&exactMatch='+exactMatch
                 }
             }
         };
     $(document).ready(function () {
+
 
         $('#meterial_table').DataTable({
             "dom": 'Zlfrtip',
@@ -517,11 +531,12 @@
                 var file = files[i];
                 formData.append('photos[]', file, file.name);
             }
-
+            let exactMatch=$("#exactMatch").prop("checked")
             formData.append('index', $('#selected_index').val())
             formData.append('row_start', $('#row_start').val())
             formData.append('phrase_column', $('#phrase_column').val())
             formData.append('result_coulmn', $('#result_coulmn').val())
+            formData.append('exactMatch',exactMatch)
             // Note: We are only appending the file inputs to the FormData.
             uploadFiles(formData);
         });

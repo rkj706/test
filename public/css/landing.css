@@ -232,3 +232,8 @@ th{
 .fa-upload{
     cursor: pointer;
 }
+
+#exactMatch{
+    margin-left: 94%;
+    margin-top: 5%;
+}

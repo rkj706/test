@@ -623,14 +623,16 @@ function searchQuery(req, res) {
     }
     const index = config.elasticSearch.profileIndex[req.body.index]
     const type = config.elasticSearch.profileType
+    let exactMatch=req.body.exactMatch || false
+
     //prepareQuery second parameter is flag true if pure match or false if fuzzy
     let query;
 
         if(index=='makt'){
 
-            query= elasticQuery.prepareQuery(req.body, false)
+            query= elasticQuery.prepareQuery(req.body,exactMatch)
         }else {
-            query=   elasticQuery.prepareCustomerQuery(req.body,false)
+            query=   elasticQuery.prepareCustomerQuery(req.body,exactMatch)
         }
 
         const source = req.body.source
@@ -766,7 +768,8 @@ function uploadFile(req,res) {
         let phrase_column=fields.phrase_column || null
         let result_column=fields.result_coulmn || null
         let filePath=photos[0].publicPath
-       excel.uploadFileAndWrtite(filePath,row_start,phrase_column,result_column,index,function (cb) {
+        let exactMatch=fields.exactMatch || false
+       excel.uploadFileAndWrtite(filePath,row_start,phrase_column,result_column,index,exactMatch,function (cb) {
            res.status(200).json(photos);
        })
 //        res.status(200).json(photos);
