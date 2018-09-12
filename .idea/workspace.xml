@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7c20b63-8be4-441b-87e4-8a032f76e2ff" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/lib/query.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/query.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/landing.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/landing.handlebars" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -19,8 +20,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/search/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="647" column="43" selection-start-line="647" selection-start-column="37" selection-end-line="647" selection-end-column="43" />
+            <state relative-caret-position="285">
+              <caret line="687" column="21" selection-start-line="687" selection-start-column="12" selection-end-line="687" selection-end-column="21" />
               <folding>
                 <element signature="n#!!block;n#prepareSuggestQuery#0" />
                 <element signature="n#!!block;n#searchMatch#0" />
@@ -69,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="landing.handlebars" pinned="false" current-in-tab="true">
+      <file leaf-file-name="landing.handlebars" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/landing.handlebars">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="185">
-              <caret line="230" column="8" lean-forward="true" selection-start-line="230" selection-start-column="8" selection-end-line="230" selection-end-column="8" />
+              <caret line="230" lean-forward="true" selection-start-line="230" selection-end-line="230" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
@@ -90,18 +91,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="query.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="query.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/query.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="491" column="5" lean-forward="true" selection-start-line="491" selection-start-column="5" selection-end-line="491" selection-end-column="5" />
+            <state relative-caret-position="191">
+              <caret line="25" column="11" lean-forward="true" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
               <folding>
+                <element signature="e#2218#2918#0" />
                 <element signature="e#3171#4715#0" />
-                <element signature="e#5953#7669#0" />
+                <element signature="e#4721#5358#0" />
+                <element signature="e#6757#6773#0" />
                 <element signature="e#7679#8423#0" />
+                <element signature="e#8437#8649#0" />
+                <element signature="e#9923#9939#0" />
                 <element signature="e#8676#10547#0" />
                 <element signature="e#10553#11281#0" />
+                <element signature="e#13219#13235#0" />
                 <element signature="e#11534#13404#0" />
+                <element signature="e#13438#14082#0" />
               </folding>
             </state>
           </provider>
@@ -110,8 +117,8 @@
       <file leaf-file-name="landing.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/landing.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="738">
-              <caret line="298" column="18" selection-start-line="298" selection-start-column="18" selection-end-line="298" selection-end-column="18" />
+            <state relative-caret-position="15">
+              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -146,7 +153,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>console.</find>
       <find>alert</find>
       <find>colum</find>
       <find>market</find>
@@ -160,7 +166,6 @@
       <find>uploadFileAndWrtite</find>
       <find>prepareQuery</find>
       <find>$(&quot;#exactMatch&quot;).prop(&quot;checked&quot;, true)</find>
-      <find>console.l</find>
       <find>checkbox</find>
       <find>.active</find>
       <find>Please make sure your request has an Authorization header</find>
@@ -176,6 +181,8 @@
       <find>#search</find>
       <find>exactMatch</find>
       <find>#exactMatch</find>
+      <find>console.l</find>
+      <find>console</find>
     </findStrings>
     <replaceStrings>
       <replace>,&lt;</replace>
@@ -225,12 +232,12 @@
         <option value="$PROJECT_DIR$/x.json" />
         <option value="$PROJECT_DIR$/lib/abbreviation.js" />
         <option value="$PROJECT_DIR$/excel.js" />
-        <option value="$PROJECT_DIR$/lib/query.js" />
         <option value="$PROJECT_DIR$/public/css/landing.css" />
         <option value="$PROJECT_DIR$/views/layouts/main.handlebars" />
         <option value="$PROJECT_DIR$/auth/auth.service.js" />
         <option value="$PROJECT_DIR$/search/index.js" />
         <option value="$PROJECT_DIR$/views/landing.handlebars" />
+        <option value="$PROJECT_DIR$/lib/query.js" />
       </list>
     </option>
   </component>
@@ -277,6 +284,11 @@
               <item name="test" type="b2602c69:ProjectViewProjectNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="auth" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="test" type="b2602c69:ProjectViewProjectNode" />
@@ -372,7 +384,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="273907000" />
+    <option name="totallyTimeSpent" value="276090000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
@@ -441,8 +453,14 @@
           <line>3</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/lib/query.js</url>
+          <line>17</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -754,13 +772,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/landing.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="738">
-          <caret line="298" column="18" selection-start-line="298" selection-start-column="18" selection-end-line="298" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/layouts/main.handlebars">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -782,40 +793,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/query.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="491" column="5" lean-forward="true" selection-start-line="491" selection-start-column="5" selection-end-line="491" selection-end-column="5" />
-          <folding>
-            <element signature="e#3171#4715#0" />
-            <element signature="e#5953#7669#0" />
-            <element signature="e#7679#8423#0" />
-            <element signature="e#8676#10547#0" />
-            <element signature="e#10553#11281#0" />
-            <element signature="e#11534#13404#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/search/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="647" column="43" selection-start-line="647" selection-start-column="37" selection-end-line="647" selection-end-column="43" />
-          <folding>
-            <element signature="n#!!block;n#prepareSuggestQuery#0" />
-            <element signature="n#!!block;n#searchMatch#0" />
-            <element signature="n#!!block;n#prepareQuery#0" />
-            <element signature="n#!!block;n#prepareCustomerQuery#0" />
-            <element signature="n#!!block;n#getUsers#0" />
-            <marker date="1536778589124" expanded="true" signature="20065:20066" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/landing.handlebars">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
-          <caret line="230" column="8" lean-forward="true" selection-start-line="230" selection-start-column="8" selection-end-line="230" selection-end-column="8" />
+          <caret line="230" lean-forward="true" selection-start-line="230" selection-end-line="230" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
@@ -827,6 +808,49 @@
             <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#0;n#!!top" expanded="true" />
             <element signature="n#div#1;n#div#3;n#div#0;n#!!top" />
             <element signature="e#11307#17622#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/search/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="687" column="21" selection-start-line="687" selection-start-column="12" selection-end-line="687" selection-end-column="21" />
+          <folding>
+            <element signature="n#!!block;n#prepareSuggestQuery#0" />
+            <element signature="n#!!block;n#searchMatch#0" />
+            <element signature="n#!!block;n#prepareQuery#0" />
+            <element signature="n#!!block;n#prepareCustomerQuery#0" />
+            <element signature="n#!!block;n#getUsers#0" />
+            <marker date="1536778589124" expanded="true" signature="20065:20066" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/landing.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/query.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="25" column="11" lean-forward="true" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+          <folding>
+            <element signature="e#2218#2918#0" />
+            <element signature="e#3171#4715#0" />
+            <element signature="e#4721#5358#0" />
+            <element signature="e#6757#6773#0" />
+            <element signature="e#7679#8423#0" />
+            <element signature="e#8437#8649#0" />
+            <element signature="e#9923#9939#0" />
+            <element signature="e#8676#10547#0" />
+            <element signature="e#10553#11281#0" />
+            <element signature="e#13219#13235#0" />
+            <element signature="e#11534#13404#0" />
+            <element signature="e#13438#14082#0" />
           </folding>
         </state>
       </provider>
