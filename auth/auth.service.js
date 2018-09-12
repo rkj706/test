@@ -28,7 +28,7 @@ function setTokenCookie(req, res) {
 
 const verifyToken = function (req, res, next) {
   if (!(req.cookies && req.cookies.token) && !req.header('Authorization')) {
-    return res.status(401).json({message: 'Please make sure your request has an Authorization header'})
+    return res.status(401).json({message: 'Please login before searching'})
   }
   let token = req.cookies.token || req.header('Authorization').split(' ')[1]
   var payload = null;

@@ -31,9 +31,9 @@
                 <div class="container col-md-6">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-6 control-label" for="phrase_column">Search Phrase Column:</label>
+                            <label class="col-sm-6 control-label" for="phrase_column">Search phrase column:</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="phrase_column" placeholder="Enter Search Phrase Column"
+                                <input type="text" class="form-control" id="phrase_column" placeholder="Enter search phrase column"
                                     value='A'></input>
                                 <!-- <small id="searchPhraseHelp" class="form-text text-muted">Enter the column name that
                                 contains
@@ -43,7 +43,7 @@
                         <div class="form-group">
                             <label class="col-sm-6 control-label" for="result_coulmn">Search Result Column:</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="result_coulmn" placeholder="Search Result Column"
+                                <input type="text" class="form-control" id="result_coulmn" placeholder="Search result column"
                                     value='B'></input>
                                 <!-- <small id="searchResultHelp" class="form-text text-muted">Enter the column name that
                                 will
@@ -88,7 +88,10 @@
 
             <div id='textSearch' class="row">
                 <div class="col-md-3">
-                    <input type="checkbox" id="exactMatch">
+                    <label class="switch">
+                        <input type="checkbox" id="exactMatch">
+                        <span class="slider round"></span>
+                    </label>
                 </div>
                 <div class="col-md-6">
                     <div id="custom-search-input row">
@@ -110,7 +113,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" id="tableData">
         <div class="table-responsive">
             <table id="customer_table" class="display hidden customer_results table table-hover" style="width: 95%">
                 <thead>
@@ -567,8 +570,8 @@
                     return xhr;
                 }
             }).done(handleSuccess).fail(function (xhr, status) {
-
-                alert(status);
+                document.getElementById("photos-input").value = "";
+              alert(xhr.responseJSON.message)
             });
         }
 
@@ -585,6 +588,7 @@
         }
 
         $('.reset-mass-search-button').on('click', function () {
+            document.getElementById("photos-input").value = "";
             $('.download-button').addClass('hidden')
             $('.upload-button').removeClass('hidden')
             $(this).addClass('hidden')
@@ -612,15 +616,17 @@
     $('.btn-toggle').click(function () {
         var previousActive = $(this).find('.btn.active');
         if ($(previousActive).hasClass('mass-search')) {
-            console.log('mass');
             $('#massSearch').hide();
             $('#textSearch').show();
+
+            $('#tableData').removeClass('hidden')
         }
 
         if ($(previousActive).hasClass('search')) {
             console.log('search');
             $('#textSearch').hide();
             $('#massSearch').show();
+            $('#tableData').addClass('hidden')
         }
 
         $(this).find('.btn').toggleClass('active');
