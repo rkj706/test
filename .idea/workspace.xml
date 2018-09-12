@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7c20b63-8be4-441b-87e4-8a032f76e2ff" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/auth/auth.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/auth/auth.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/query.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/query.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/landing.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/landing.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/landing.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/landing.handlebars" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layouts/main.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/layouts/main.handlebars" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/search/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="636" lean-forward="true" selection-start-line="636" selection-end-line="636" />
+            <state relative-caret-position="256">
+              <caret line="647" column="43" selection-start-line="647" selection-start-column="37" selection-end-line="647" selection-end-column="43" />
               <folding>
                 <element signature="n#!!block;n#prepareSuggestQuery#0" />
                 <element signature="n#!!block;n#searchMatch#0" />
@@ -73,11 +69,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="landing.handlebars" pinned="false" current-in-tab="false">
+      <file leaf-file-name="landing.handlebars" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/landing.handlebars">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="571">
-              <caret line="572" column="67" selection-start-line="572" selection-start-column="67" selection-end-line="572" selection-end-column="67" />
+            <state relative-caret-position="185">
+              <caret line="230" column="8" lean-forward="true" selection-start-line="230" selection-start-column="8" selection-end-line="230" selection-end-column="8" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
@@ -150,9 +146,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>console.lo</find>
-      <find>getUrlParameter</find>
-      <find>makt</find>
       <find>console.</find>
       <find>alert</find>
       <find>colum</find>
@@ -168,7 +161,6 @@
       <find>prepareQuery</find>
       <find>$(&quot;#exactMatch&quot;).prop(&quot;checked&quot;, true)</find>
       <find>console.l</find>
-      <find>exactMatch</find>
       <find>checkbox</find>
       <find>.active</find>
       <find>Please make sure your request has an Authorization header</find>
@@ -180,6 +172,10 @@
       <find>Meterial</find>
       <find>/upload</find>
       <find>log out</find>
+      <find>search</find>
+      <find>#search</find>
+      <find>exactMatch</find>
+      <find>#exactMatch</find>
     </findStrings>
     <replaceStrings>
       <replace>,&lt;</replace>
@@ -233,8 +229,8 @@
         <option value="$PROJECT_DIR$/public/css/landing.css" />
         <option value="$PROJECT_DIR$/views/layouts/main.handlebars" />
         <option value="$PROJECT_DIR$/auth/auth.service.js" />
-        <option value="$PROJECT_DIR$/views/landing.handlebars" />
         <option value="$PROJECT_DIR$/search/index.js" />
+        <option value="$PROJECT_DIR$/views/landing.handlebars" />
       </list>
     </option>
   </component>
@@ -376,7 +372,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="273339000" />
+    <option name="totallyTimeSpent" value="273907000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
@@ -786,25 +782,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/landing.handlebars">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="572" column="67" selection-start-line="572" selection-start-column="67" selection-end-line="572" selection-end-column="67" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" />
-            <element signature="n#style#0;n#button#2;n#div#1;n#div#3;n#form#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#button#2;n#div#1;n#div#3;n#form#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#button#2;n#div#1;n#div#3;n#form#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#1;n#div#0;n#div#2;n#div#0;n#!!top" />
-            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#3;n#div#0;n#!!top" />
-            <element signature="e#11307#17622#0#HTML" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/query.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="389">
@@ -822,8 +799,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/search/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="636" lean-forward="true" selection-start-line="636" selection-end-line="636" />
+        <state relative-caret-position="256">
+          <caret line="647" column="43" selection-start-line="647" selection-start-column="37" selection-end-line="647" selection-end-column="43" />
           <folding>
             <element signature="n#!!block;n#prepareSuggestQuery#0" />
             <element signature="n#!!block;n#searchMatch#0" />
@@ -831,6 +808,25 @@
             <element signature="n#!!block;n#prepareCustomerQuery#0" />
             <element signature="n#!!block;n#getUsers#0" />
             <marker date="1536778589124" expanded="true" signature="20065:20066" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/landing.handlebars">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="230" column="8" lean-forward="true" selection-start-line="230" selection-start-column="8" selection-end-line="230" selection-end-column="8" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" />
+            <element signature="n#style#0;n#button#2;n#div#1;n#div#3;n#form#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#button#2;n#div#1;n#div#3;n#form#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#button#2;n#div#1;n#div#3;n#form#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#div#1;n#div#0;n#div#2;n#div#0;n#!!top" />
+            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#div#3;n#div#0;n#!!top" />
+            <element signature="e#11307#17622#0#HTML" />
           </folding>
         </state>
       </provider>

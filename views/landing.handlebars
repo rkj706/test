@@ -225,7 +225,12 @@
     if(exactMatch==='true') {
         $("#exactMatch").prop("checked", true)
     }
-    $("#search-text").val(text)
+    $("#exactMatch").change(function() {
+
+            $("#search").trigger('click')
+        
+    });
+         $("#search-text").val(text)
         $("#selected_index").val(index)
         if (text && index) {
             let pageNo = getUrlParameter('page')
@@ -432,10 +437,15 @@
             let searchText = $("#search-text").val().trim()
             let exactMatch=$("#exactMatch").prop("checked")
             let index = $("#selected_index").val()
+            if(!searchText || searchText=="")
+            {
+                return false
+            }
             if (!index || index == "") {
                 alert('please select an index')
                 return false
             }
+
             else {
                 location.href = '/?search-text=' + searchText + '&index=' + index+'&exactMatch='+exactMatch
             }
@@ -449,6 +459,10 @@
                 e.preventDefault();
                 let searchText = $("#search-text").val().trim()
                 let index = $("#selected_index").val()
+                if(!searchText || searchText=="")
+                {
+                    return false
+                }
                 if (!index || index == "") {
                     alert('please select an index')
                     return false
