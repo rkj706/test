@@ -295,6 +295,15 @@ input:checked + .slider:before {
 .active{
     background-color: #5bc0de !important;
 }
+.upload-button
+
+{
+    background-color: #5bc0de !important;
+}
+.download-button
+{
+    background-color:  #5bc0de !important;
+}
 body{
     color: #1b6d85;
 }

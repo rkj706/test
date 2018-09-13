@@ -18,7 +18,7 @@
         <div class="col-md-4"></div>
         <div class="col-md-3" style="text-align:left;">
             <div class="btn-group btn-toggle">
-                <button class="btn btn-s btn-primary search active">Text search</button>
+                <button class="btn btn-s btn-default search active">Text search</button>
                 <button class="btn btn-s mass-search btn-default">Mass search</button>
             </div>
         </div>
@@ -61,8 +61,8 @@
                         <div class="form-group">
                             <div class="col-sm-6"></div>
                             <div class="col-sm-6">
-                                <button type="button" class="btn btn-primary pull-left upload-button"><span style="margin-right:5px;">Upload</span> <i class="fa fa-upload" style="font-size:16px"></i></button>
-                                <button type="button" class="btn btn-primary pull-left download-button hidden"><span
+                                <button type="button" class="btn btn-default pull-left upload-button"><span style="margin-right:5px;">Upload</span> <i class="fa fa-upload" style="font-size:16px"></i></button>
+                                <button type="button" class="btn btn-default pull-left download-button hidden"><span
                                         style="margin-right:5px;">Download</span> <i class="fa fa-download" style="font-size:16px"></i></button>
                                 <button type="button" style="margin-left:5px;" class="btn btn-info pull-left reset-mass-search-button hidden"><span
                                         style="margin-right:5px;">Reset</span> <i class="fa fa-refresh" style="font-size:16px"></i></button>
@@ -490,7 +490,6 @@
             },
             "paging": false,
             "order": []
-
         })
     })
             /* $('#search-text').on('keyup', function (word) {
@@ -627,20 +626,35 @@
 
         })
 
+  let massSearch=  getUrlParameter('mass-search')
+    if(massSearch && massSearch=="true"){
+        $('.btn-toggle').find('.mass-search').addClass('active')
+        $('.btn-toggle').find('.search').removeClass('active')
+        $('#textSearch').hide();
+        $('#massSearch').show();
+
+    }else {
+        $('.btn-toggle').find('.mass-search').removeClass('active')
+        $('.btn-toggle').find('.search').addClass('active')
+        $('#massSearch').hide();
+        $('#textSearch').show();
+    }
     $('.btn-toggle').click(function () {
         var previousActive = $(this).find('.btn.active');
         if ($(previousActive).hasClass('mass-search')) {
-            $('#massSearch').hide();
-            $('#textSearch').show();
-
-            $('#tableData').removeClass('hidden')
+            location.href='../'
+            // $('#massSearch').hide();
+            // $('#textSearch').show();
+            //
+            // $('#tableData').removeClass('hidden')
         }
 
         if ($(previousActive).hasClass('search')) {
-            console.log('search');
-            $('#textSearch').hide();
-            $('#massSearch').show();
-            $('#tableData').addClass('hidden')
+            location.href='../?mass-search=true'
+            // console.log('search');
+            // $('#textSearch').hide();
+            // $('#massSearch').show();
+            // $('#tableData').addClass('hidden')
         }
 
         $(this).find('.btn').toggleClass('active');
