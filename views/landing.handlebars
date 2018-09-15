@@ -27,7 +27,17 @@
     <div class="row">
         <div style="margin-top:50px;">
             <div id='massSearch' style="display:none;" class="row">
-                <div class="col-md-3"></div>
+                <div class="col-md-2">  <label class="exactMatchText">Exact Match</label></div>
+                <div class="col-md-1">
+
+
+                    <label class="switch">
+
+                        <input type="checkbox" id="exactMatch_customer">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
                 <div class="container col-md-6">
                     <form class="form-horizontal">
                         <div class="form-group">
@@ -61,6 +71,7 @@
                         <div class="form-group">
                             <div class="col-sm-6"></div>
                             <div class="col-sm-6">
+                                <img src="./img/uploader.gif" class="loader pull-left hidden">
                                 <button type="button" class="btn btn-default pull-left upload-button"><span style="margin-right:5px;">Upload</span> <i class="fa fa-upload" style="font-size:16px"></i></button>
                                 <button type="button" class="btn btn-default pull-left download-button hidden"><span
                                         style="margin-right:5px;">Download</span> <i class="fa fa-download" style="font-size:16px"></i></button>
@@ -83,12 +94,18 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-md-3"></div>
+                <div class="col-md-3">
+
+                </div>
             </div>
 
             <div id='textSearch' class="row">
-                <div class="col-md-3">
+                <div class="col-md-2">  <label class="exactMatchText">Exact Match</label></div>
+                <div class="col-md-1">
+
+
                     <label class="switch">
+
                         <input type="checkbox" id="exactMatch">
                         <span class="slider round"></span>
                     </label>
@@ -121,15 +138,15 @@
                     <th style="color:#3c763d" class="resultCount"></th>
                 </tr>
                 <tr>
-                    <th>kna1_kunnr</th>
-                    <th>kna1_land1</th>
-                    <th>kna1_name1</th>
-                    <th>kna1_name2</th>
-                    <th>kna1_ort01</th>
-                    <th>kna1_pstlz</th>
-                    <th>kna1_stras</th>
-                    <th>knb1_props</th>
-                    <th>knvk_props</th>
+                    <th>Customer name</th>
+                    <th>Country Key</th>
+                    <th>Name 1</th>
+                    <th>Name 2</th>
+                    <th>City</th>
+                    <th>Postal Code</th>
+                    <th>House Number And Street</th>
+                    <th>KNB1 Properties</th>
+                    <th>KNVK Properties</th>
                 </tr>
 
                 <tbody>
@@ -352,7 +369,7 @@
                     var compiled_html = _.template(template)({
                         data: { start: pageStart, count: pageCount, showNext: showNext, showPrevious: showPrevious }
                     })
-                    if (data.result.length > 1) {
+                    if (data.result.length > 0) {
                         // console.log(data.time)
                         $(".resultCount").html("<span>" + data.time + "</span>" + "<h3></h3>")
                     }
@@ -395,7 +412,7 @@
 
                             final_data[j]["knb1_props"].forEach(function (data) {
                                 let html_data = []
-                                html_data.push("knb1_akont: " + data["knb1_akont"] + ',' + " knb1_bukrs : " + data['knb1_bukrs'] + ',' + " knb1_kunnr: " + data['knb1_kunnr'] + ',' + " knb1_zterm :" + data['knb1_zterm'])
+                                html_data.push("Reconciliation Account in General Ledger : " + data["knb1_akont"] + ',' + " Company Code : " + data['knb1_bukrs'] + ',' + " Terms of Payment Key : " + data['knb1_zterm'])
                                 knb1_props.push(html_data)
                             })
                             knb1_props = knb1_props.join("<br /><br />");
@@ -403,7 +420,7 @@
                             let knvk_props = []
                             final_data[j]["knvk_props"].forEach(function (data) {
                                 let html_data = []
-                                html_data.push("knvk_kunnr: " + data['knvk_kunnr'] + ',' + " knvk_namev: " + data['knvk_namev'] + ',' + " knvk_name1: " + data['knvk_name1'])
+                                html_data.push("Customer Name: " + data['knvk_kunnr'] + ',' + "First Name: " + data['knvk_namev'] + ',' + " Last Name: " + data['knvk_name1'])
                                 knvk_props.push(html_data)
                             })
                             knvk_props = knvk_props.join("<br /><br />");
@@ -526,11 +543,17 @@
 
 
         $('#upload-photos').on('submit', function (event) {
-            event.preventDefault();
+
+            if ($('#selected_index').val()=="" || $('#row_start').val()=="" || $('#phrase_column').val()=="" || $('#result_coulmn').val()=="")
+            {
+                alert("Please enter all the fields to uplaod the file")
+                 return false
+            }
+                event.preventDefault();
 
             // Get the files from input, create new FormData.
             var files = $('#photos-input').get(0).files,
-                formData = new FormData();
+                    formData = new FormData();
 
             if (files.length === 0) {
                 alert('Select atleast 1 file to upload.');
@@ -547,17 +570,20 @@
                 var file = files[i];
                 formData.append('photos[]', file, file.name);
             }
-            let exactMatch=$("#exactMatch").prop("checked")
+            let exactMatch = $("#exactMatch_customer").prop("checked")
             formData.append('index', $('#selected_index').val())
             formData.append('row_start', $('#row_start').val())
             formData.append('phrase_column', $('#phrase_column').val())
             formData.append('result_coulmn', $('#result_coulmn').val())
-            formData.append('exactMatch',exactMatch)
+            formData.append('exactMatch', exactMatch)
             // Note: We are only appending the file inputs to the FormData.
             uploadFiles(formData);
+
         });
 
         function uploadFiles(formData) {
+            $('.loader').removeClass('hidden')
+            $('.upload-button').addClass('hidden')
             $.ajax({
                 url: '/api/uploadFile',
                 method: 'post',
@@ -583,6 +609,7 @@
                     return xhr;
                 }
             }).done(handleSuccess).fail(function (xhr, status) {
+
                 document.getElementById("photos-input").value = "";
               alert(xhr.responseJSON.message)
             });
@@ -590,6 +617,7 @@
 
         function handleSuccess(data) {
             if (data.length > 0) {
+                $('.loader').addClass('hidden')
                 $('.upload-button').addClass('hidden')
                 $('.download-button').removeClass('hidden')
                 $('.reset-mass-search-button').removeClass('hidden')

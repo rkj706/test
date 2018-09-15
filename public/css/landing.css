@@ -90,6 +90,10 @@ li>a{
 .results{
     padding: 20px;
 }
+.customer_results
+{
+    padding-left: 40px;
+}
 body { width: 100%; text-align: center; }
 
 #loadMore{
@@ -240,7 +244,6 @@ th{
     display: inline-block;
     width: 60px;
     height: 34px;
-    margin-left: 85%;
     margin-top: 2%;
 }
 
@@ -306,4 +309,13 @@ input:checked + .slider:before {
 }
 body{
     color: #1b6d85;
+}
+.loader
+{
+    height: 60px;
+}
+.exactMatchText
+{
+    margin-left: 58%;
+    margin-top: 4%;
 }

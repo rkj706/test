@@ -7,8 +7,18 @@ module.exports = function (app) {
     app.use('/api',auth.verifyToken,require('./search'))
     app.use('/logout',logOut)
     app.use('/manageuser',manageuser)
+    app.use('/abbreviation',auth.verifyToken,abbreviation)
     app.use('/',landing);
 
+}
+function abbreviation(req,res) {
+    auth.checkAuthentication(req,function (result) {
+        if(result.status && result.admin){
+            res.render('abbreviation',{userInfo:result.userName,admin:result.admin});
+        }else{
+            res.render('abbreviation');
+        }
+    })
 }
 function manageuser(req,res) {
     auth.checkAuthentication(req,function (result) {

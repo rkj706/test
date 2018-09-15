@@ -66,7 +66,7 @@ const checkAuthentication = function (req,result) {
                 if (err){
                     console.log('user couldn"t find ')
                     result({status:false})
-                }else if(!user.status){
+                }else if(user && !user.status){
                     result({status:false})
                 }
                else if (payload.exp <= moment().unix()) {
@@ -74,10 +74,15 @@ const checkAuthentication = function (req,result) {
                 }
                 else{
                     let admin=false
-                    if(user.role && user.role==1){
+                    if(user && user.role && user.role==1){
                         admin=true
                     }
-                    result({status:true,userName:user.screenName,admin:admin})
+                    let screenName=""
+                    if(user && user.screenName) {
+                         screenName=user.screenName
+                    }
+
+                    result({status:true,userName:screenName,admin:admin})
                 }
 
             })

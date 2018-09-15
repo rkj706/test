@@ -38,67 +38,7 @@ function processFile(inputFile) {
 
         //insert(line1)
     })
-  /*  let jsonValue = [
-        "APPLE IPHONE, VERSION 6S, COLOUR BLACK, SIZE 6",
-        "Apple iphone, VERSION 6S, COLOUR BLACK, SIZE 6",
-        "APPLEIPHONE VERSION 6S, COLOURBLACK, SIZE 6",
-        "APPLE IPHONE, VERSION 6S, COLOUR BLACK, SIZE 6, WEIGHT 100 GMS",
-        "APPLE IPHONE, VERSION 6S, COLOUR BLACK, SIZE 6, WEIGHT 100 GRAMS",
-        "APPLE IPHONE VERSION 6S COLOUR BLACK SIZE 6. MANUFACTURED ONLY FOR INDIA AND CHINA",
-        "APPLE IPHONE VERSION 6S COLOUR BLACK SIZE 6. MANUFACTURED ONLY FOR INDIA & CHINA",
-        "APPLE IPHONE VERSION 6S COLOUR BLACK SIZE 6. MFG ONLY FOR INDIA & CHINA",
-        "SPECIAL TEMPERED GLASS. REFER TO PURCHASE MANUAL FOR FABRICATION AND ASSEMBLY. RETINA ENABLED.",
-        "SPECIAL TEMPERED GLAS. REFER TO PURCHASE MANUAL FOR FABRICATION AND ASSEMBLY. RETINA ENABLED",
-        "High Definition (HD) Audio. Conexant CX20585 codec. Volume up, down, and mute buttons. Mic mute button",
-        "APPLE IPHONE, VERSION 6S, COLOUR BLACK, SIZE 6S, WEIGHT 100 GRAMS. MANUFACTURED ONLY FOR INDIA AND CHINA.  SPECIAL TEMPERED GLASS. REFER TO PURCHASE MANUAL FOR FABRICATION AND ASSEMBLY. RETINA ENABLED. High Definition (HD) Audio.  Mic mute button",
-        "APPLE IPHONE, VERSION 6S, COLOUR BLACK; SIZE 6S; WEIGHT 100 GRAMS; MANUFACTURED ONLY FOR INDIA AND CHINA; SPECIAL TEMPERED GLASS; REFER TO PURCHASE MANUAL FOR FABRICATION AND ASSEMBLY; RETINA ENABLED; High Definition (HD) Audio;  Mic mute button",
-        "APPLE IPHONE, VERSION 6S, COLOUR BLACK; SIZE 6S; WEIGHT 100 GRAMS; MANUFACTURED ONLY FOR INDIA AND CHINA; SPECIAL TEMPERED GLASS; REFER TO PURCHASE MANUAL FOR FABRICATION & ASSEMBLY; RETINA ENABLED; High Definition Audio;  Mic mute button",
-        "WINSHUTTLE PRIVATE LIMITED",
-        "WINSHUTTLE PVT LTD",
-        "WINSHUTTLE PVT. LTD.",
-        "WINSHUTTL PRIVATE LIMITED",
-        "WINSHUTTLE PRIVATELIMITED",
-        "WINSHUTTLE PTE LIMITED",
-    ]
-    rl.on('close', function (line) {
-        let i = 0
-         self()
-        let err = []
-        let mrno=data[0].mara_matnr
-        let jcount=0
-        let scount=0
-        function self() {
-            if (data[i]) {
-                if(jcount<20){
-                 if(data[i].mara_matnr!=mrno){
-                   scount=i
-                     data[scount].makt_props=[]
-                 }
-                 data[scount].makt_props.push({makt_maktx:jsonValue[jcount]})
-                 jcount=jcount+1
-                }
-                insert(data[i], function (data) {
-                    if (data) {
-                        i = i + 1
-                        mrno=data[i].mara_matnr
-                        self()
-                    } else {
-                        err.push(i)
-                        i = i + 1
-                        mrno=data[i].mara_matnr
-                        self()
-                    }
-                })
-            } else {
-                console.log(err.length)
-                console.log('finished')
-            }
 
-        }
-
-        //
-    });
-    */
     rl.on('close', function (line) {
         let i = 0
         self()
@@ -108,9 +48,7 @@ function processFile(inputFile) {
              console.log('count '+data.length)
             if (data[i]) {
                 console.log('inserting ' + i)
-                if(i<20){
-                 //  data[i].makt_props[0].makt_maktx=jsonValue[i]
-                }
+
                 insert(data[i], function (data) {
                     if (data) {
                         i = i + 1
@@ -135,7 +73,7 @@ function processFile(inputFile) {
 function start() {
 
      processFile(__dirname + '/' + 'customer_master.jl');
-  //  processFile(__dirname + '/' + 'mara_makt.jl');
+    //     processFile(__dirname + '/' + 'mara_makt.jl');
 }
 
 module.exports = {
