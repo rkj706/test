@@ -277,7 +277,7 @@ function download(req, res) {
 
 }
 
-async function uploadFile(req, res) {
+ function uploadFile(req, res) {
     var photos = [],
         form = new formidable.IncomingForm();
     let filePath
@@ -346,13 +346,9 @@ async function uploadFile(req, res) {
         let result_column = fields.result_coulmn || null
         let filePath = photos[0].publicPath
         let exactMatch = fields.exactMatch || false
-        try {
-            let cb = await excel.uploadFileAndWrtite(filePath, row_start, phrase_column, result_column, index, exactMatch)
-
+        excel.uploadFileAndWrtite(filePath,row_start,phrase_column,result_column,index,exactMatch,function (cb) {
             res.status(200).json(photos);
-        } catch (e) {
-            console.log(e)
-        }
+        })
 //        res.status(200).json(photos);
     });
 }

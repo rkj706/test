@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7c20b63-8be4-441b-87e4-8a032f76e2ff" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/excel.js" beforeDir="false" afterPath="$PROJECT_DIR$/excel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/search/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,11 +26,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/search/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="489">
-              <caret line="192" column="3" lean-forward="true" selection-start-line="192" selection-start-column="3" selection-end-line="192" selection-end-column="3" />
+            <state relative-caret-position="543">
+              <caret line="350" column="10" selection-start-line="350" selection-start-column="10" selection-end-line="350" selection-end-column="10" />
               <folding>
                 <element signature="n#!!block;n#generateFileName#0" />
                 <element signature="n#!!block;n#prepareSuggestQuery#0" />
@@ -52,11 +52,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="excel.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="excel.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/excel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="140" column="17" lean-forward="true" selection-start-line="140" selection-start-column="17" selection-end-line="140" selection-end-column="17" />
+            <state relative-caret-position="2220">
+              <caret line="148" column="1" selection-start-line="148" selection-start-column="1" selection-end-line="148" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -91,7 +91,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>incorpora</find>
       <find>&quot;</find>
       <find>/n</find>
       <find>a-zA-Z\d\s</find>
@@ -121,6 +120,7 @@
       <find>console.lo</find>
       <find>prepareQ</find>
       <find>154</find>
+      <find>Mass</find>
     </findStrings>
     <replaceStrings>
       <replace>,&lt;</replace>
@@ -180,9 +180,9 @@
         <option value="$PROJECT_DIR$/views/abbreviation.handlebars" />
         <option value="$PROJECT_DIR$/public/css/landing.css" />
         <option value="$PROJECT_DIR$/lib/query.js" />
-        <option value="$PROJECT_DIR$/search/index.js" />
         <option value="$PROJECT_DIR$/config/index.js" />
         <option value="$PROJECT_DIR$/excel.js" />
+        <option value="$PROJECT_DIR$/search/index.js" />
       </list>
     </option>
   </component>
@@ -305,12 +305,12 @@
       <workItem from="1535261688864" duration="31022000" />
       <workItem from="1535993932209" duration="2592000" />
       <workItem from="1536003541519" duration="53677000" />
-      <workItem from="1536919839466" duration="42117000" />
+      <workItem from="1536919839466" duration="42947000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="329923000" />
+    <option name="totallyTimeSpent" value="330753000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -707,21 +707,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/search/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="192" column="3" lean-forward="true" selection-start-line="192" selection-start-column="3" selection-end-line="192" selection-end-column="3" />
-          <folding>
-            <element signature="n#!!block;n#generateFileName#0" />
-            <element signature="n#!!block;n#prepareSuggestQuery#0" />
-            <element signature="n#!!block;n#searchMatch#0" />
-            <element signature="n#!!block;n#download#0" />
-            <element signature="n#!!block;n#getUsers#0" />
-            <element signature="n#!!block;n#changeUserStatus#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -731,8 +716,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/excel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="140" column="17" lean-forward="true" selection-start-line="140" selection-start-column="17" selection-end-line="140" selection-end-column="17" />
+        <state relative-caret-position="2220">
+          <caret line="148" column="1" selection-start-line="148" selection-start-column="1" selection-end-line="148" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/search/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="543">
+          <caret line="350" column="10" selection-start-line="350" selection-start-column="10" selection-end-line="350" selection-end-column="10" />
+          <folding>
+            <element signature="n#!!block;n#generateFileName#0" />
+            <element signature="n#!!block;n#prepareSuggestQuery#0" />
+            <element signature="n#!!block;n#searchMatch#0" />
+            <element signature="n#!!block;n#download#0" />
+            <element signature="n#!!block;n#getUsers#0" />
+            <element signature="n#!!block;n#changeUserStatus#0" />
+          </folding>
         </state>
       </provider>
     </entry>
