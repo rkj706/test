@@ -1,7 +1,7 @@
 var env = process.env.NODE_ENV || 'development'
 var config = {
     development: {
-        baseUrl:'http://13.127.62.240',
+        baseUrl:'http://35.154.219.199',
         ingest:false,
         port: 5003,
         baseURI: '',

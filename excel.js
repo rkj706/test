@@ -151,7 +151,7 @@ async function MassSearch(rowNum, index, searchString, query) {
 
                 }
             }catch (e) {
-                console.log(error)
+                console.log(e)
                 console.log('MassSearch client search error')
                 resolve({totalNumber: 0, searchString: searchString, rowNumber: rowNum})
 
