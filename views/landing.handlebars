@@ -1,10 +1,10 @@
 <div class="main-body">
     <div class="row">
-        <h2>Search</h2>
+        <h2>Davinchi</h2>
     </div>
 
     <div class="row">
-        <div class="col-md-2"></div>
+        <div class="col-md-4"></div>
         <div class="col-md-2 index_select">
 
             <div>
@@ -15,14 +15,32 @@
             </div>
 
         </div>
-        <div class="col-md-4"></div>
-        <div class="col-md-3" style="text-align:left;">
+        <div class="col-md-2" style="text-align:left;">
             <div class="btn-group btn-toggle">
                 <button class="btn btn-s btn-default search active">Text search</button>
                 <button class="btn btn-s mass-search btn-default">Mass search</button>
             </div>
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-md-4" id="csvDiv">
+            <select name="Select result count to download" id="csvResultCount">
+                <option value="100">Top 100</option>
+                <option value="200">Top 200</option>
+                <option value="300">Top 300</option>
+                <option value="400">Top 400</option>
+                <option value="500">Top 500</option>
+                <option value="600">Top 600</option>
+                <option value="700">Top 700</option>
+                <option value="800">Top 800</option>
+                <option value="900">Top 900</option>
+                <option value="1000">Top 1000</option>
+            </select>
+            <img src="./img/uploader.gif" class="csv-loader pull-left hidden">
+            <button type="button" id="csvDownload" class="btn btn-default pull-left  hidden"><span
+                    style="margin-right:5px;">Download CSV</span> <i class="fa fa-download" style="font-size:16px"></i></button>
+            <button type="button" style="margin-left:5px;" class="btn btn-info pull-left reset-csv-button hidden"><span
+                    style="margin-right:5px;">Reset</span> <i class="fa fa-refresh" style="font-size:16px"></i></button>
+            <input type="button" class="btn btn-default" id="exportCSV" value="Export Result">
+        </div>
     </div>
     <div class="row">
         <div style="margin-top:50px;">
@@ -469,6 +487,76 @@
         })
         $("#search-text").bind("keypress", {}, keypressInBox);
 
+
+         $("#exportCSV").on('click',function () {
+             let source = []
+             let searchText =getUrlParameter('search-text')
+             let exactMatch=JSON.parse(getUrlParameter('exactMatch')) || false
+             let index = getUrlParameter('index')
+             if (index == 'makt') {
+                 source = ['mara_matnr', 'mara_mtart', 'mara_matkl', 'mara_vhart', 'mara_ersda', 'mara_ernam', 'mara_pstat', 'mara_mbrsh', 'mara_meins', 'mara_prdha', 'makt_props']
+             }
+             if(!searchText || searchText=="")
+             {
+                 return false
+             }
+             if (!index || index == "") {
+                 alert('please select an index')
+                 return false
+             }
+             let size=parseInt($('#csvResultCount').val())
+             $('#exportCSV').addClass('hidden')
+             $('.csv-loader').removeClass('hidden')
+             $('#csvResultCount').addClass('hidden')
+
+             $.ajax({
+                 url: '../api/createCsv',
+                 data: JSON.stringify({
+                     index: index,
+                     text: searchText,
+                     from: 0,
+                     size:size,
+                     exactMatch:exactMatch,
+                     source: source,
+                 }),
+                 method: 'POST',
+                 dataType: 'json',
+                 contentType: "application/json",
+                 success: function (data) {
+                     setTimeout(function () {
+                         $('.csv-loader').addClass('hidden')
+                         $('#csvDownload').removeClass('hidden')
+                         $('#csvDownload').attr('fileName',data.fileName)
+                         $('.reset-csv-button').removeClass('hidden')
+                     },1000)
+
+                 }
+             })
+
+         })
+    $('.reset-csv-button').on('click',function (e) {
+        e.preventDefault();
+        $(this).addClass('hidden')
+        $('#csvResultCount').removeClass('hidden')
+        $('#csvDownload').addClass('hidden')
+        $('#exportCSV').removeClass('hidden')
+
+    })
+    $('#csvDownload').on('click', function (e) {
+
+        e.preventDefault();
+
+        var link = document.createElement('a');
+
+        var fileName = $(this).attr('filename').substr($(this).attr('filename').lastIndexOf('/') + 1);
+
+        link.href = '../api/download-csv/' + fileName;
+
+        link.download = fileName.substr(fileName.lastIndexOf('/') + 1);
+
+        link.click();
+
+    })
         function keypressInBox(e) {
             var code = (e.keyCode ? e.keyCode : e.which);
             let exactMatch=$("#exactMatch").prop("checked")
@@ -658,12 +746,14 @@
     if(massSearch && massSearch=="true"){
         $('.btn-toggle').find('.mass-search').addClass('active')
         $('.btn-toggle').find('.search').removeClass('active')
+        $('#csvDiv').hide()
         $('#textSearch').hide();
         $('#massSearch').show();
 
     }else {
         $('.btn-toggle').find('.mass-search').removeClass('active')
         $('.btn-toggle').find('.search').addClass('active')
+        $('#csvDiv').show()
         $('#massSearch').hide();
         $('#textSearch').show();
     }

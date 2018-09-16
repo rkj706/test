@@ -11,6 +11,8 @@ const exphbs  = require('express-handlebars');
 const config=require('./config')
 const cookieParser = require('cookie-parser');
 const passport=require('passport');
+var fs = require("fs");
+
 //var Stream = require('stream');
 //var readline = require('readline');
 //require('./reply')
@@ -57,16 +59,16 @@ app.use(session({
 
 
 
-
-
 require('./router')(app);
 let ingest=require('./ingest')
 if(config.ingest){
+
     ingest.start()
 }
 
 var server=http.createServer(app);
 server.listen('5000',function (err) {
+
     if(err){
         console.log(err)
     }

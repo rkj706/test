@@ -314,6 +314,19 @@ body{
 {
     height: 60px;
 }
+#exportCSV{
+    background-color: #5bc0de !important;
+}
+#csvDownload
+{
+    background-color:  #5bc0de !important;
+}
+
+.csv-loader{
+    height: 60px;
+    padding: 6px;
+    margin-left: 52px;
+}
 .exactMatchText
 {
     margin-left: 58%;

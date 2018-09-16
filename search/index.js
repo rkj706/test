@@ -16,12 +16,180 @@ const User = require('../models/users')
 const Abbreviation = require('../models/abbreviation')
 let router = express.Router()
 router.post('/search', searchQuery)
-router.post('/suggest-search', searchMatch)
 router.post('/getUsers', getUsers)
 router.post('/updateUser', changeUserStatus)
 router.post('/uploadFile', uploadFile)
 router.get('/download/:file(*)', download)
 router.post('/addabbreviation', addAbbreviation)
+router.post('/createCSV',createCsv)
+router.get('/download-csv/:file(*)',downloadCsv)
+
+function createCsv(req,res) {
+
+    if (!req.body.index) {
+        return false
+    }
+    const index = config.elasticSearch.profileIndex[req.body.index]
+    const type = config.elasticSearch.profileType
+
+    let exactMatch = req.body.exactMatch || false
+
+    //prepareQuery second parameter is flag true if pure match or false if fuzzy
+    let query;
+    let searchText
+    if (index == 'makt') {
+        query = elasticQuery.prepareQuery(req.body, exactMatch)
+    } else {
+        query = elasticQuery.prepareCustomerQuery(req.body, exactMatch)
+    }
+
+    const source = req.body.source
+    let from = req.body.from || 0
+    let size = req.body.size || 10
+    if (1 < size > 200) {
+        size = 10
+    }
+    if (from < 0) {
+        from = 0
+    }
+    const sort = req.body.sort || ""
+    const searchAfter = req.body.searchAfter || ""
+    const timeout = req.body.timeout || '200ms'
+    const esQuery = {
+        index: index,
+        type: type,
+        from: from,
+        size: size
+    }
+    esQuery.body = {
+        query: query
+    }
+    if (source) {
+        esQuery.body._source = source
+    }
+    if (sort) {
+        esQuery.body.sort = sort
+    }
+    if (searchAfter) {
+        esQuery.body.search_after = searchAfter
+    }
+    client.search(esQuery)
+        .then(function (esDocs) {
+                if (esDocs) {
+                    let result = esDocs.hits.hits.map(function (results) {
+                        return results._source
+                    })
+                    console.log('result count '+result.length)
+
+                    let fileName=generateFileName()+'.csv'
+                    var createStream = fs.createWriteStream(appRootDir + '/result_csv/'+fileName);
+                    const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+                    let header;
+                    let records=[]
+                    if(index=='makt'){
+                        header= [
+                            {id: 'Material Number', title: 'Material Number'},
+                            {id: 'Material Type', title: 'Material Type'},
+                            {id: 'Description', title: 'Description'},
+                            {id: 'Material Group', title: 'Material Group'},
+                            {id: 'Packaging Material Type', title: 'Packaging Material Type'},
+                            {id: 'Created On', title: 'Created On'},
+                            {id: 'Name of Person who Created the Object', title: 'Name of Person who Created the Object'},
+                            {id: 'Maintenance status', title: 'Maintenance status'},
+                            {id: 'Industry Sector', title: 'Industry Sector'},
+                            {id: 'Base Unit of Measure', title: 'Base Unit of Measure'},
+                            {id: 'Product hierarchy', title: 'Product hierarchy'},
+                        ]
+                        for (let j = 0; j < result.length; j++) {
+
+                            let maktMaktx = result[j]['makt_props'].map(function (data) {
+                                return data.makt_maktx
+                            })
+                            records.push(
+                                {
+                                    "Material Number":result[j].mara_matnr,
+                                    "Material Type":result[j].mara_mtart,
+                                    "Description":maktMaktx,
+                                    "Material Group":result[j].mara_matkl,
+                                    "Packaging Material Type":result[j].mara_vhart,
+                                    "Created On":result[j].mara_ersda,
+                                    "Name of Person who Created the Object":result[j].mara_ernam,
+                                    "Maintenance status":result[j].mara_pstat,
+                                    "Industry Sector":result[j].mara_mbrsh,
+                                    "Base Unit of Measure":result[j].mara_meins,
+                                    "Product hierarchy":result[j].mara_prdha
+                                }
+
+                            )
+                        }
+                    }else{
+                        header=[
+                            {id: 'Customer name', title: 'Customer name'},
+                            {id: 'Country key', title: 'Country Key'},
+                            {id: 'Name 1', title: 'Name 1'},
+                            {id: 'Name 2', title: 'Name 2'},
+                            {id: 'City', title: 'City'},
+                            {id: 'Postal Code', title: 'Postal Code'},
+                            {id: 'House Number And Street', title: 'House Number And Street'},
+                            {id: 'KNB1 Properties', title: 'KNB1 Properties'},
+                            {id: 'KNVK Properties', title: 'KNVK Properties'},
+                        ]
+                        for (let j = 0; j < result.length; j++) {
+                            let knb1_props = []
+
+                            result[j]["knb1_props"].forEach(function (data) {
+                                let html_data = []
+                                html_data.push("Reconciliation Account in General Ledger : " + data["knb1_akont"] + ',' + " Company Code : " + data['knb1_bukrs'] + ',' + " Terms of Payment Key : " + data['knb1_zterm'])
+                                knb1_props.push(html_data)
+                            })
+                            knb1_props = knb1_props.join("<br /><br />");
+
+                            let knvk_props = []
+                            result[j]["knvk_props"].forEach(function (data) {
+                                let html_data = []
+                                html_data.push("Customer Name: " + data['knvk_kunnr'] + ',' + "First Name: " + data['knvk_namev'] + ',' + " Last Name: " + data['knvk_name1'])
+                                knvk_props.push(html_data)
+                            })
+                            knvk_props = knvk_props.join("<br /><br />");
+
+                           records.push(
+                               {
+                                   'Customer name':result[j].kna1_kunnr,
+                                   'Country key':result[j].kna1_land1,
+                                   'Name 1':result[j].kna1_name1,
+                                   'Name 2':result[j].kna1_name2,
+                                   'City':result[j].kna1_ort01,
+                                   'Postal Code':result[j].kna1_pstlz,
+                                   'House Number And Street':result[j].kna1_stras,
+                                   'KNB1 Properties':knb1_props,
+                                   'KNVK Properties':knvk_props
+                               }
+                           )
+                        }
+                    }
+                    const csvWriter = createCsvWriter({
+                        path: appRootDir +'/result_csv/'+ fileName,
+                        header: header
+                    });
+
+                    csvWriter.writeRecords(records)
+                        .then(() => {
+                            console.log('done')
+                            res.status(200).json({fileName:fileName})
+                        });
+
+                    createStream.end();
+
+                } else {
+                    res.status(500).json({msg: 'something went wrong'})
+                }
+            }
+        ).catch(function (error) {
+        console.log(error)
+        res.status(500).json({msg: 'something is not correct'})
+    })
+
+}
 
 function addAbbreviation(req, res) {
     let key = req.body.key.toUpperCase()
@@ -65,140 +233,30 @@ function generateFileName() {
     return text;
 }
 
-function prepareSuggestQuery(body) {
-    let query = {bool: {}}
-    query.bool['should'] = []
-    let operator = 'or'
-    let searchString = body.text
-    let mixWord = searchString.replace(/ /g, '')
-    if (body.text.indexOf('+') > -1) {
-        searchString = searchString.replace(/\+/g, ' ');
-        operator = 'and'
-    }
-    let s1 = {
-        "match_phrase_prefix": {
-            "mara_matnr": searchString
-        }
-    }
 
-    query.bool.should.push(s1)
-    let s2 = {
-        "match_phrase_prefix": {
-            "mara_mtart": searchString
-        }
+function downloadCsv(req,res) {
+    let filePath = appRootDir + '/result_csv/' + req.params.file;
 
-    }
+    var stat = fs.statSync(filePath);
 
-    query.bool.should.push(s2)
-    let s3 = {
-        "match": {
-            "mara_ernam": {
-                "query": searchString
-            }
-        }
-    }
-
-    query.bool.should.push(s3)
-    let s4 = {
-        'nested': {
-            'path': 'makt_props',
-            'query': {
-                "match_phrase_prefix": {
-                    "makt_props.makt_maktx": searchString
-                }
-            }
-        }
-    }
-    query.bool.should.push(s4)
-    query.bool['minimum_should_match'] = 1
-    return query
+    res.download(filePath, req.params.file);
 }
+ function searchQuery(req, res) {
 
-function searchMatch(req, res) {
-    let text = req.body.text || null
-    const source = req.body.source
-    if (!text) {
-        res.status(200).send({result: [], count: 0, time: 0})
-    } else {
-        const index = config.elasticSearch.profileIndex.mkat
-        const type = config.elasticSearch.profileType
-        const query = prepareSuggestQuery(req.body)
-        const esQuery = {
-            index: index,
-            type: type,
-            from: 0,
-            size: 10
-        }
-        esQuery.body = {
-            query: query
-        }
-        if (source) {
-            esQuery.body._source = source
-        }
-        client.search(esQuery)
-            .then(function (esDocs) {
-                    if (esDocs) {
-                        let result = esDocs.hits.hits.map(function (results) {
-                            return results._source
-                        })
-                        res.status(200).send({result: result, count: esDocs.hits.total})
-                    } else {
-                        res.status(500).json({msg: 'something went wrong'})
-                    }
-                }
-            ).catch(function (error) {
-            res.status(500).json({msg: 'something is not correct'})
-        })
-    }
-}
-function x(searchString) {
-    return new Promise(function (resolve, reject) {
-        let newString = []
-      Abbreviation.findOne({keyName: searchString.toUpperCase()}, function (error, result) {
-            if (error) {
-                newString.push(searchString)
-                resolve(searchString)
-            } else {
-                if (result) {
-                    console.log('hello')
-                    let s = result.value.join(' ')
-                    newString.push(s)
-                    newString.push(searchString)
-                    resolve(newString)
 
-                } else {
-                    newString.push(searchString)
-                    resolve(newString)
 
-                }
-            }
-        })
-
-    })
-}
-
-async function getAllAbb(searchString) {
-   let z= await x(searchString)
-}
-
-async function searchQuery(req, res) {
     if (!req.body.index) {
         return false
     }
     const index = config.elasticSearch.profileIndex[req.body.index]
     const type = config.elasticSearch.profileType
     let exactMatch = req.body.exactMatch || false
+//
 
+     //
     //prepareQuery second parameter is flag true if pure match or false if fuzzy
     let query;
-    // let searchText
-    // if (!exactMatch) {
-    //     searchText = req.body.text.replace(/[^a-zA-Z\d\s]/g, "")
-    //     searchText.split(' ').forEach(async (item)=>{
-    //         await  getAllAbb(item)
-    //     })
-    //     console.log('done')
-    // }
+    let searchText
     if (index == 'makt') {
 
         query = elasticQuery.prepareQuery(req.body, exactMatch)
@@ -277,7 +335,7 @@ function download(req, res) {
 
 }
 
- function uploadFile(req, res) {
+async function uploadFile(req, res) {
     var photos = [],
         form = new formidable.IncomingForm();
     let filePath
@@ -346,9 +404,13 @@ function download(req, res) {
         let result_column = fields.result_coulmn || null
         let filePath = photos[0].publicPath
         let exactMatch = fields.exactMatch || false
-        excel.uploadFileAndWrtite(filePath,row_start,phrase_column,result_column,index,exactMatch,function (cb) {
+        try {
+            let cb = await excel.uploadFileAndWrtite(filePath, row_start, phrase_column, result_column, index, exactMatch)
+
             res.status(200).json(photos);
-        })
+        } catch (e) {
+            console.log(e)
+        }
 //        res.status(200).json(photos);
     });
 }
