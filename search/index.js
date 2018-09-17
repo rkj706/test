@@ -405,9 +405,10 @@ async function uploadFile(req, res) {
         let filePath = photos[0].publicPath
         let exactMatch = fields.exactMatch || false
         try {
-            let cb = await excel.uploadFileAndWrtite(filePath, row_start, phrase_column, result_column, index, exactMatch)
+             excel.uploadFileAndWrtite(filePath, row_start, phrase_column, result_column, index, exactMatch,function (resp) {
+                 res.status(200).json(photos);
+             })
 
-            res.status(200).json(photos);
         } catch (e) {
             console.log(e)
         }
