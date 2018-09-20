@@ -43,17 +43,17 @@
 
             {{#if userInfo}}
                 {{#if admin}}
-                    <li><a href="../">Welcome {{{userInfo}}}</a></li>
-                    <li><a href="../manageuser">Manage users</a></li>
+                    <li><a style="color:#1b6d85 !important;" href="../">Welcome {{{userInfo}}}</a></li>
+                    <li><a  style="color:#1b6d85 !important;" href="../manageuser">Manage users</a></li>
                    {{else}}
                 {{/if}}
 
-                    <li><a href="javascript:void(0)" onclick="logout()"> Log out</a></li>
+                    <li><a  style="color:#1b6d85 !important;" href="javascript:void(0)" onclick="logout()"> Log out</a></li>
 
             {{else}}
 
-                <li><a href="javascript:void(0)" data-toggle="modal" data-target="#signin">Log in</a></li>
-                <li><a href="javascript:void(0)" data-toggle="modal" data-target="#signup">Sign up</a></li>
+                <li><a  style="color:#1b6d85 !important;" href="javascript:void(0)" data-toggle="modal" data-target="#signin">Log in</a></li>
+                <li><a  style="color:#1b6d85 !important;" href="javascript:void(0)" data-toggle="modal" data-target="#signup">Sign up</a></li>
             {{/if}}
         </ul>
     </div>

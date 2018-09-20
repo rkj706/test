@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a7c20b63-8be4-441b-87e4-8a032f76e2ff" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/landing.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/landing.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/landing.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/landing.handlebars" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/layouts/main.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/layouts/main.handlebars" afterDir="false" />
@@ -44,8 +43,8 @@
       <file leaf-file-name="landing.handlebars" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/landing.handlebars">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546">
-              <caret line="384" column="41" selection-start-line="384" selection-start-column="41" selection-end-line="384" selection-end-column="41" />
+            <state relative-caret-position="614">
+              <caret line="147" column="41" selection-start-line="147" selection-start-column="36" selection-end-line="147" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -53,8 +52,15 @@
       <file leaf-file-name="main.handlebars" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/layouts/main.handlebars">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-687">
-              <caret line="55" column="97" selection-start-line="55" selection-start-column="97" selection-end-line="55" selection-end-column="97" />
+            <state relative-caret-position="256">
+              <caret line="31" column="49" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
+              <folding>
+                <element signature="n#style#0;n#a#0;n#li#0;n#ul#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#li#1;n#ul#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#li#2;n#ul#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#li#3;n#ul#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#li#4;n#ul#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -62,8 +68,8 @@
       <file leaf-file-name="landing.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/landing.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="738">
-              <caret line="336" column="19" lean-forward="true" selection-start-line="336" selection-start-column="19" selection-end-line="336" selection-end-column="19" />
+            <state relative-caret-position="768">
+              <caret line="342" column="30" selection-start-line="342" selection-start-column="30" selection-end-line="342" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -80,8 +86,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>x</find>
-      <find>getAllAbb</find>
       <find>Search</find>
       <find>pagination</find>
       <find>loadMore</find>
@@ -110,6 +114,8 @@
       <find>personal</find>
       <find>exact Ma</find>
       <find>search resu</find>
+      <find>dodgerblue#5bc0de</find>
+      <find>&quot;search&quot;</find>
     </findStrings>
     <replaceStrings>
       <replace>,&lt;</replace>
@@ -171,8 +177,8 @@
         <option value="$PROJECT_DIR$/search/index.js" />
         <option value="$PROJECT_DIR$/personal.js" />
         <option value="$PROJECT_DIR$/index.js" />
-        <option value="$PROJECT_DIR$/public/css/landing.css" />
         <option value="$PROJECT_DIR$/views/layouts/main.handlebars" />
+        <option value="$PROJECT_DIR$/public/css/landing.css" />
         <option value="$PROJECT_DIR$/views/landing.handlebars" />
       </list>
     </option>
@@ -315,12 +321,12 @@
       <workItem from="1535993932209" duration="2592000" />
       <workItem from="1536003541519" duration="53677000" />
       <workItem from="1536919839466" duration="77301000" />
-      <workItem from="1537463071558" duration="1878000" />
+      <workItem from="1537463071558" duration="2892000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="366985000" />
+    <option name="totallyTimeSpent" value="367999000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -483,6 +489,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="117">
           <caret line="1184" column="33" selection-start-line="1184" selection-start-column="33" selection-end-line="1184" selection-end-column="33" />
+          <folding>
+            <element signature="e#11489#11574#2" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -661,13 +670,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/landing.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="738">
-          <caret line="336" column="19" lean-forward="true" selection-start-line="336" selection-start-column="19" selection-end-line="336" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
@@ -675,17 +677,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/landing.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="768">
+          <caret line="342" column="30" selection-start-line="342" selection-start-column="30" selection-end-line="342" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/views/layouts/main.handlebars">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-687">
-          <caret line="55" column="97" selection-start-line="55" selection-start-column="97" selection-end-line="55" selection-end-column="97" />
+        <state relative-caret-position="256">
+          <caret line="31" column="49" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#li#0;n#ul#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#li#1;n#ul#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#li#2;n#ul#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#li#3;n#ul#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#li#4;n#ul#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/landing.handlebars">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="384" column="41" selection-start-line="384" selection-start-column="41" selection-end-line="384" selection-end-column="41" />
+        <state relative-caret-position="614">
+          <caret line="147" column="41" selection-start-line="147" selection-start-column="36" selection-end-line="147" selection-end-column="41" />
         </state>
       </provider>
     </entry>
