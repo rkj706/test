@@ -61,6 +61,8 @@ app.use(session({
 
 require('./router')(app);
 let ingest=require('./ingest')
+// let personal=require('./personal')
+// personal.start()
 if(config.ingest){
 
     ingest.start()

@@ -39,13 +39,13 @@
                     style="margin-right:5px;">Download CSV</span> <i class="fa fa-download" style="font-size:16px"></i></button>
             <button type="button" style="margin-left:5px;" class="btn btn-info pull-left reset-csv-button hidden"><span
                     style="margin-right:5px;">Reset</span> <i class="fa fa-refresh" style="font-size:16px"></i></button>
-            <input type="button" class="btn btn-default" id="exportCSV" value="Export Result">
+            <input type="button" class="btn btn-default" id="exportCSV" value="Export result">
         </div>
     </div>
     <div class="row">
         <div style="margin-top:50px;">
             <div id='massSearch' style="display:none;" class="row">
-                <div class="col-md-2">  <label class="exactMatchText">Exact Match</label></div>
+                <div class="col-md-2">  <label class="exactMatchText">Exact match</label></div>
                 <div class="col-md-1">
 
 
@@ -69,7 +69,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-6 control-label" for="result_coulmn">Search Result Column:</label>
+                            <label class="col-sm-6 control-label" for="result_coulmn">Search result column:</label>
                             <div class="col-sm-3">
                                 <input type="text" class="form-control" id="result_coulmn" placeholder="Search result column"
                                     value='B'></input>
@@ -118,7 +118,7 @@
             </div>
 
             <div id='textSearch' class="row">
-                <div class="col-md-2">  <label class="exactMatchText">Exact Match</label></div>
+                <div class="col-md-2">  <label class="exactMatchText">Exact match</label></div>
                 <div class="col-md-1">
 
 
@@ -379,8 +379,15 @@
                         } else {
                             pageStart = pagination
                         }
-
-                        pageCount = pagination + 5
+                        let totalDataCOunt=data.count
+                        let shown=Math.floor((data.count-(pagination*10))/10)
+                        if(extraPage>0){
+                            shown=shown+1
+                        }
+                        if(shown>5){
+                            shown=5
+                        }
+                        pageCount = pagination + shown
                         $(".next").removeClass('hidden')
                         showNext = true
                     }
